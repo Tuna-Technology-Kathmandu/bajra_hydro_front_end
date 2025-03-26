@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Row, Col, Button, InputGroup, FormControl } from "react-bootstrap";
 import { AdminBlogTable } from "./AdminBlogTable";
 import { AdminAddBlog } from "./AdminAddBlog";
 
 export const AdminBlog = () => {
-  const [showAddModal, setShowAddModal] = useState(false);
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleAddBlog = () => {
-    setShowAddModal(true);
+    navigate("/dashboard/blogs/add");
   };
 
   return (
@@ -16,7 +17,9 @@ export const AdminBlog = () => {
       <h3 className="mb-4">Blog Management</h3>
       <Row className="mb-4">
         <Col>
-          <Button variant="primary" onClick={handleAddBlog}>Add New Blog</Button>
+          <Button variant="primary" onClick={handleAddBlog}>
+            Add New Blog
+          </Button>
         </Col>
         <Col>
           <InputGroup>
@@ -26,7 +29,6 @@ export const AdminBlog = () => {
         </Col>
       </Row>
       <AdminBlogTable />
-      <AdminAddBlog show={showAddModal} onHide={() => setShowAddModal(false)} />
     </div>
   );
 };
