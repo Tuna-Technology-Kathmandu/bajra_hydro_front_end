@@ -1,25 +1,46 @@
 import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import { uploadGalleryItem } from "../../../utils/services/dashboard/GalleryService";
 
 export const AdminAddGallery = ({ show, onHide }) => {
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
 
-
-  const [image, setImage] = useState(null); // Store uploaded image
-
-  // Handle image upload
-  const handleImageUpload = (e) => {
+  // Handle file selection
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file); // Create a preview URL
-      setImage(imageUrl);
+      if (file.type.startsWith("image/")) {
+        setImage(file);
+        setImagePreview(URL.createObjectURL(file));
+        setError("");
+      } else {
+        setError("Please select a valid image file.");
+        setImage(null);
+        setImagePreview(null);
+      }
     }
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., send data to an API)
-    onHide();
+    if (!image) return alert("Please select an image to upload.");
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image_url", image);
+
+      await uploadGalleryItem(formData);
+      onHide();
+    } catch (error) {
+      alert("Failed to upload image. Please try again.");
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -29,12 +50,11 @@ export const AdminAddGallery = ({ show, onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          {/* Display uploaded image if exists */}
-          {image && (
+          {imagePreview && (
             <div className="text-center mb-3">
               <img
-                src={image}
-                alt="Uploaded"
+                src={imagePreview}
+                alt="Uploaded Preview"
                 style={{
                   maxWidth: "100%",
                   height: "150px",
@@ -45,21 +65,27 @@ export const AdminAddGallery = ({ show, onHide }) => {
             </div>
           )}
 
-          {/* Image Upload Button */}
           <Form.Group className="mb-3 text-center">
             <Form.Label className="btn btn-secondary">
               {image ? "Change Image" : "Upload Image"}
               <input
                 type="file"
                 accept="image/*"
-                onChange={handleImageUpload}
+                onChange={handleFileChange}
                 style={{ display: "none" }}
               />
             </Form.Label>
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
-            Save
+          {error && <p className="text-danger text-center">{error}</p>}
+
+          <Button
+            variant="primary"
+            type="submit"
+            className="w-100"
+            disabled={uploading}
+          >
+            {uploading ? "Uploading..." : "Save"}
           </Button>
         </Form>
       </Modal.Body>

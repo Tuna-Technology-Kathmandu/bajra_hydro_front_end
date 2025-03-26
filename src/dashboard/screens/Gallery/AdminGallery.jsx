@@ -3,33 +3,35 @@ import { Card, Button } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import { AdminAddGallery } from "./AdminAddGallery";
 import { useGallery } from "../../../hooks/useGallery";
+import { deleteGalleryItem } from "../../../utils/services/dashboard/GalleryService";
 
 export const AdminGallery = () => {
   const [showAddModal, setShowAddModal] = useState(false);
-
-  // Sample images (Replace with actual image URLs)
-  const [images, setImages] = useState([
-    "https://placehold.co/600x400",
-    "https://placehold.co/600x400",
-    "https://placehold.co/600x400",
-    "https://placehold.co/600x400",
-  ]);
+  const { gallery, loading, error } = useGallery(); 
+  const [deleting, setDeleting] = useState(null); 
 
   // Handle delete image
-  const handleDelete = (index) => {
-    setImages(images.filter((_, i) => i !== index));
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this image?")) return;
+
+    setDeleting(id);
+    try {
+      await deleteGalleryItem(id);
+      // setGallery((prev) => prev.filter((item) => item.id !== id)); // Update UI
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      alert("Failed to delete image. Please try again.");
+    } finally {
+      setDeleting(null);
+    }
   };
 
   const handleAddBlog = () => {
     setShowAddModal(true);
   };
 
-  const { gallery, loading, error } = useGallery();
-
-  if (loading) return <div>Loading blogs...</div>;
+  if (loading) return <div>Loading gallery...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
-  console.log(gallery);
 
   return (
     <div>
@@ -38,13 +40,13 @@ export const AdminGallery = () => {
         Upload Image
       </Button>
       <div className="d-flex flex-wrap gap-3">
-        {gallery.map((src, index) => (
-          
-          <Card key={index} style={{ width: "200px", position: "relative" }}>
+        {gallery.map((image) => (
+          <Card key={image.id} style={{ width: "200px", position: "relative" }}>
             <Button
               variant="danger"
               size="sm"
-              onClick={() => handleDelete(index)}
+              onClick={() => handleDelete(image.id)}
+              disabled={deleting === image.id}
               style={{
                 position: "absolute",
                 top: "5px",
@@ -53,9 +55,9 @@ export const AdminGallery = () => {
                 fontSize: "12px",
               }}
             >
-              <Trash size={12} />
+              {deleting === image.id ? "..." : <Trash size={12} />}
             </Button>
-            <Card.Img variant="top" src={src.image_url} />
+            <Card.Img variant="top" src={image.image_url} />
           </Card>
         ))}
       </div>
