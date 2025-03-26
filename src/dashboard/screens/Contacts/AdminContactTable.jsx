@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Badge } from "react-bootstrap";
 import { Eye, Pencil, Trash } from "react-bootstrap-icons";
 import { useContacts } from "../../../hooks/useContact";
 import { AdminContactView } from "./AdminContactView";
@@ -26,6 +26,7 @@ export const AdminContactTable = () => {
             <th>Fullname</th>
             <th>Email</th>
             <th>Contact</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -36,6 +37,9 @@ export const AdminContactTable = () => {
               <td>{item.fullname}</td>
               <td>{item.email}</td>
               <td>{item.contact_no}</td>
+              <td>
+                <Badge bg="warning"> {item.status}</Badge>
+              </td>
               <td>
                 <Button
                   variant="link"
