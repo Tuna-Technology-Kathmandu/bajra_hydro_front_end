@@ -20,6 +20,7 @@ import { AdminLocation } from "../dashboard/screens/Locations/AdminLocation";
 import { AdminContact } from "../dashboard/screens/Contacts/AdminContact";
 import { AdminDesigner } from "../dashboard/screens/Designer/AdminDesigner";
 import { AdminAddBlog } from "../dashboard/screens/Blogs/AdminAddBlog";
+import { AdminAddLocation } from "../dashboard/screens/Locations/AdminAddLocation";
 import NotFound from "../pages/NotFound";
 
 // import AuthGuard from "./constants/AuthGuard";
@@ -52,7 +53,10 @@ const Routers = () => {
           <Route path="add" element={<AdminAddProduct />} />
         </Route>
         <Route path="gallery" element={<AdminGallery />} />
-        <Route path="locations" element={<AdminLocation />} />
+        <Route path="locations">
+          <Route index element={<AdminLocation />} />
+          <Route path="add" element={<AdminAddLocation />} />
+        </Route>
         <Route path="contacts" element={<AdminContact />} />
         <Route path="designers">
           <Route index element={<AdminDesigner />} />
