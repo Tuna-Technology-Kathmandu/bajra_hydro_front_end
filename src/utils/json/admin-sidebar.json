@@ -67,10 +67,16 @@
       "icon": "FileEarmarkPdf"
     },
     {
-      "id": 11,
+      "id": 12,
       "name": "Popup",
       "path": "/dashboard/popup/",
       "icon": "FileEarmarkPdf"
+    },
+    {
+      "id": 13,
+      "name": "Subscribers",
+      "path": "/dashboard/subscriber/",
+      "icon": "EnvelopeCheck"
     }
   ]
 }
