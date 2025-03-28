@@ -19,6 +19,7 @@ import { AdminGallery } from "../dashboard/screens/Gallery/AdminGallery";
 import { AdminLocation } from "../dashboard/screens/Locations/AdminLocation";
 import { AdminContact } from "../dashboard/screens/Contacts/AdminContact";
 import { AdminDesigner } from "../dashboard/screens/Designer/AdminDesigner";
+import { AdminDesignerDetails } from "../dashboard/screens/Designer/AdminDesignerDetails";
 import { AdminAddBlog } from "../dashboard/screens/Blogs/AdminAddBlog";
 import { AdminAddLocation } from "../dashboard/screens/Locations/AdminAddLocation";
 import NotFound from "../pages/NotFound";
@@ -60,6 +61,7 @@ const Routers = () => {
         <Route path="contacts" element={<AdminContact />} />
         <Route path="designers">
           <Route index element={<AdminDesigner />} />
+          <Route path=":id" element={<AdminDesignerDetails />} />
         </Route>
       </Route>
       {/* </Route> */}
