@@ -24,8 +24,9 @@ import { AdminAddBlog } from "../dashboard/screens/Blogs/AdminAddBlog";
 import { AdminAddLocation } from "../dashboard/screens/Locations/AdminAddLocation";
 import { AdminCatalogue } from "../dashboard/screens/Catalog/AdminCatalogue";
 import { AdminCatalogueDetail } from "../dashboard/screens/Catalog/pages/AdminCatalogueDetails";
-import NotFound from "../pages/NotFound";
 import { AdminAddCatalogue } from "../dashboard/screens/Catalog/pages/AdminAddCatalogue";
+import { AdminPopup } from "../dashboard/screens/Popup/AdminPopup";
+import NotFound from "../pages/NotFound";
 
 // import AuthGuard from "./constants/AuthGuard";
 
@@ -70,6 +71,7 @@ const Routers = () => {
           <Route index element={<AdminDesigner />} />
           <Route path=":id" element={<AdminDesignerDetails />} />
         </Route>
+        <Route path="popup" element={<AdminPopup />} />
       </Route>
       {/* </Route> */}
 

@@ -65,6 +65,12 @@
       "name": "Catalogue",
       "path": "/dashboard/products/catalogue",
       "icon": "FileEarmarkPdf"
+    },
+    {
+      "id": 11,
+      "name": "Popup",
+      "path": "/dashboard/popup/",
+      "icon": "FileEarmarkPdf"
     }
   ]
 }
