@@ -22,7 +22,10 @@ import { AdminDesigner } from "../dashboard/screens/Designer/AdminDesigner";
 import { AdminDesignerDetails } from "../dashboard/screens/Designer/AdminDesignerDetails";
 import { AdminAddBlog } from "../dashboard/screens/Blogs/AdminAddBlog";
 import { AdminAddLocation } from "../dashboard/screens/Locations/AdminAddLocation";
+import { AdminCatalogue } from "../dashboard/screens/Catalog/AdminCatalogue";
+import { AdminCatalogueDetail } from "../dashboard/screens/Catalog/pages/AdminCatalogueDetails";
 import NotFound from "../pages/NotFound";
+import { AdminAddCatalogue } from "../dashboard/screens/Catalog/pages/AdminAddCatalogue";
 
 // import AuthGuard from "./constants/AuthGuard";
 
@@ -52,7 +55,11 @@ const Routers = () => {
         <Route path="products">
           <Route index element={<AdminProduct />} />
           <Route path="add" element={<AdminAddProduct />} />
+          <Route path="catalogue" element={<AdminCatalogue />} />
+          <Route path="catalogue/add" element={<AdminAddCatalogue />} />
+          <Route path="catalogue/:id" element={<AdminCatalogueDetail />} />
         </Route>
+
         <Route path="gallery" element={<AdminGallery />} />
         <Route path="locations">
           <Route index element={<AdminLocation />} />

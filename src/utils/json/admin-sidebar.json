@@ -59,6 +59,12 @@
       "name": "Designers",
       "path": "/dashboard/designers",
       "icon": "Camera2"
+    },
+    {
+      "id": 11,
+      "name": "Catalogue",
+      "path": "/dashboard/products/catalogue",
+      "icon": "FileEarmarkPdf"
     }
   ]
 }

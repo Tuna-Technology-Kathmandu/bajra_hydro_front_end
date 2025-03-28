@@ -14,6 +14,7 @@ import {
   GeoAlt,
   Envelope,
   Camera2,
+  FileEarmarkPdf,
 } from "react-bootstrap-icons";
 import sidebarItems from "../../utils/json/admin-sidebar.json";
 
@@ -29,6 +30,7 @@ const iconComponents = {
   GeoAlt: GeoAlt,
   Envelope: Envelope,
   Camera2: Camera2,
+  FileEarmarkPdf: FileEarmarkPdf,
 };
 
 export const AdminSidebar = ({ isCollapsed, toggleSidebar }) => {
