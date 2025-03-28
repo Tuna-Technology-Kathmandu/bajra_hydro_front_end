@@ -1,8 +1,8 @@
-import axios from "axios";
+import api from "../../api";
 
 export const getLocations = async () => {
   try {
-    const response = await axios.get("/location");
+    const response = await api.get("/location");
     return response.data.items;
   } catch (error) {
     console.log(`Error: ${error}`);
@@ -16,6 +16,16 @@ export const createLocation = async (data) => {
     return response.data;
   } catch (error) {
     console.error(`Error creating blogs: ${error}`);
+    throw error;
+  }
+};
+
+export const deleteLocation = async (id) => {
+  try {
+    const response = await api.delete(`/location/${id}/delete`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting category: ${error}`);
     throw error;
   }
 };

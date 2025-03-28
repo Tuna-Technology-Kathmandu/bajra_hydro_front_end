@@ -3,9 +3,22 @@ import { Table, Button, Badge } from "react-bootstrap";
 import { Pencil, Trash } from "react-bootstrap-icons";
 
 import { useLocation } from "../../../hooks/useLocations";
+import { deleteLocation } from "../../../utils/services/dashboard/LocationService";
 
 export const AdminLocationTable = () => {
   const { location, loading, error } = useLocation();
+
+  const handleDeleteImage = async (id) => {
+    try {
+      let value = confirm("Are you sure you want to delete?");
+      if(value){
+        await deleteLocation(id);
+        window.location.reload();
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   if (loading) return <div>Loading blogs...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -45,12 +58,17 @@ export const AdminLocationTable = () => {
               </Badge>
             </td>
             <td>
-              <Button variant="link" size="sm">
+              {/* <Button variant="link" size="sm">
                 <Pencil />
-              </Button>
-              {/* <Button variant="link" size="sm" className="text-danger">
-                <Trash />
               </Button> */}
+              <Button
+                variant="link"
+                size="sm"
+                className="text-danger"
+                onClick={() => handleDeleteImage(item.id)}
+              >
+                <Trash />
+              </Button>
             </td>
           </tr>
         ))}
