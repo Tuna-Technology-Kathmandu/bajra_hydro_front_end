@@ -45,12 +45,11 @@ export const AdminDesignerTable = () => {
                 size="sm"
                 onClick={() => navigate(`/dashboard/designers/${designer.id}`)}
               >
-                {" "}
                 <Eye />
               </Button>
-              <Button variant="link" size="sm">
+              {/* <Button variant="link" size="sm">
                 <Pencil />
-              </Button>
+              </Button> */}
               <Button
                 variant="link"
                 size="sm"

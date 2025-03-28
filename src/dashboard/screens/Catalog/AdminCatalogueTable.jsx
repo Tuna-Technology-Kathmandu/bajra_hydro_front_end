@@ -60,9 +60,9 @@ export const AdminCatalogueTable = () => {
                     <Eye />
                   </Button>
                 </Link>
-                <Button variant="link" size="sm">
+                {/* <Button variant="link" size="sm">
                   <Pencil />
-                </Button>
+                </Button> */}
                 <Button
                   variant="link"
                   size="sm"

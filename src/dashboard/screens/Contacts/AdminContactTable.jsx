@@ -48,12 +48,12 @@ export const AdminContactTable = () => {
                 >
                   <Eye />
                 </Button>
-                <Button variant="link" size="sm">
+                {/* <Button variant="link" size="sm">
                   <Pencil />
                 </Button>
                 <Button variant="link" size="sm" className="text-danger">
                   <Trash />
-                </Button>
+                </Button> */}
               </td>
             </tr>
           ))}

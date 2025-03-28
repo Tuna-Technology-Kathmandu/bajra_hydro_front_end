@@ -58,12 +58,12 @@ export const AdminProductTable = () => {
                 <p key={index}>{brand.brand_name}</p>
               ))}</td>
               <td>
-                <Button variant="link" size="sm">
+                {/* <Button variant="link" size="sm">
                   <Eye />
                 </Button>
                 <Button variant="link" size="sm">
                   <Pencil />
-                </Button>
+                </Button> */}
                 <Button
                   variant="link"
                   size="sm"

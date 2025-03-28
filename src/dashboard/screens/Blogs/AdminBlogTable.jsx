@@ -66,9 +66,9 @@ export const AdminBlogTable = () => {
                 <Button variant="link" size="sm">
                   <Eye />
                 </Button>
-                <Button variant="link" size="sm">
+                {/* <Button variant="link" size="sm">
                   <Pencil />
-                </Button>
+                </Button> */}
                 <Button
                   variant="link"
                   size="sm"

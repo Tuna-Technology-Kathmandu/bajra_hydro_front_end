@@ -154,13 +154,13 @@ export const CategoryManager = () => {
                 <>
                   {item.name}
                   <div>
-                    <Button
+                    {/* <Button
                       variant="link"
                       onClick={() => startEdit(index)}
                       disabled={actionLoading}
                     >
                       <Pencil />
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="link"
                       onClick={() => handleDeleteCategory(item.id)}

@@ -112,9 +112,9 @@ export const TagManager = () => {
                 <>
                   {item.name}
                   <div>
-                    <Button variant="link">
+                    {/* <Button variant="link">
                       <Pencil />
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="link"
                       onClick={() => handleDeleteTag(item.id)}

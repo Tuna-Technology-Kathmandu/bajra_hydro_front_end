@@ -34,12 +34,12 @@ export const AdminUserTable = () => {
             </td>
             <td>{user.createdAt}</td>
             <td>
-              <Button variant="link" size="sm">
+              {/* <Button variant="link" size="sm">
                 <Eye />
-              </Button>
-              <Button variant="link" size="sm">
+              </Button> */}
+              {/* <Button variant="link" size="sm">
                 <Pencil />
-              </Button>
+              </Button> */}
               <Button variant="link" size="sm" className="text-danger">
                 <Trash />
               </Button>
