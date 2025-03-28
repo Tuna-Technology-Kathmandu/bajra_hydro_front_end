@@ -27,12 +27,12 @@ export const AdminProductTable = () => {
     try {
       await deleteProduct(blogToDelete);
       setShowConfirmModal(false);
-      setToastMessage("Blog deleted successfully!");
+      setToastMessage("Product deleted successfully!");
       setToastVariant("success"); 
       setShowToast(true);
     } catch (err) {
       setShowConfirmModal(false);
-      setToastMessage("Failed to delete blog. Please try again.");
+      setToastMessage("Failed to delete product. Please try again.");
       setToastVariant("danger");
       setShowToast(true);
     }

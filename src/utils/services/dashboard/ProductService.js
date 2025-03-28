@@ -10,10 +10,9 @@ export const getProducts = async () => {
   }
 };
 
-export const createBlog = async (blogData) => {
+export const createProduct = async (data) => {
   try {
-    const response = await api.post("/blogs", blogData);
-    console.log(blogData);
+    const response = await api.post("/product", data);
     return response.data;
   } catch (error) {
     console.error(`Error creating blogs: ${error}`);

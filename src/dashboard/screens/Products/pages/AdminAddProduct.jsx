@@ -1,130 +1,460 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Row, Image, Toast, ToastContainer } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css";
-import { Plus, Trash2 } from "react-bootstrap-icons";
+import {
+  Form,
+  Button,
+  Container,
+  Alert,
+  Spinner,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { createProduct } from "../../../../utils/services/dashboard/ProductService";
 
 export const AdminAddProduct = () => {
-  const [title, setTitle] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [authorId, setAuthorId] = useState("");
-  const [brand, setBrand] = useState("");
-  const [colors, setColors] = useState([]);
-  const [description, setDescription] = useState("");
-  const [content, setContent] = useState("");
-  const [specification, setSpecification] = useState("");
-  const [featuredImage, setFeaturedImage] = useState(null);
-  const [galleryImages, setGalleryImages] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [tagInput, setTagInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState({ show: false, message: "", variant: "success" });
+  const [formData, setFormData] = useState({
+    title: "",
+    author_id: "",
+    category_id: "",
+    tags: [],
+    description: "",
+    content: "",
+    specification: "",
+    brands: "",
+    colors: [],
+  });
 
-  const handleFeaturedImageChange = (e) => setFeaturedImage(e.target.files[0]);
-  const handleGalleryImagesChange = (e) => setGalleryImages([...galleryImages, ...Array.from(e.target.files)]);
-  const handleAddTag = (e) => {
-    if (e.key === "Enter" || e.type === "click") {
-      e.preventDefault();
-      if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-        setTags([...tags, tagInput.trim()]);
-        setTagInput("");
-      }
+  const [featuredImage, setFeaturedImage] = useState(null);
+  const [additionalImages, setAdditionalImages] = useState([]);
+  const [colorVariants, setColorVariants] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [tagInput, setTagInput] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleTagsChange = (e) => {
+    const tags = e.target.value.split(",").map((tag) => tag.trim());
+    setFormData((prev) => ({
+      ...prev,
+      tags,
+    }));
+  };
+
+  const addTags = () => {
+    if (tagInput.trim()) {
+      const newTags = tagInput.split(",")
+        .map(tag => tag.trim())
+        .filter(tag => tag.length > 0);
+      
+      setFormData(prev => ({
+        ...prev,
+        tags: [...prev.tags, ...newTags]
+      }));
+      setTagInput("");
     }
   };
-  
+
+  const removeTag = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      tags: prev.tags.filter((_, i) => i !== index)
+    }));
+  };
+
+
+  const handleFeaturedImageChange = (e) => {
+    setFeaturedImage(e.target.files[0]);
+  };
+
+  const handleAdditionalImagesChange = (e) => {
+    setAdditionalImages([...e.target.files]);
+  };
+
+  const addColorVariant = () => {
+    setColorVariants([
+      ...colorVariants,
+      {
+        color_id: "",
+        color_image: null,
+        price_adjustment: 0,
+        stock: 0,
+      },
+    ]);
+  };
+
+  const removeColorVariant = (index) => {
+    const updated = [...colorVariants];
+    updated.splice(index, 1);
+    setColorVariants(updated);
+  };
+
+  const handleColorChange = (index, field, value) => {
+    const updated = [...colorVariants];
+    updated[index][field] = value;
+    setColorVariants(updated);
+  };
+
+  const handleColorImageChange = (index, e) => {
+    const updated = [...colorVariants];
+    updated[index].color_image = e.target.files[0];
+    setColorVariants(updated);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !categoryId || !description) {
-      setToast({ show: true, message: "Title, category, and description are required!", variant: "danger" });
+    setError("");
+    setSuccess("");
+
+    if (!featuredImage) {
+      setError("Featured image is required");
       return;
     }
 
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("category_id", categoryId);
-    formData.append("author_id", authorId);
-    formData.append("brand", brand);
-    formData.append("description", description);
-    formData.append("content", content);
-    formData.append("specification", specification);
-    formData.append("featured_image", featuredImage);
-    galleryImages.forEach((image) => formData.append("images", image));
-    formData.append("tags", JSON.stringify(tags));
-    formData.append("colors", JSON.stringify(colors));
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost/api/products", {
-        method: "POST",
-        body: formData,
+      const formDataToSend = new FormData();
+
+      // Append all basic fields
+      Object.keys(formData).forEach((key) => {
+        if (key === 'tags') {
+          // Send tags as array
+          formData.tags.forEach(tag => formDataToSend.append('tags[]', tag));
+        } else if (key !== 'colors') {
+          formDataToSend.append(key, formData[key]);
+        }
       });
-      const data = await response.json();
-      if (response.ok) {
-        setToast({ show: true, message: "Product added successfully!", variant: "success" });
-      } else {
-        setToast({ show: true, message: data.error || "Failed to add product.", variant: "danger" });
-      }
-    } catch (error) {
-      setToast({ show: true, message: "Server error, please try again.", variant: "danger" });
+
+      // Append featured image
+      formDataToSend.append("featured_image", featuredImage);
+
+      // Append additional images
+      additionalImages.forEach((image) => {
+        formDataToSend.append("images", image);
+      });
+
+      // Append color variants
+      colorVariants.forEach((variant, index) => {
+        formDataToSend.append(`colors[${index}][color_id]`, variant.color_id);
+        formDataToSend.append(
+          `colors[${index}][price_adjustment]`,
+          variant.price_adjustment
+        );
+        formDataToSend.append(`colors[${index}][stock]`, variant.stock);
+
+        // Append color image if exists
+        if (variant.color_image) {
+          formDataToSend.append(`color_images`, variant.color_image);
+        }
+      });
+
+      // Create product
+      await createProduct(formDataToSend);
+
+      setSuccess("Product created successfully!");
+      // Reset form
+      setFormData({
+        title: "",
+        author_id: "",
+        category_id: "",
+        tags: [],
+        description: "",
+        content: "",
+        specification: "",
+        brands: "",
+        colors: [],
+      });
+      setTagInput("");
+      setFeaturedImage(null);
+      setAdditionalImages([]);
+      setColorVariants([]);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || err.message || "Failed to create product"
+      );
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <>
-      <h3 className="mb-4">Add New Product</h3>
-      <Link to="/dashboard/products/">
-        <Button variant="danger" className="mb-4">Go Back</Button>
-      </Link>
+    <Container className="mt-4">
+      <h2>Create New Product</h2>
+      {error && <Alert variant="danger">{error}</Alert>}
+      {success && <Alert variant="success">{success}</Alert>}
+
       <Form onSubmit={handleSubmit}>
         <Row>
-          <Col lg={8}>
+          <Col md={8}>
             <Form.Group className="mb-3">
-              <Form.Label>Product Title</Form.Label>
-              <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+              <Form.Label>Title*</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Category ID</Form.Label>
-              <Form.Control type="text" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} required />
+              <Form.Label>Author ID*</Form.Label>
+              <Form.Control
+                type="number"
+                name="author_id"
+                value={formData.author_id}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Category ID*</Form.Label>
+              <Form.Control
+                type="number"
+                name="category_id"
+                value={formData.category_id}
+                onChange={handleChange}
+                required
+              />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Tags</Form.Label>
-              <div className="d-flex gap-2">
-                <Form.Control type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyPress={handleAddTag} />
-                <Button variant="outline-primary" onClick={handleAddTag}><Plus /></Button>
+              <div className="d-flex mb-2">
+                <Form.Control
+                  type="text"
+                  placeholder="Enter tags separated by commas"
+                  value={tagInput}
+                  onChange={handleTagsChange}
+                />
+                <Button
+                  variant="outline-secondary"
+                  onClick={addTags}
+                  className="ms-2"
+                >
+                  Add Tags
+                </Button>
+              </div>
+              <div className="d-flex flex-wrap gap-2">
+                {formData.tags.map((tag, index) => (
+                  <span key={index} className="badge bg-primary">
+                    {tag}
+                    <button
+                      type="button"
+                      className="ms-2 btn-close btn-close-white"
+                      onClick={() => removeTag(index)}
+                      aria-label="Remove"
+                    />
+                  </span>
+                ))}
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <ReactQuill theme="snow" value={description} onChange={setDescription} />
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+              />
             </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={loading}>{loading ? "Submitting..." : "Submit"}</Button>
+            <Form.Group className="mb-3">
+              <Form.Label>Content*</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                name="content"
+                value={formData.content}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Specification*</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                name="specification"
+                value={formData.specification}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Brand ID*</Form.Label>
+              <Form.Control
+                type="number"
+                name="brands"
+                value={formData.brands}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <div className="mb-3">
+              <Button variant="outline-primary" onClick={addColorVariant}>
+                Add Color Variant
+              </Button>
+
+              {colorVariants.map((variant, index) => (
+                <div key={index} className="border p-3 mt-3">
+                  <Row>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Color ID*</Form.Label>
+                        <Form.Control
+                          type="number"
+                          value={variant.color_id}
+                          onChange={(e) =>
+                            handleColorChange(index, "color_id", e.target.value)
+                          }
+                          required
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={3}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Price Adjustment</Form.Label>
+                        <Form.Control
+                          type="number"
+                          step="0.01"
+                          value={variant.price_adjustment}
+                          onChange={(e) =>
+                            handleColorChange(
+                              index,
+                              "price_adjustment",
+                              parseFloat(e.target.value)
+                            )
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={3}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Stock</Form.Label>
+                        <Form.Control
+                          type="number"
+                          value={variant.stock}
+                          onChange={(e) =>
+                            handleColorChange(
+                              index,
+                              "stock",
+                              parseInt(e.target.value)
+                            )
+                          }
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={2} className="d-flex align-items-end">
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => removeColorVariant(index)}
+                      >
+                        Remove
+                      </Button>
+                    </Col>
+                  </Row>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Color Image</Form.Label>
+                    <Form.Control
+                      type="file"
+                      onChange={(e) => handleColorImageChange(index, e)}
+                      accept="image/*"
+                    />
+                    {variant.color_image && (
+                      <div className="mt-2">
+                        <img
+                          src={URL.createObjectURL(variant.color_image)}
+                          alt="Color preview"
+                          style={{ maxWidth: "100px", maxHeight: "100px" }}
+                        />
+                      </div>
+                    )}
+                  </Form.Group>
+                </div>
+              ))}
+            </div>
           </Col>
 
-          <Col lg={4}>
+          <Col md={4}>
             <Form.Group className="mb-3">
-              <Form.Label>Featured Image</Form.Label>
-              <Form.Control type="file" accept="image/*" onChange={handleFeaturedImageChange} />
+              <Form.Label>Featured Image*</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={handleFeaturedImageChange}
+                accept="image/*"
+                required
+              />
+              {featuredImage && (
+                <div className="mt-2">
+                  <img
+                    src={URL.createObjectURL(featuredImage)}
+                    alt="Featured preview"
+                    style={{ maxWidth: "100%", maxHeight: "200px" }}
+                  />
+                </div>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Gallery Images</Form.Label>
-              <Form.Control type="file" accept="image/*" multiple onChange={handleGalleryImagesChange} />
+              <Form.Label>Additional Images</Form.Label>
+              <Form.Control
+                type="file"
+                multiple
+                onChange={handleAdditionalImagesChange}
+                accept="image/*"
+              />
+              <div className="mt-2">
+                {additionalImages.map((image, index) => (
+                  <div key={index} className="mb-2">
+                    <img
+                      src={URL.createObjectURL(image)}
+                      alt={`Additional preview ${index + 1}`}
+                      style={{ maxWidth: "100px", maxHeight: "100px" }}
+                    />
+                  </div>
+                ))}
+              </div>
             </Form.Group>
+
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={isSubmitting}
+              className="w-100 mt-3"
+            >
+              {isSubmitting ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  <span className="ms-2">Creating Product...</span>
+                </>
+              ) : (
+                "Create Product"
+              )}
+            </Button>
           </Col>
         </Row>
       </Form>
-      <ToastContainer position="top-end">
-        <Toast bg={toast.variant} show={toast.show} onClose={() => setToast({ ...toast, show: false })} delay={3000} autohide>
-          <Toast.Body>{toast.message}</Toast.Body>
-        </Toast>
-      </ToastContainer>
-    </>
+    </Container>
   );
 };
