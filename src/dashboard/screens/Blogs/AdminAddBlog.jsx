@@ -3,8 +3,9 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import { Form, Button, Alert, Spinner, Row, Col } from "react-bootstrap";
 import { createBlog } from "../../../utils/services/dashboard/BlogService";
+import { useCategory } from "../../../hooks/useCategory";
 
-export const AdminAddBlog = ({ onHide }) => {
+export const AdminAddBlog = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState("");
@@ -14,6 +15,12 @@ export const AdminAddBlog = ({ onHide }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useCategory();
 
   const handleContentChange = (value) => {
     setContent(value);
@@ -61,7 +68,6 @@ export const AdminAddBlog = ({ onHide }) => {
       }
 
       await createBlog(formData);
-      onHide(); // Close modal or reset state
 
       // Reset form after submission
       setTitle("");
@@ -81,7 +87,6 @@ export const AdminAddBlog = ({ onHide }) => {
   return (
     <div>
       <h3 className="mb-4">Add New Blog</h3>
-      {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Form.Group className="mb-3">
           <Form.Label>Title</Form.Label>
@@ -97,17 +102,22 @@ export const AdminAddBlog = ({ onHide }) => {
           <Col lg={6} md={6} sm={12}>
             <Form.Group>
               <Form.Label>Category</Form.Label>
-              <Form.Select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-              >
-                <option value="">Select Category</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-              </Form.Select>
+              {categoriesLoading ? (
+                <Spinner size="sm" animation="border" />
+              ) : (
+                <Form.Select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </Form.Select>
+              )}
             </Form.Group>
           </Col>
           <Col lg={6} md={6} sm={12}>

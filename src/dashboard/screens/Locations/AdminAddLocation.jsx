@@ -18,13 +18,16 @@ export const AdminAddLocation = () => {
   });
 
   const debounceTimer = useRef(null);
-
   useEffect(() => {
     const fetchBrands = async (query) => {
+      if (!query.trim()) {
+        setBrands([]);
+        return;
+      }
       try {
         setIsSearching(true);
         const response = await api.get(`/brands?q=${query}`);
-        setBrands(response.data);
+        setBrands(response.data.items);
       } catch (error) {
         console.error("Error fetching brands", error);
         setBrands([]);
@@ -37,7 +40,7 @@ export const AdminAddLocation = () => {
       clearTimeout(debounceTimer.current);
       debounceTimer.current = setTimeout(() => {
         fetchBrands(brandQuery);
-      }, 500); // Reduced debounce time for better UX
+      }, 500); // Debounce delay
     } else {
       setBrands([]);
     }
@@ -53,8 +56,8 @@ export const AdminAddLocation = () => {
 
   const handleBrandSelect = (brand) => {
     setSelectedBrand(brand.id);
-    setBrandQuery(brand.title);
-    setBrands([]);
+    setBrandQuery(brand.brand_name || brand.title);
+    setBrands([]); // Clear brands after selection
   };
 
   const handleChange = (e) => {
@@ -76,17 +79,31 @@ export const AdminAddLocation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate if brand is selected
     if (!selectedBrand) {
       alert("Please select a brand.");
       return;
     }
 
+    // Prepare form data and submit
     const data = { brand_id: selectedBrand, ...formData };
 
     try {
       const response = await api.post("/location", data);
       console.log("Location created successfully:", response.data);
       alert("Location added successfully!");
+      // Reset form on success (if needed)
+      setFormData({
+        province: "",
+        district: "",
+        municipality: "",
+        address: "",
+        phone_no: "",
+        timing: { opening: "", closing: "" },
+        coordinates: { lat: "", long: "" },
+      });
+      setSelectedBrand(null); // Reset brand selection
     } catch (error) {
       console.error("Error creating location:", error);
       alert("Error adding location!");

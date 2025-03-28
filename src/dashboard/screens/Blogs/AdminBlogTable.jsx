@@ -9,8 +9,8 @@ export const AdminBlogTable = () => {
   const { blogs, loading, error } = useBlogs();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [blogToDelete, setBlogToDelete] = useState(null);
-  const [showToast, setShowToast] = useState(false); 
-  const [toastMessage, setToastMessage] = useState(""); 
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("");
 
   if (loading) return <div>Loading blogs...</div>;
@@ -28,7 +28,7 @@ export const AdminBlogTable = () => {
       await deleteBlog(blogToDelete);
       setShowConfirmModal(false);
       setToastMessage("Blog deleted successfully!");
-      setToastVariant("success"); 
+      setToastVariant("success");
       setShowToast(true);
     } catch (err) {
       setShowConfirmModal(false);
@@ -46,7 +46,7 @@ export const AdminBlogTable = () => {
             <th>#</th>
             <th>Title</th>
             <th>Category</th>
-            <th>Tags</th>
+            {/* <th>Tags</th> */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -56,7 +56,12 @@ export const AdminBlogTable = () => {
               <td>{index + 1}</td>
               <td>{blog.title}</td>
               <td>{blog.blogCategory.name}</td>
-              <td>{blog.tags}</td>
+              {/* <td>
+                
+                {blog.tags.map((tag, index) => (
+                  <span key={index}>{tag.name}</span>
+                ))}
+              </td> */}
               <td>
                 <Button variant="link" size="sm">
                   <Eye />
