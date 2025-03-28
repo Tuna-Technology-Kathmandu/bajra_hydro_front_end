@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -10,11 +10,37 @@ import {
   Alert,
   Card,
 } from "react-bootstrap";
+import { Trash } from "react-bootstrap-icons";
 import { useDesigners } from "../../../hooks/useDesigner";
+import { AddGalleryImageModal } from "./AdminAddImageModal";
+import {
+  addDesignerGallery,
+  deleteDesignerGallery,
+} from "../../../utils/services/dashboard/DesignerService";
 
 export const AdminDesignerDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showAddImageModal, setShowAddImageModal] = useState(false);
+
+  const handleAddImage = async (formData) => {
+    try {
+      await addDesignerGallery(formData);
+      fetchDesignerById(id);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleDeleteImage = async (id) => {
+    try {
+      await deleteDesignerGallery(id);
+      fetchDesignerById(id);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const {
     currentDesigner: designer,
     detailLoading,
@@ -104,7 +130,7 @@ export const AdminDesignerDetails = () => {
             </Col>
 
             {/* Edit & Delete Buttons Section */}
-            <Col md={2} className="d-flex flex-column align-items-end">
+            {/* <Col md={2} className="d-flex flex-column align-items-end">
               <Button
                 variant="primary"
                 className="mb-2"
@@ -118,28 +144,49 @@ export const AdminDesignerDetails = () => {
               >
                 🗑️ Delete
               </Button>
-            </Col>
+            </Col> */}
           </Row>
         </Card.Body>
       </Card>
 
       <h2 className="mb-4 mt-4">Gallery</h2>
+      <Button className="mb-4" onClick={() => setShowAddImageModal(true)}>
+        Add Image
+      </Button>
       {designer.designer_gallery?.length > 0 ? (
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {designer.designer_gallery.map((image) => (
-            <Col key={image.id}>
+            <Col key={image.id} className="position-relative">
+              {/* Image Display */}
               <Image
                 src={image.image_url}
                 thumbnail
                 fluid
                 alt={`Design by ${designer.fullname}`}
+                className="w-100 h-75"
               />
+
+              {/* Delete Button - Positioned at Top Right */}
+              <Button
+                variant="danger"
+                size="sm"
+                className="position-absolute top-0 end-0 m-2"
+                onClick={() => handleDeleteImage(image.id)}
+              >
+                <Trash />
+              </Button>
             </Col>
           ))}
         </Row>
       ) : (
         <p>No gallery images available</p>
       )}
+      <AddGalleryImageModal
+        show={showAddImageModal}
+        onHide={() => setShowAddImageModal(false)}
+        designerId={designer.id}
+        onUpload={handleAddImage}
+      />
     </Container>
   );
 };
