@@ -9,7 +9,7 @@ export const SingleBlogApi = createApi({
     endpoints: (builder) => ({
         getSingleBlog: builder.query({
             query: (slug) => ({
-                url: `/blogs/${slug}`
+                url: `/blogs/slug/${slug}`
             })
         })
     })

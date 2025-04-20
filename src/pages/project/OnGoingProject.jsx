@@ -6,7 +6,7 @@ import ShowProjects from './ShowProjects';
 const OnGoingProject = () => {
     return (
         <main>
-            <CommonHero img={Hydro} title='Ongoing Project' />
+            <CommonHero img={Hydro} title='Project' />
             <ShowProjects />
         </main>
     )

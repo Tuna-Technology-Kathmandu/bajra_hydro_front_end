@@ -21,11 +21,11 @@ const App = () => {
           <Route path="news-and-update" element={<NewsIndex />} />
           <Route path='/single-news/:slug' element={<NewsSinglePage />} />
           <Route path='/reports' element={<ReportIndex />} />
-          <Route path='/project' element={<ProjectSinglePage />} />
+          <Route path='/single-project/:slug' element={<ProjectSinglePage />} />
           <Route path='/careers' element={<CareersIndex />} />
 
           {/* singlepages*/}
-          <Route path="/ongoing-projects" element={<OnGoingProject />} />
+          <Route path="/projects" element={<OnGoingProject />} />
 
 
         </Route>

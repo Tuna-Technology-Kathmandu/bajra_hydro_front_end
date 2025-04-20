@@ -45,10 +45,10 @@ const NavbarIndex = ({ setShowSearch }) => {
     useEffect(() => {
         const currentPath = location.pathname;
 
-        if (currentPath.startsWith('/ongoing-projects') || currentPath.startsWith('/future-projects') || currentPath.startsWith('/past-projects')) {
-            setActive('Projects');
-            return;
-        }
+        // if (currentPath.startsWith('/ongoing-projects') || currentPath.startsWith('/future-projects') || currentPath.startsWith('/past-projects')) {
+        //     setActive('Projects');
+        //     return;
+        // }
 
         if (currentPath.startsWith('/single-news')) {
             setActive('News');
@@ -63,9 +63,10 @@ const NavbarIndex = ({ setShowSearch }) => {
 
 
     const setActiveFunction = (item) => {
-        if (item !== 'Projects') {
-            setActive(item);
-        }
+        // if (item !== 'Projects') {
+        //     setActive(item);
+        // }
+        setActive(item);
     }
     // check for single pages to make navbar text black
     useEffect(() => {
@@ -110,13 +111,14 @@ const NavbarIndex = ({ setShowSearch }) => {
                                         return (
                                             <li key={index}
                                                 onClick={() => {
-                                                    if (isProject) {
-                                                        setShowProject(!showProject);
-                                                        setActiveFunction(item.name)
-                                                    } else {
-                                                        setActiveFunction(item.name);
-                                                        setShowProject(false);
-                                                    }
+                                                    // if (isProject) {
+                                                    //     setShowProject(!showProject);
+                                                    //     setActiveFunction(item.name)
+                                                    // } else {
+                                                    //     setActiveFunction(item.name);
+                                                    //     setShowProject(false);
+                                                    // }
+                                                    setActiveFunction(item.name);
                                                 }}
                                                 className={`font-semibold relative text-[17px] max-2xl:text-[15px] max-xl:text-[13px] ${isProject ? 'group' : ''}
                                                 ${showTextBlack || isSticky ? 'text-black' : 'text-white'}
@@ -135,7 +137,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                                                     />
                                                 )}
                                                 {/* Dropdown only for 'Project' */}
-                                                <AnimatePresence>
+                                                {/* <AnimatePresence>
                                                     {isProject && showProject && (
                                                         <motion.div
                                                             initial={{ opacity: 0 }}
@@ -163,7 +165,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                                                             </ul>
                                                         </motion.div>
                                                     )}
-                                                </AnimatePresence>
+                                                </AnimatePresence> */}
                                             </li>
                                         )
                                     })}

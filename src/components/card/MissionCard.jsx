@@ -14,7 +14,7 @@ const MissionCard = ({ list, title }) => {
                                     <Tick className='w-[15px]' />
                                 </div>
                                 <p className='font-medium text-[13px]  max-2xl:text-[12px] max-sm:text-[10px]'>
-                                    {item.title}
+                                    {item}
                                 </p>
                             </li>
                         )

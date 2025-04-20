@@ -27,8 +27,8 @@ const NewsCard = ({ title, image, content, slug, date }) => {
                         </p>
                         {/* <p className='font-semibold text-[11px] max-md:text-[10px] max-md:leading-[18px] leading-[25px]'>-News Blogs</p> */}
                     </div>
-                    <p className='font-medium text-[10px] leading-[22px] mt-2 min-h-[90px]'>
-                        {content?.slice(0, 170) + '...'}
+                    <p dangerouslySetInnerHTML={{ __html: content?.slice(0, 170) + '...' }} className='font-medium text-[10px] leading-[22px] mt-2 min-h-[90px]'>
+
                     </p>
 
 

@@ -13,7 +13,7 @@ const ContactForm = () => {
         middleName: Yup.string(), // optional
         lastName: Yup.string().required('Last name is required'),
         email: Yup.string().email('Invalid email').required('Email is required'),
-        contactNo: Yup.string()
+        phone: Yup.string()
             .matches(/^[0-9]{10}$/, 'Must be exactly 10 digits')
             .required('Contact number is required'),
         subject: Yup.string().required('Subject is required'),
@@ -23,18 +23,21 @@ const ContactForm = () => {
     });
 
     const handleSubmit = async (values, { resetForm }) => {
+        console.log('values', values);
+
         const { firstName, middleName, lastName, ...rest } = values;
-        const fullName = [firstName.trim(), middleName.trim(), lastName.trim()]
+        const fullname = [firstName.trim(), middleName.trim(), lastName.trim()]
             .filter(name => name) // remove empty ones
             .join(' '); // join with single space
         const finalValues = {
-            ...rest,
-            fullName: fullName,
-
+            fullname: fullname,
+            ...rest
         }
+        console.log('final', finalValues);
+
         setIsSubmitting(true)
         try {
-            const response = await contactUs({ finalValues }).unwrap();
+            const response = await contactUs(finalValues).unwrap();
             toast.success(response.message);
             resetForm();
         } catch (err) {
@@ -63,7 +66,7 @@ const ContactForm = () => {
                     middleName: '',
                     lastName: '',
                     email: '',
-                    contactNo: '',
+                    phone: '',
                     subject: '',
                     message: '',
                 }}
@@ -112,11 +115,11 @@ const ContactForm = () => {
 
                             <div>
                                 <Field
-                                    name="contactNo"
+                                    name="phone"
                                     placeholder="Contact Number"
                                     className={inputStyle}
                                 />
-                                <ErrorMessage name="contactNo" component="div" className="text-red-500 text-sm" />
+                                <ErrorMessage name="phone" component="div" className="text-red-500 text-sm" />
                             </div>
 
                             <div>

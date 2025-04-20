@@ -11,6 +11,7 @@ import ReactPaginate from 'react-paginate';
 const ShowNews = () => {
     const [page, setPage] = useState(1);
     const limit = 3;
+    const category = 'News'
     const upRef = useRef(null);
 
     const ScrollTop = useSmoothScrollTop();
@@ -22,7 +23,7 @@ const ShowNews = () => {
         }, 100);
     }
 
-    const { data, isFetching, isError, error } = useGetBlogsQuery({ page, limit })
+    const { data, isFetching, isError, error } = useGetBlogsQuery({ page, limit, category })
     let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 6 }
     const { totalPages, currentPage } = pagination;
 

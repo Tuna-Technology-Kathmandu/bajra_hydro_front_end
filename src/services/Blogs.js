@@ -14,9 +14,10 @@ export const BlogApi = createApi({
                     page: params.page,
                     limit: params.limit,
                     sortOrder: params.sortOrder,
-                    category_title: params.category_title,
+                    category: params.category,
                     search: params.search,
-                    Is_featured: params.Is_featured
+                    Is_featured: params.Is_featured,
+                    id: params.id
 
                 }
             })

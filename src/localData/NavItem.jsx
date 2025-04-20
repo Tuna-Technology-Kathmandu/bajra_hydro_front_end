@@ -7,7 +7,7 @@ export const NavItem = [
         path: '/about-us'
     }, {
         name: 'Projects',
-        path: '#'
+        path: '/projects'
     }, {
         name: 'Reports',
         path: '/reports'
