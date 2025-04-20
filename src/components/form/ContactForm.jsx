@@ -1,8 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
+import React, { useState } from 'react';
+import { useContactUsMutation } from '../../services/ContactUs';
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
+    const [contactUs] = useContactUsMutation();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const ContactSchema = Yup.object().shape({
         firstName: Yup.string().required('First name is required'),
         middleName: Yup.string(), // optional
@@ -16,6 +21,34 @@ const ContactForm = () => {
             .min(10, 'Message must be at least 10 characters')
             .required('Message is required'),
     });
+
+    const handleSubmit = async (values, { resetForm }) => {
+        const { firstName, middleName, lastName, ...rest } = values;
+        const fullName = [firstName.trim(), middleName.trim(), lastName.trim()]
+            .filter(name => name) // remove empty ones
+            .join(' '); // join with single space
+        const finalValues = {
+            ...rest,
+            fullName: fullName,
+
+        }
+        setIsSubmitting(true)
+        try {
+            const response = await contactUs({ finalValues }).unwrap();
+            toast.success(response.message);
+            resetForm();
+        } catch (err) {
+            if (err.status === 404 || err.originalStatus === 404) {
+                toast.error("Unable to send Message. Please try later.");
+            } else if (err.error?.includes("Unexpected token '<'")) {
+                toast.error("Server error: Invalid response. Contact support.");
+            } else {
+                toast.error("Failed to send message. Please try again.");
+            }
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
 
     const inputStyle = 'text-xs md:text-sm lg:text-base w-full px-3 py-2 border rounded outline-none focus:border-lightblue transition-all drop-shadow-soft border border-[#999] ';
 
@@ -35,12 +68,9 @@ const ContactForm = () => {
                     message: '',
                 }}
                 validationSchema={ContactSchema}
-                onSubmit={(values, { resetForm }) => {
-                    console.log('Form Data:', values);
-                    resetForm();
-                }}
+                onSubmit={handleSubmit}
             >
-                {({ isSubmitting }) => (
+                {() => (
                     <Form className="grid grid-cols-1 gap-7 bg-lightblue/10 py-14 rounded-b-[20px] px-10">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-10">
                             <div>
@@ -115,7 +145,14 @@ const ContactForm = () => {
                             disabled={isSubmitting}
                             className="sm:w-[150px] bg-lightblue text-sm w-[120px] text-white py-2 rounded hover:bg-commonblue cursor-pointer transition-colors"
                         >
-                            Submit
+                            {
+                                isSubmitting ?
+                                    (
+                                        'Submitting'
+                                    ) : (
+                                        'Submit'
+                                    )
+                            }
                         </button>
                     </Form>
                 )}

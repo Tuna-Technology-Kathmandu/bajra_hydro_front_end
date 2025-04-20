@@ -50,6 +50,10 @@ const NavbarIndex = ({ setShowSearch }) => {
             return;
         }
 
+        if (currentPath.startsWith('/single-news')) {
+            setActive('News');
+            return;
+        }
         // Otherwise
         const matchedNav = NavItem.find(item => item.path === currentPath);
         if (matchedNav) {
@@ -66,7 +70,7 @@ const NavbarIndex = ({ setShowSearch }) => {
     // check for single pages to make navbar text black
     useEffect(() => {
         const currentPath = location.pathname;
-        if (currentPath == '/news') {
+        if (currentPath.startsWith('/single-news')) {
             setShowTextBlack(true);
         } else {
             setShowTextBlack(false);

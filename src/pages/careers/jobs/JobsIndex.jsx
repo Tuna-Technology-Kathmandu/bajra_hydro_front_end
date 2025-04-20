@@ -4,6 +4,7 @@ import { ReactComponent as Search } from '../../../assets/svg/newSearch.svg';
 import JobsList from './JobsList';
 import DropDown from './DropDown';
 import GoogleMapIframe from '../../../components/map/GoogleMap';
+import { useGetJobsQuery } from '../../../services/Jobs';
 
 const JobsIndex = () => {
     const lists = ['one', 'two', 'three'];
@@ -27,12 +28,18 @@ const JobsIndex = () => {
         setSearch('');
     }
 
+    const { data } = useGetJobsQuery();
+    let jobs = data?.jobs ?? [];
+
     return (
         <section className='mt-14 px-[65px] max-md:p-[30px]'>
-            {/* Header */}
+
 
             <div className='w-full flex justify-between items-center max-sm:flex-col '>
+                {/* headwer */}
                 <h1 className='font-bold text-lg sm:text-xl mb-6 max-sm:mb-3'>Jobs available</h1>
+
+
                 <p className='font-semibold text-xs md:text-base max-sm:mb-3 cursor-pointer hover:text-lightblue transition-all duration-300'
                     onClick={reset}
                 >Reset</p>
@@ -150,15 +157,15 @@ const JobsIndex = () => {
             </div>
 
             {/* Job Count */}
-            <p className='font-semibold text-sm sm:text-base mt-8 underline pl-1 sm:pl-3'>22 Jobs</p>
-
-            {/* Map and List */}
-            <div className="mt-6">
+            <p className='font-semibold text-sm sm:text-base mt-8 underline pl-1 sm:pl-3'>{data?.jobs?.length   ?? 0}</p>
+            {/* Map */}
+            <div className="my-6">
                 {/* pass the props when necessary in the future after the api is */}
                 <GoogleMapIframe />
             </div>
+            {/*List */}
 
-            <JobsList />
+            <JobsList jobs={jobs} />
         </section>
     )
 }

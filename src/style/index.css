@@ -44,6 +44,9 @@ button {
   padding: 8px 12px;
 }
 
+.loading {
+  font-size: 14px;
+}
 
 .leaflet-control-attribution {
   display: none !important;
@@ -52,5 +55,9 @@ button {
 @media only screen and (max-width: 535px) {
   button {
     padding: 6px 10px;
+  }
+
+  .loading {
+    font-size: 12px;
   }
 }

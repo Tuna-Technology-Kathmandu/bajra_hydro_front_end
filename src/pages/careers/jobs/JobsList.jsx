@@ -1,24 +1,24 @@
 import React from 'react'
 
-const jobs = [
-    {
-        position: 'Commercial and Contract Manager',
-        level: 'Entry Level',
-        location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
-    },
-    {
-        position: 'Commercial and Contract Manager',
-        level: 'Entry Level',
-        location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
-    },
-    {
-        position: 'Commercial and Contract Manager',
-        level: 'Entry Level',
-        location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
-    },
-]
+// const jobs = [
+//     {
+//         position: 'Commercial and Contract Manager',
+//         level: 'Entry Level',
+//         location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
+//     },
+//     {
+//         position: 'Commercial and Contract Manager',
+//         level: 'Entry Level',
+//         location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
+//     },
+//     {
+//         position: 'Commercial and Contract Manager',
+//         level: 'Entry Level',
+//         location: 'S. Home, 3rd Floor - G6, H.N. 161, Bagdurbar, Sundhara - 11'
+//     },
+// ]
 
-const JobsList = () => {
+const JobsList = ({ jobs }) => {
     return (
         <section className='w-full mt-14 px-3'>
             {/* headers (visible only on md+) */}
@@ -40,7 +40,7 @@ const JobsList = () => {
                     </div>
                     <div>
                         <p className='md:hidden text-[13px] font-semibold text-gray-500'>Career Level</p>
-                        <p className='font-medium text-xs xl:text-sm'>{job.level}</p>
+                        <p className='font-medium text-xs xl:text-sm'>{job.careerLevel}</p>
                     </div>
                     <div>
                         <p className='md:hidden text-[13px] font-semibold text-gray-500'>Location</p>

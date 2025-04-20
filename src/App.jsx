@@ -16,10 +16,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeIndex />} />
-          <Route path="about-us" element={<AboutUsIndex />} /> {/* Fixed: changed index to path */}
+          <Route path="about-us" element={<AboutUsIndex />} />
           <Route path="contact-us" element={<ContactUsIndex />} />
           <Route path="news-and-update" element={<NewsIndex />} />
-          <Route path='/news' element={<NewsSinglePage />} />
+          <Route path='/single-news/:slug' element={<NewsSinglePage />} />
           <Route path='/reports' element={<ReportIndex />} />
           <Route path='/project' element={<ProjectSinglePage />} />
           <Route path='/careers' element={<CareersIndex />} />

@@ -1,15 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavbarIndex from "./components/navbar/NavbarIndex";
 import FooterIndex from "./components/footer/FooterIndex";
 import SearchContainer from "./components/navbar/SearchContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ToastContainer } from "react-toastify";
 
 const Layout = () => {
     const [showSearch, setShowSearch] = useState(false);
-
+    const location=useLocation();
+   useEffect(()=>{
+      window.scrollTo(0,0)
+   },[location])
     return (
         <div className="relative h-auto">
+            <ToastContainer position="top-center" close={3000} />
             <div className="absolute top-9 z-50 w-full flex justify-center">
                 <NavbarIndex setShowSearch={setShowSearch} />
             </div>
@@ -30,7 +35,7 @@ const Layout = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <SearchContainer setShowSearch={setShowSearch}/>
+                            <SearchContainer setShowSearch={setShowSearch} />
                         </motion.div>
                     )
                 }
