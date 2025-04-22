@@ -71,7 +71,7 @@ const NavbarIndex = ({ setShowSearch }) => {
     // check for single pages to make navbar text black
     useEffect(() => {
         const currentPath = location.pathname;
-        if (currentPath.startsWith('/single-news')) {
+        if (currentPath.startsWith('/single-news')||currentPath.startsWith('/single-project')) {
             setShowTextBlack(true);
         } else {
             setShowTextBlack(false);

@@ -56,7 +56,7 @@ const ContactForm = () => {
     const inputStyle = 'text-xs md:text-sm lg:text-base w-full px-3 py-2 border rounded outline-none focus:border-lightblue transition-all drop-shadow-soft border border-[#999] ';
 
     return (
-        <div className="w-full p-7">
+        <div className="w-full ">
             <div className="w-full bg-lightblue p-3 text-center font-bold md:text-[28px] text-[22px] text-white rounded-t-[20px]">
                 Contact Us
             </div>

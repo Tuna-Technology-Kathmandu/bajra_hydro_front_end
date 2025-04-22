@@ -22,15 +22,15 @@ export const FooterLinks = [
         Contacts: [
             {
                 name: 'example@gmail.com',
-                path: '/'
+                path: 'mailto:example@gmail.com'
             },
             {
                 name: 'S. Home, 3rd Floor - G6, H.N. 161 Bagdurbar, Sundhara - 11, Kathmandu, Nepal',
-                path: '/'
+                path: '#'
             },
             {
                 name: '+977 1234567790',
-                path: '/'
+                path: 'tel:+9771234567790'
             },
         ]
     }

@@ -8,6 +8,9 @@ import JobsApi from "./services/Jobs";
 import SingleBlogApi from "./services/SingleBlog";
 import ReportsApi from "./services/Reports";
 import MissionValuesApi from "./services/MissionValues";
+import CompanyInfoApi from "./services/CompanyInfo";
+import TeamApi from "./services/Team";
+import CategoryApi from "./services/Category";
 
 export const Store = configureStore({
     reducer: {
@@ -20,12 +23,15 @@ export const Store = configureStore({
         [SingleBlogApi.reducerPath]: SingleBlogApi.reducer,
         [ReportsApi.reducerPath]: ReportsApi.reducer,
         [MissionValuesApi.reducerPath]: MissionValuesApi.reducer,
+        [CompanyInfoApi.reducerPath]: CompanyInfoApi.reducer,
+        [TeamApi.reducerPath]: TeamApi.reducer,
+        [CategoryApi.reducerPath]: CategoryApi.reducer
     },
 
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(BlogApi.middleware, ContactUsApi.middleware, SubscriberApi.middleware,
             JobsApi.middleware, CeoApi.middleware, MilestonesApi.middleware, SingleBlogApi.middleware, ReportsApi.middleware,
-            MissionValuesApi.middleware
+            MissionValuesApi.middleware, CompanyInfoApi.middleware, TeamApi.middleware, CategoryApi.middleware
         )
 })
 export default Store;

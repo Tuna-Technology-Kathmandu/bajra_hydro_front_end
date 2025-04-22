@@ -16,7 +16,7 @@ const CompanyLinks = () => {
                             return (
                                 <Link to={path} key={index}>
                                     <div className="w-[40px] h-[40px] max-[996px]:w-[30px] max-[996px]:h-[30px] rounded-full flex justify-center items-center bg-commonblue
-                                    hover:bg-blue-950 transition-all duration-30 ease-in-out
+                                    hover:bg-commonblue/70 transition-all duration-300 ease-in-out
                                     ">
                                         {icon}
                                     </div>

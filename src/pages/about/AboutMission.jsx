@@ -13,7 +13,7 @@ const AboutMission = () => {
     if (isError) {
         return (
             <section className='w-full h-[300px] flex items-center justify-center'>
-                <p className='loading'>
+                <p className='loading mt-2'>
                     Failed to load mission and values. Please try again later.
                 </p>
             </section>

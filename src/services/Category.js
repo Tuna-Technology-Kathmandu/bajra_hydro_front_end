@@ -1,18 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../config/BaseApi";
 
-export const ReportsApi = createApi({
-    reducerPath: 'ReportsApi',
+export const CategoryApi = createApi({
+    reducerPath: 'CategoryApi',
     baseQuery: fetchBaseQuery({
         baseUrl: API_BASE_URL
     }),
     endpoints: (builder) => ({
-        getReports: builder.query({
+        getCategory: builder.query({
             query: (params) => ({
-                url: '/reports',
+                url: '/categories',
                 params: {
-                    page: params.page,
-                    limit: params.limit,
                     search: params.search
                 }
             })
@@ -20,5 +18,5 @@ export const ReportsApi = createApi({
     })
 })
 
-export const { useGetReportsQuery } = ReportsApi;
-export default ReportsApi;
+export const { useGetCategoryQuery } = CategoryApi;
+export default CategoryApi;

@@ -36,15 +36,15 @@ const JobsList = ({ jobs }) => {
                 >
                     <div>
                         <p className='md:hidden text-[13px] font-semibold text-gray-500'>Position</p>
-                        <p className='font-medium text-xs xl:text-sm'>{job.position}</p>
+                        <p className='font-medium text-xs xl:text-sm'>{job?.category?.name ?? 'Unknown'}</p>
                     </div>
                     <div>
                         <p className='md:hidden text-[13px] font-semibold text-gray-500'>Career Level</p>
-                        <p className='font-medium text-xs xl:text-sm'>{job.careerLevel}</p>
+                        <p className='font-medium text-xs xl:text-sm'>{job?.level ?? 'Unknown'}</p>
                     </div>
                     <div>
                         <p className='md:hidden text-[13px] font-semibold text-gray-500'>Location</p>
-                        <p className='font-medium text-xs xl:text-sm'>{job.location}</p>
+                        <p className='font-medium text-xs xl:text-sm'>{job?.location ?? 'Unknown'}</p>
                     </div>
                 </div>
             ))}

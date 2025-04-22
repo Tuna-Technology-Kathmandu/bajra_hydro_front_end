@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import Hydro from '../../assets/images/hydro3.webp';
 import CommonHero from '../../components/heroComponent/CommonHero';
-import ShowNews from './ShowNews';
+const ShowNews = lazy(() => import('./ShowNews'));
 
 const NewsIndex = () => {
     return (

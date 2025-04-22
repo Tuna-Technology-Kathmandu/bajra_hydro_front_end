@@ -29,7 +29,7 @@ const ShowNews = () => {
 
     console.log(error)
     return (
-        <section className='p-[65px] max-md:p-[30px] h-auto'
+        <section className='px-[75px] max-md:px-[30px] h-auto'
             ref={upRef}
         >
             {isFetching && (
@@ -40,7 +40,7 @@ const ShowNews = () => {
                 </div>
             )}
             {isError && (
-                <div className="col-span-full text-center loading">
+                <div className="col-span-full text-center loading mt-7">
                     <p>Sorry, we cannot get blogs at the moment...</p>
                 </div>
             )}

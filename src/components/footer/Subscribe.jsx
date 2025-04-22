@@ -47,7 +47,7 @@ const Subscribe = () => {
             <p className="font-medium text-[13px] max-[996px]:text-[11px] mt-3">Enter your email to get notified about our new update </p>
 
             <div className="mt-3 flex items-center  rounded-[10px] bg-[#1637BA33] px-3 py-2 cursor-pointer w-full h-[54px] 
-            max-[996px]:h-[45px] max-xl:h-[30px]
+            max-[996px]:h-[45px] max-xl:h-[37px]
             border-[3px] border-commonblue  max-xl:border-2
             ">
 

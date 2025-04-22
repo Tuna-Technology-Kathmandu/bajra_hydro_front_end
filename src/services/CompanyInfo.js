@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../config/BaseApi";
 
-export const BlogApi = createApi({
-    reducerPath: 'BlogApi',
+export const CompanyInfoApi = createApi({
+    reducerPath: 'CompanyInfoApi',
     baseQuery: fetchBaseQuery({
         baseUrl: API_BASE_URL
     }),
     endpoints: (builder) => ({
-        getBlogs: builder.query({
-            query: (params) => ({
-                url: '/blogs',
+        getCompanyInfo: builder.query({
+            query: (params = {}) => ({
+                url: '/company-info',
                 params: {
                     page: params.page,
                     limit: params.limit,
@@ -26,5 +26,5 @@ export const BlogApi = createApi({
     })
 })
 
-export const { useGetBlogsQuery } = BlogApi;
-export default BlogApi;
+export const { useGetCompanyInfoQuery } = CompanyInfoApi;
+export default CompanyInfoApi;

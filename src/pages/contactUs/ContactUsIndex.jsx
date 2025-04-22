@@ -1,11 +1,13 @@
+import { lazy } from "react";
 import CommonHero from "../../components/heroComponent/CommonHero";
 import Hydro from '../../assets/images/hydro3.webp';
-import ContactForm from "../../components/form/ContactForm";
+const ContactForm = lazy(() => import('../../components/form/ContactForm'));
 import { ReactComponent as Location } from '../../assets/svg/location.svg';
 import { ReactComponent as PoBox } from '../../assets/svg/pobox.svg';
 import { ReactComponent as Mail } from '../../assets/svg/social/Mail.svg';
 import { ReactComponent as Phone } from '../../assets/svg/phone.svg';
 import GoogleMapIframe from "../../components/map/GoogleMap";
+
 
 const ContactUsIndex = () => {
     return (
@@ -25,11 +27,13 @@ const ContactUsIndex = () => {
                 </div>
                 <div className="flex items-center flex-col">
                     <Mail className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <p className="font-semibold text-sm mt-4 max-sm:text-xs">bajra@example.com</p>
+                    <a href='mailto:bajra@example.com' className="font-semibold text-sm mt-4 max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">bajra@example.com</a>
                 </div>
                 <div className="flex items-center flex-col">
                     <Phone className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <p className="font-semibold text-sm mt-4 max-sm:text-xs">+977 1234567890</p>
+                    <a
+                        href='tel:+9771234567890'
+                        className="font-semibold text-sm mt-4 max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">+977 1234567890</a>
                 </div>
             </section>
 

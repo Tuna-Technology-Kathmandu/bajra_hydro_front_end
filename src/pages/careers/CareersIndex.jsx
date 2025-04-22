@@ -1,7 +1,8 @@
 import CommonHero from "../../components/heroComponent/CommonHero";
 import Hydro from '../../assets/images/hydro3.webp';
 import BenefitIndex from "./BenefitIndex";
-import JobsIndex from "./jobs/JobsIndex";
+import { lazy } from "react";
+const JobsIndex = lazy(() => import('./jobs/JobsIndex'))
 
 const CareersIndex = () => {
     return (

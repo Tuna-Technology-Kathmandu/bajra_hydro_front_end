@@ -1,6 +1,7 @@
 import CommonHero from "../../components/heroComponent/CommonHero";
 import Hydro from '../../assets/images/hydro3.webp';
-import AboutDetail from "./AboutDetail";
+import { lazy } from "react";
+const AboutDetail = lazy(() => import("./AboutDetail"))
 
 const AboutUsIndex = () => {
     return (

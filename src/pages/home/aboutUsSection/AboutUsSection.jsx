@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import rafting from '../../../assets/images/rafting.webp';
 import LinedHeading from '../../../components/heading/LinedHeading';
 
@@ -24,9 +25,11 @@ const AboutUsSection = () => {
                             <p className='text-black/80 font-medium text-sm max-md:text-xs max-sm:text-[10px]'>36 months</p>
                         </div>
                     </div>
-                    <button className='bg-[#705D56] text-lg max-md:text-base max-sm:text-sm font-semibold text-white hover:bg-[#5F4C45] cursor-pointer max-1md:mt-3'>
-                        See More
-                    </button>
+                    <Link to='/about-us'>
+                        <button className='bg-[#705D56] text-lg max-md:text-base max-sm:text-sm font-semibold text-white hover:bg-[#5F4C45] cursor-pointer max-1md:mt-3'>
+                            See More
+                        </button>
+                    </Link>
                 </div>
             </div>
 

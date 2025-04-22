@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarIndex from "./components/navbar/NavbarIndex";
 import FooterIndex from "./components/footer/FooterIndex";
-import SearchContainer from "./components/navbar/SearchContainer";
+import SearchContainer from "./components/navbar/searchContainer/SearchContainer";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";

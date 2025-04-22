@@ -1,8 +1,9 @@
+import { lazy } from "react";
 import HomeHero from "../../components/heroComponent/HomeHero";
-import AboutUsSection from "./aboutUsSection/AboutUsSection";
-import ChairmanSection from "./chairmanSection/ChairmanSection";
-import MilestoneSection from "./milestoneSection/MilestoneSection";
-import NewsSection from "./newsSection/NewsSection";
+const AboutUsSection = lazy(() => import("./aboutUsSection/AboutUsSection"));
+const ChairmanSection = lazy(() => import("./chairmanSection/ChairmanSection"));
+const MilestoneSection = lazy(() => import("./milestoneSection/MilestoneSection"));
+const NewsSection = lazy(() => import("./newsSection/NewsSection"));
 
 const HomeIndex = () => {
     return (

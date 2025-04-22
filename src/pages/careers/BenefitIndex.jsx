@@ -3,7 +3,7 @@ import { Benefits } from '../../localData/careers/Benefits'
 
 const BenefitIndex = () => {
     return (
-        <section className='p-[65px] max-md:p-[30px]'>
+        <section className='p-[65px] max-md:p-[30px] max-md:mt-7'>
             <h1 className='text-center font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px]'>
                 Your Benefit at Bajra
             </h1>

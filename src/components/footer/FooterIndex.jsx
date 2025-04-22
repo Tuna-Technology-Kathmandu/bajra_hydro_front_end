@@ -48,7 +48,11 @@ const FooterIndex = () => {
                                                         <li key={index} className={`font-medium text-[13px] border-b-black/35 p-1
                                                     ${index == 3 ? 'border-b-[0px]' : 'border-b-[0.6px]'}
                                                     `}>
-                                                            <Link to={path} >
+                                                            <Link to={path} onClick={() => {
+                                                                setShowQuick(false)
+                                                                setShowContactUs(false)
+
+                                                            }}>
                                                                 {name}
                                                             </Link>
                                                         </li>
@@ -68,7 +72,7 @@ const FooterIndex = () => {
                                 quickLinks.map((items, index) => {
                                     const { name, path } = items;
                                     return (
-                                        <li key={index} className="font-medium text-[13px] max-[996px]:text-[11px]">
+                                        <li key={index} className="font-medium text-[13px] max-[996px]:text-[11px]  hover:text-commonblue/70 transition-all duration-300 ease-in-out">
                                             <Link to={path} >
                                                 {name}
                                             </Link>
@@ -108,9 +112,13 @@ const FooterIndex = () => {
                                                         <li key={index} className={`font-medium text-[13px] border-b-black/35 p-1
                                                 ${index == 2 ? 'border-b-[0px]' : 'border-b-[0.6px]'}
                                                 `}>
-                                                            <Link to={path} >
+                                                            <a href={path} onClick={() => {
+                                                                setShowQuick(false)
+                                                                setShowContactUs(false)
+
+                                                            }}>
                                                                 {name}
-                                                            </Link>
+                                                            </a>
                                                         </li>
                                                     )
                                                 })
@@ -128,7 +136,7 @@ const FooterIndex = () => {
                                     const { name, path } = items;
                                     return (
                                         <li key={index}>
-                                            <Link to={path} className="font-medium text-[13px] max-[996px]:text-[11px] max-[996px]:text-center" >
+                                            <Link to={path} className={`font-medium text-[13px] max-[996px]:text-[11px] max-[996px]:text-center ${index !== 1 ? 'hover:text-commonblue/70' : ''} transition-all duration-300 ease-in-out`} >
                                                 {name}
                                             </Link>
                                         </li>

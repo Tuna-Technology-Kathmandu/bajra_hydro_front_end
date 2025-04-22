@@ -35,7 +35,7 @@ const ShowProjects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             ref={upRef}
-            className='p-[65px] max-md:p-[30px]'
+            className='px-[65px] max-md:px-[30px]'
         >
             <div className=' '>
                 {isFetching && (

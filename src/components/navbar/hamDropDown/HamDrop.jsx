@@ -1,39 +1,36 @@
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Cross } from '../../../assets/svg/cross.svg';
-import { useState } from "react";
-import { ReactComponent as Back } from '../../../assets/svg/blackBack.svg';
-import { AnimatePresence, motion } from "framer-motion";
+// import { useState } from "react";
+// import { ReactComponent as Back } from '../../../assets/svg/blackBack.svg';
+// import { AnimatePresence, motion } from "framer-motion";
 
 const HamDrop = ({ lists, setShowHam }) => {
-    const [showProject, setShowProject] = useState(false);
+    // const [showProject, setShowProject] = useState(false);
 
-    const projectData = [
-        {
-            name: 'Ongoing Project',
-            path: '/ongoing-projects',
-        },
-        {
-            name: 'Past Project',
-            path: '#',
-        },
-        {
-            name: 'Future Project',
-            path: '#',
-        }
-    ]
+    // const projectData = [
+    //     {
+    //         name: 'Ongoing Project',
+    //         path: '/ongoing-projects',
+    //     },
+    //     {
+    //         name: 'Past Project',
+    //         path: '#',
+    //     },
+    //     {
+    //         name: 'Future Project',
+    //         path: '#',
+    //     }
+    // ]
 
-    const clickItem = (name) => {
-        if (name === 'Projects') {
-            setShowProject(true);
-        } else {
-            setShowProject(false);
+    const clickItem = () => {
+       
             setShowHam(false);
-        }
+        
     };
     return (
         <div className="bg-white border-[0.5px] border-black/50 rounded-[15px] w-full p-6 h-auto text-black ">
-            <div className={`flex w-full ${showProject ? 'justify-between' : 'justify-end'} items-center mb-5`}>
-                {
+            <div className={`flex w-full justify-end items-center mb-5`}>
+                {/* {
                     showProject && (
                         <Back className="w-[20px] h-[20px] text-black"
                             onClick={() => {
@@ -43,14 +40,12 @@ const HamDrop = ({ lists, setShowHam }) => {
 
                         />
                     )
-                }
+                } */}
                 <Cross className='w-[30px] h-[30px] stroke-black'
                     onClick={() => {
                         setShowHam(false)
                     }} />
             </div>
-            {
-                !showProject && (
                     <ul className="Flex-Col space-y-4  list-none h-auto mb-5 justify-between">
                         {
                             lists.map((item, index) => {
@@ -66,11 +61,9 @@ const HamDrop = ({ lists, setShowHam }) => {
                         }
 
                     </ul>
-                )
-            }
 
-            <AnimatePresence>
-                {
+   
+                {/* {
                     showProject && (
                         <motion.ul className="Flex-Col space-y-4  list-none h-auto mb-5 justify-between"
                             initial={{ opacity: 0 }}
@@ -92,8 +85,7 @@ const HamDrop = ({ lists, setShowHam }) => {
 
                         </motion.ul>
                     )
-                }
-            </AnimatePresence>
+                } */}
 
         </div>
     )
