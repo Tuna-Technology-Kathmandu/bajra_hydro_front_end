@@ -68,6 +68,7 @@ const NavbarIndex = ({ setShowSearch }) => {
         // }
         setActive(item);
     }
+
     // check for single pages to make navbar text black
     useEffect(() => {
         const currentPath = location.pathname;
@@ -185,12 +186,24 @@ const NavbarIndex = ({ setShowSearch }) => {
             }
             {!isDesktop && (
                 <div className="h-auto px-10 w-full">
-                    <div className="flex items-center w-full justify-between pr-9">
-                        <Ham className='w-[80px] h-[80px] max-1md:scale-75' onClick={() => setShowHam(!showHam)} />
+                    <div className="flex items-center w-full justify-between ">
+                        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  className={`w-8 h-8 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  onClick={() => setShowHam(!showHam)}
+>
+  <path
+    fillRule="evenodd"
+    d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2z"
+    clipRule="evenodd"
+  />
+</svg>
                         <NavLink to='/'>
                             <Logo className='w-[180px] h-[80px] max-1md:scale-75' />
                         </NavLink>
-                        <Search className='h-[20px] w-[20px] max-1md:scale-75'
+                        <Search className={`h-[25px] w-[25px]  ${showTextBlack ? 'fill-black' : 'fill-white'}`}
                             onClick={clickSearch}
                         />
                     </div>

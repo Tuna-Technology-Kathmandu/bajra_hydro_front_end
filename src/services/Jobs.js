@@ -8,20 +8,17 @@ export const JobsApi = createApi({
     }),
     endpoints: (builder) => ({
         getJobs: builder.query({
-            query: (params = {}) => ({
-                url: '/jobs',
-                params: {
-                    page: params.page,
-                    limit: params.limit,
-                    sortOrder: params.sortOrder,
-                    category_title: params.category_title,
-                    search: params.search,
-                    Is_featured: params.Is_featured
+            query: ({ category, level, job_type, search }) => {
+                const params = new URLSearchParams();
+                if (category) params.append('category', category);
+                if (level) params.append('level', level);
+                if (job_type) params.append('job_type', job_type);
+                if (search) params.append('search', search);
 
-                }
-            })
-        })
-    })
+                return `jobs?${params.toString()}`;
+            },
+        }),
+    }),
 })
 
 export const { useGetJobsQuery } = JobsApi;

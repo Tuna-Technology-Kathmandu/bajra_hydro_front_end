@@ -34,11 +34,11 @@ const NewsCard = ({ title, image, content, slug, date }) => {
 
                     {/* <NavLink to={`/blogs-singlepage/${items.slugs}`}> */}
                     <Link to={`/single-news/${slug}`}>
-                        <div className='flex items-center gap-3 max-md:gap-2 mt-3 max-md:-mt-1 max-xs:mt-0'>
-                            <p className='font-bold text-[11px] max-md:text-[9px] text-commonblue hover:text-DarkGolden cursor-pointer'>
+                        <div className='flex items-center gap-3 max-md:gap-2 mt-3 max-md:-mt-1 max-xs:mt-0  text-commonblue hover:text-lightblue fill-commonblue hover:fill-lightblue transition-all duration-300'>
+                            <p className='font-bold text-[11px] max-md:text-[9px] cursor-pointer'>
                                 Read More
                             </p>
-                            <Arrow className='w-[16px] h-[12px] max-md:w-[14px] max-md:h-[14px] fill-commonblue' />
+                            <Arrow className='w-[16px] h-[12px] max-md:w-[14px] max-md:h-[14px] fill-inherit' />
                         </div>
                     </Link>
                     {/* </NavLink> */}

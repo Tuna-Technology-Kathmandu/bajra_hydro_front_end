@@ -6,7 +6,7 @@ import { ReactComponent as Triangle } from '../../../assets/svg/triangle.svg';
 import ReactPaginate from 'react-paginate';
 import NavbarSearchCardShimmer from '../../Shimmer/NavbarSearchShimmer';
 
-const SearchProjects = ({ keyword }) => {
+const SearchProjects = ({ keyword,pressX }) => {
     const search = keyword;
     const [page, setPage] = useState(1);
     const limit = 4;
@@ -25,7 +25,6 @@ const SearchProjects = ({ keyword }) => {
     let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 4 }
     const { totalPages, currentPage } = pagination;
 
-
     if (isError) {
         return (
             <div className='loading'>Sorry something went wrong.</div>
@@ -38,27 +37,29 @@ const SearchProjects = ({ keyword }) => {
                 {isFetching
                     ? 'Searching...'
                     : data?.blogs?.length > 0
-                        ? `News and Blogs (${data.blogs.length})`
-                        : 'No reports found.'}
+                        ? `News and Blogs (${data.pagination.totalBlogs})`
+                        : 'No data found.'}
             </p>
             <div className=' grid grid-cols-4 gap-8 mt-7 max-2x-l:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1 h-auto'>
 
-                {
-                    isFetching ? (
-                        [...Array(4)].map((_, index) => (
-                            <NavbarSearchCardShimmer key={index} />
-                        ))
-                    ) : (
-                        data?.blogs?.map((items, index) => (
-                            <div key={index}>
-                                <NavbarSearchCard
-                                    image={items.image_url}
-                                    title={items.title}
-                                />
-                            </div>
-                        ))
-                    )
-                }
+              {
+        isFetching ? (
+            [...Array(4)].map((_, index) => (
+                <NavbarSearchCardShimmer key={index} />
+            ))
+        ) : (
+            data?.blogs.map((items, index) => (
+                    <div key={index}>
+                        <NavbarSearchCard
+                            image={items.image_url}
+                            title={items.title}
+                            slug={items.slug}
+                            pressX={pressX}
+                        />
+                    </div>
+                ))
+        )
+    }
 
             </div>
 

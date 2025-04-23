@@ -7,6 +7,7 @@ const ReportCard = ({ title, description, file, date, fiscalYear, quarter, statu
     // Handle opening the PDF in a new tab
     const handleCardClick = (fileUrl) => {
         window.open(fileUrl, '_blank'); // Open PDF in a new tab
+        console.log('card clicked')
     };
 
     // Handle download functionality
@@ -22,11 +23,12 @@ const ReportCard = ({ title, description, file, date, fiscalYear, quarter, statu
         console.log('clicked');
 
     };
+    
 
     return (
         <div
             className='h-[213px] max-md:h-[180px] max-sm:h-[140px] w-full flex justify-center shadow-lg rounded-[10px] overflow-hidden
-            hover:translate-x transition-transform duration-300 origin-top-left hover:scale-105'
+            hover:translate-x transition-transform duration-300 origin-top-left hover:scale-105 cursor-pointer'
             onClick={() => handleCardClick(file)} // Opens PDF in a new tab when the card is clicked
         >
             <div className='w-1/3 bg-lightblue flex justify-center items-center'>
@@ -40,7 +42,7 @@ const ReportCard = ({ title, description, file, date, fiscalYear, quarter, statu
                 </p>
                 {/* Download icon div */}
                 <div
-                    className='w-[20px] h-[20px] absolute right-3 top-3 cursor-pointer'
+                    className='w-[20px] h-[20px] absolute right-3 top-3 cursor-pointer hover:w-[25px] hover:h-[25px] transition-all duration-300'
                     onClick={(e) => handleDownload(e, file)} // Stop propagation and trigger download
                 >
                     <Download className='w-full h-full' />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DropDown = ({ lists, setSelectedField, setShowDrop }) => {
+const DropDown = ({ lists, setSelectedField, setShowDrop, setSubmittedSearch }) => {
     return (
         <div className="absolute left-0 mt-1 w-full bg-white border border-[#00000026] rounded-md shadow-lg z-30">
             {lists.map((item, index) => (
@@ -10,6 +10,7 @@ const DropDown = ({ lists, setSelectedField, setShowDrop }) => {
                     onClick={() => {
                         setSelectedField(item);
                         setShowDrop(false);
+                        setSubmittedSearch('')
                     }}
                 >
                     {item}

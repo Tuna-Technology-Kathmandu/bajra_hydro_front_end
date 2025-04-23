@@ -64,8 +64,8 @@ const SearchContainer = ({ setShowSearch }) => {
             {
                 search !== '' && (
                     <>
-                        <SearchProjects keyword={search} />
-                        <SearchReports keyword={search} />
+                        <SearchProjects keyword={search} pressX={pressX} />
+                        <SearchReports keyword={search} pressX={pressX}/>
                     </>
                 )
             }

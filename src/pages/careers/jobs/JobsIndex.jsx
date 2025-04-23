@@ -6,74 +6,66 @@ import DropDown from './DropDown';
 import GoogleMapIframe from '../../../components/map/GoogleMap';
 import { useGetJobsQuery } from '../../../services/Jobs';
 import { useGetCategoryQuery } from '../../../services/Category';
-import { useMemo } from 'react';
 
 const JobsIndex = () => {
-    const jobTypeList = ['Full-Time', 'Part-Time'];
-    const careerLevelList = ['Internship', 'Junior', 'Mid-Level', 'Senior', 'Executive']
+    const jobTypeList = ["Full-time", "Part-time", "Contract", "Temporary", "Internship"]
+    const careerLevelList = ["Entry-Level", "Mid-Level", "Senior-Level", "Manager", "Executive"]
     const [searchParam, setSearchParam] = useState('');
-    const [searchTrigger, setSearchTrigger] = useState('');
+    const [searchTrigger, setSearchTrigger] = useState(false);
     const [showCategory, setShowCategory] = useState(false);
     const [showLevel, setShowLevel] = useState(false);
     const [showLocation, setShowLocation] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedLevel, setSelectedLevel] = useState('');
     const [selectedJobType, setSelectedJobType] = useState('');
-    const [filteredJobs, setFilteredJobs] = useState([]);
+    const [submittedSearch, setSubmittedSearch] = useState('');
 
-    const handleSearch = (event) => {
-        setSearchParam(event.target.value)
-    }
+
+    const handleSearch = () => {
+        setSelectedCategory('');
+        setSelectedLevel('');
+        setSelectedJobType('');
+        setSubmittedSearch(searchParam.trim());
+    };
 
     const reset = () => {
         setSelectedCategory('');
         setSelectedLevel('');
         setSelectedJobType('');
         setSearchParam('');
+        setSearchTrigger(false);
     }
     const search = 'jobs';
     const { data: category } = useGetCategoryQuery({ search })
+    console.log(category)
     const categoryLists = category?.categories?.[0]?.subcategories?.map(sub => sub.name) || [];
 
-    const { data } = useGetJobsQuery();
-    const jobs = useMemo(() => data?.jobs ?? [], [data]);
+    const { data, isFetching, isLoading } = useGetJobsQuery({
 
-    useEffect(() => {
-        const filtered = jobs.filter(job => {
-            const matchesCategory = selectedCategory
-                ? job.category?.name === selectedCategory
-                : true;
+        category: selectedCategory,
+        level: selectedLevel,
+        job_type: selectedJobType,
+        search: submittedSearch,// no need for searchTrigger
 
-            const matchesJobType = selectedJobType
-                ? job.job_type === selectedJobType
-                : true;
+    });
+    const jobs = data?.jobs || [];
+    console.log('jobs', jobs);
 
-            const matchesLevel = selectedLevel
-                ? job.level === selectedLevel
-                : true;
+    console.log('submitted', submittedSearch);
 
-            const matchesSearch = searchParam
-                ? [
-                    job.title,
-                    job.category?.name,
-                    job.level,
-                    job.job_type,
-                    job.location,
-                    job.description
-                ].some(field =>
-                    field?.toLowerCase().includes(searchTrigger.toLowerCase())
-                )
-                : true;
 
-            return matchesCategory && matchesJobType && matchesLevel && matchesSearch;
-        });
-
-        setFilteredJobs(filtered); // Update filtered jobs
-    }, [selectedCategory, selectedLevel, selectedJobType, searchParam, jobs]); // Dependencies: run filter when any of these change
+    // useEffect(() => {
+    //     if (searchParam !== '') {
+    //         setSelectedCategory('')
+    //         setSelectedJobType('')
+    //         setSelectedLevel('')
+    //     }
+    // }, [searchParam])
 
     return (
         <section className='mt-14 px-[65px] max-md:p-[30px]'>
 
+            <GoogleMapIframe />
 
             <div className='w-full flex justify-between items-center max-sm:flex-col '>
                 {/* headwer */}
@@ -96,6 +88,7 @@ const JobsIndex = () => {
                                 setShowCategory(!showCategory);
                                 setShowLevel(false);
                                 setShowLocation(false);
+                                setSearchParam('')
                             }
                         }
                         className='w-full px-5 h-[45px] cursor-pointer md:h-[60px] border border-[#00000026] rounded-[8px] flex justify-between items-center'>
@@ -113,6 +106,7 @@ const JobsIndex = () => {
                             <DropDown lists={categoryLists}
                                 setShowDrop={setShowCategory}
                                 setSelectedField={setSelectedCategory}
+                                setSubmittedSearch={setSubmittedSearch}
                             />
                         )
 
@@ -128,6 +122,7 @@ const JobsIndex = () => {
                                 setShowLevel(!showLevel);
                                 setShowCategory(false);
                                 setShowLocation(false);
+                                setSearchParam('')
                             }
                         }
                         className='w-full px-5 h-[45px] cursor-pointer md:h-[60px] border border-[#00000026] rounded-[8px] flex justify-between items-center'>
@@ -144,6 +139,7 @@ const JobsIndex = () => {
                             <DropDown lists={careerLevelList}
                                 setShowDrop={setShowLevel}
                                 setSelectedField={setSelectedLevel}
+                                setSubmittedSearch={setSubmittedSearch}
                             />
                         )
 
@@ -159,6 +155,8 @@ const JobsIndex = () => {
                                 setShowLocation(!showLocation);
                                 setShowCategory(false);
                                 setShowLevel(false);
+                                setSearchParam('');
+
                             }
                         }
                         className='w-full px-5 h-[45px] cursor-pointer md:h-[60px] border border-[#00000026] rounded-[8px] flex justify-between items-center'>
@@ -173,17 +171,17 @@ const JobsIndex = () => {
                             <DropDown lists={jobTypeList}
                                 setShowDrop={setShowLocation}
                                 setSelectedField={setSelectedJobType}
+                                setSubmittedSearch={setSubmittedSearch}
+
                             />
                         )
-
-
                     }
                 </div>
 
                 {/* Search Field */}
                 <div className="relative w-full">
-                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 transform"
-                        onClick={() => setSearchTrigger(searchParam)}
+                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 transform hover:scale-110 transition-all duration-300 cursor-pointer"
+                        onClick={handleSearch}
                     >
                         <Search className="w-3 h-3 sm:w-4 sm:h-4 fill-[#000000B2]" />
                     </span>
@@ -193,21 +191,33 @@ const JobsIndex = () => {
                                    text-xs md:text-base placeholder:text-xs outline-none focus:border focus:border-lightblue"
                         placeholder="Search"
                         value={searchParam}
-                        onChange={(e) => setSearchParam(e.target.value)}
+                        onChange={(e) => {
+                            setSearchParam(e.target.value);
+                        }}
                     />
                 </div>
             </div>
 
             {/* Job Count */}
-            <p className='font-semibold text-sm sm:text-base mt-8 underline pl-1 sm:pl-3'>{filteredJobs?.length ?? 0}</p>
+            <p className='font-semibold text-sm sm:text-base mt-8 underline pl-1 sm:pl-3'>{jobs.length ?? 0}</p>
             {/* Map */}
-            {/* <div className="my-6">
-             
-                <GoogleMapIframe />
-            </div> */}
+
             {/*List */}
 
-            <JobsList jobs={filteredJobs} />
+
+            {
+                (isLoading || isFetching) ? (
+                    <div className='min-h-[100px] grid place-items-center'>
+                        <p className='loading text-center'>Searching for a job...</p>
+                    </div>
+                ) : jobs.length === 0 ? (
+                    <div className='min-h-[100px] grid place-items-center'>
+                        <p className='loading text-center'>No job found...</p>
+                    </div>
+                ) : (
+                    <JobsList jobs={jobs} />
+                )
+            }
         </section>
     )
 }
