@@ -6,7 +6,7 @@ import { ReactComponent as Triangle } from '../../../assets/svg/triangle.svg';
 import ReactPaginate from 'react-paginate';
 import NavbarSearchCardShimmer from '../../Shimmer/NavbarSearchShimmer';
 
-const SearchProjects = ({ keyword,pressX }) => {
+const SearchProjects = ({ keyword, pressX }) => {
     const search = keyword;
     const [page, setPage] = useState(1);
     const limit = 4;
@@ -30,43 +30,46 @@ const SearchProjects = ({ keyword,pressX }) => {
             <div className='loading'>Sorry something went wrong.</div>
         )
     }
-
+    console.log('search', data)
     return (
         <div ref={upRef}>
             <p className='font-semibold text-xs md:text-sm mt-6'>
                 {isFetching
                     ? 'Searching...'
                     : data?.blogs?.length > 0
-                        ? `News and Blogs (${data.pagination.totalBlogs})`
-                        : 'No data found.'}
+                        ? null
+                        : data?.blogs?.length === 0
+                            ? 'No news found.'
+                            : 'Cannot get data'}
             </p>
             <div className=' grid grid-cols-4 gap-8 mt-7 max-2x-l:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1 h-auto'>
 
-              {
-        isFetching ? (
-            [...Array(4)].map((_, index) => (
-                <NavbarSearchCardShimmer key={index} />
-            ))
-        ) : (
-            data?.blogs.map((items, index) => (
-                    <div key={index}>
-                        <NavbarSearchCard
-                            image={items.image_url}
-                            title={items.title}
-                            slug={items.slug}
-                            pressX={pressX}
-                        />
-                    </div>
-                ))
-        )
-    }
+                {
+                    isFetching ? (
+                        [...Array(4)].map((_, index) => (
+                            <NavbarSearchCardShimmer key={index} />
+                        ))
+                    ) : (
+                        data?.blogs.map((items, index) => (
+                            <div key={index}>
+                                <NavbarSearchCard
+                                    image={items.image_url}
+                                    title={items.title}
+                                    slug={items.slug}
+                                    pressX={pressX}
+                                    category={items.categories?.name || 'Other'}
+                                />
+                            </div>
+                        ))
+                    )
+                }
 
             </div>
 
             {totalPages > 1 && (
                 <div className='flex items-center justify-center gap-3 h-[43px] mt-16 max-md:mt-10'>
                     <button
-                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-Golden transition rounded-full relative cursor-pointer"
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
                         onClick={() => {
                             if (currentPage > 1) {
                                 setPage(currentPage - 1);
@@ -112,7 +115,7 @@ const SearchProjects = ({ keyword,pressX }) => {
 
                     )}
                     <button
-                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-Golden transition rounded-full relative rotate-180 cursor-pointer"
+                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
                         onClick={() => {
                             goTop()
                             setPage(currentPage + 1)

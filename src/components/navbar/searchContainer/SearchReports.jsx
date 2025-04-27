@@ -28,6 +28,9 @@ const SearchReports = ({ keyword }) => {
     let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 4 }
     const { totalPages, currentPage } = pagination;
 
+    const handleCardClick = (fileUrl) => {
+        window.open(fileUrl, '_blank'); // Open PDF in a new tab
+    };
 
     if (isError) {
         return (
@@ -42,7 +45,7 @@ const SearchReports = ({ keyword }) => {
                 {isFetching
                     ? 'Searching...'
                     : data?.reports?.length > 0
-                        ? `News and Blogs (${data.reports.length})`
+                        ? `Reports (${data.reports.length})`
                         : 'No reports found.'}
             </p>
             <div className="grid max-[480px]:grid-cols-1 max-md:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
@@ -55,6 +58,7 @@ const SearchReports = ({ keyword }) => {
                         data?.reports?.length > 0 ? (
                             data.reports.map((report, index) => (
                                 <div
+                                    onClick={() => handleCardClick(report.file)}
                                     key={index}
                                     className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border border-white/10 cursor-pointer hover:bg-white/20 transition-all"
                                 >
@@ -74,7 +78,7 @@ const SearchReports = ({ keyword }) => {
             {data?.reports?.length > limit && totalPages > 1 && (
                 <div className='flex items-center justify-center gap-3 h-[43px] mt-16 max-md:mt-10'>
                     <button
-                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-Golden transition rounded-full relative cursor-pointer"
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
                         onClick={() => {
                             if (currentPage > 1) {
                                 setPage(currentPage - 1);
@@ -120,7 +124,7 @@ const SearchReports = ({ keyword }) => {
 
                     )}
                     <button
-                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-Golden transition rounded-full relative rotate-180 cursor-pointer"
+                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
                         onClick={() => {
                             goTop()
                             setPage(currentPage + 1)

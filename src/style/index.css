@@ -4,6 +4,7 @@
   /* common colors */
   --color-commonblue: #1637BA;
   --color-lightblue: #48CAE4;
+  --color-hoverblue: #3BB8D1;
 
   /* box shadow */
   --drop-shadow-soft: 0 0 6px rgba(0, 0, 0, 0.2);

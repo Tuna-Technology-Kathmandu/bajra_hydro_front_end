@@ -13,7 +13,7 @@ const ContactUsIndex = () => {
     return (
         <main>
             <CommonHero img={Hydro} title='Contact Us' />
-            <section className="w-full p-[65px] max-md:p-[30px]">
+            <section className="w-full p-[65px] max-md:p-[30px] max-md:mt-7">
                 <ContactForm />
             </section>
             <section className="w-full bg-[#48CAE44D] px-[65px] py-20 flex justify-between max-xl:flex-col-reverse max-xl:gap-7 max-xl:items-center">
@@ -38,7 +38,7 @@ const ContactUsIndex = () => {
             </section>
 
             {/* map leaflet */}
-            <section className="mt-10 h-[500px] relative z-0">
+            <section className="mt-10 h-[500px] relative z-0 max-md:mt-20">
                 <GoogleMapIframe />
             </section>
 

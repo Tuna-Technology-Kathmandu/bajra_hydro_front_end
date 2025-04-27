@@ -54,6 +54,10 @@ const NavbarIndex = ({ setShowSearch }) => {
             setActive('News');
             return;
         }
+        if(currentPath.startsWith('/single-project')){
+            setActive('Projects');
+            return;
+        }
         // Otherwise
         const matchedNav = NavItem.find(item => item.path === currentPath);
         if (matchedNav) {

@@ -10,19 +10,27 @@ const ReportCard = ({ title, description, file, date, fiscalYear, quarter, statu
         console.log('card clicked')
     };
 
-    // Handle download functionality
-    const handleDownload = (e, fileUrl) => {
-        // e.stopPropagation(); // Stop the click event from propagating to the card
-        // e.preventDefault();
-        // const link = document.createElement('a');
-        // link.href = fileUrl;
-        // link.download = fileUrl.split('/').pop(); // Extracts the file name from the URL
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
-        console.log('clicked');
+   const handleDownload = async (e, fileUrl) => {
+  e.stopPropagation();
+  e.preventDefault();
 
-    };
+  try {
+    const response = await fetch(fileUrl);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileUrl.split('/').pop(); // Optional: customize filename
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
+};
+
     
 
     return (

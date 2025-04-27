@@ -8,7 +8,7 @@ const Subscribe = () => {
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [subscribeEmail] = useSubscribeEmailMutation();
+    const [subscribeEmail,{message}] = useSubscribeEmailMutation();
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!email) {
@@ -30,9 +30,10 @@ const Subscribe = () => {
             if (err.status === 404 || err.originalStatus === 404) {
                 toast.error("Subscription service is currently unavailable. Please try later.");
             } else if (err.error?.includes("Unexpected token '<'")) {
-                alert("Server error: Invalid response. Contact support.");
+                toast.error("Server error: Invalid response. Contact support.");
             } else {
-                alert("Failed to subscribe. Please try again.");
+                const errorMessage = err?.data?.message || message || 'An error occurred. Please try again later.';
+            toast.error(errorMessage); // Show error toast with the message
             }
         } finally {
             setIsSubmitting(false)

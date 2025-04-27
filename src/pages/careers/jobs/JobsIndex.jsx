@@ -67,7 +67,7 @@ const JobsIndex = () => {
 
             <GoogleMapIframe />
 
-            <div className='w-full flex justify-between items-center max-sm:flex-col '>
+            <div className='w-full flex justify-between items-center max-sm:flex-col max-md:mt-10 '>
                 {/* headwer */}
                 <h1 className='font-bold text-lg sm:text-xl mb-6 max-sm:mb-3'>Jobs available</h1>
 

@@ -8,9 +8,9 @@ const ChairmanSection = () => {
 
     if (isError) {
         return (
-            <section className="w-full h-auto p-[75px] max-md:p-[30px] flex flex-col items-center justify-center bg-red-50 text-red-600">
-                <h2 className="text-xl font-bold mb-2">Something went wrong!</h2>
-                <p className="text-sm">Unable to load chairman's message. Please try again later.</p>
+            <section className="w-full h-auto p-[75px] max-md:p-[30px] flex flex-col items-center justify-center">
+                <h2 className="text-xl max-lg:text-lg max-md:text-base max-sm:text-sm font-semibold mb-2">Something went wrong!</h2>
+                <p className="loading">Unable to load message. Please try again later.</p>
             </section>
         );
     }
@@ -23,7 +23,7 @@ const ChairmanSection = () => {
                     <div className="w-full h-full bg-gray-300 animate-pulse rounded-md" />
                 ) : (
                     <>
-                        <img src={data?.messages[0].photo} className='w-full h-full object-cover bg-lightblue' alt="Chairman" />
+                        <img src={data?.messages[0].photo} className='w-full h-full object-cover bg-lightblue' alt={data?.messages[0].name} />
                         <div className='w-full p-5 bg-commonblue text-white absolute z-10 bottom-0 '>
                             <p className='lg:text-lg font-semibold tracking-[0.03em] md:text-base text-sm' >{data?.messages[0].name}</p>
                             <p className='lg:text-[15px] mt-2 font-medium tracking-[0.03em] md:text-sm text-xs'>{data?.messages[0].position}</p>

@@ -79,7 +79,7 @@ const ReportContainer = () => {
             </div>
             <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
                 <button
-                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-Golden transition rounded-full relative cursor-pointer"
+                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
                     onClick={() => {
                         if (currentPage > 1) {
                             setPage(currentPage - 1);
@@ -125,7 +125,7 @@ const ReportContainer = () => {
 
                 )}
                 <button
-                    className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-Golden transition rounded-full relative rotate-180 cursor-pointer"
+                    className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
                     onClick={() => {
                         goTop()
                         setPage(currentPage + 1)

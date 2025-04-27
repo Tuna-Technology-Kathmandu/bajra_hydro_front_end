@@ -10,18 +10,33 @@ import { useGetTeamQuery } from '../../services/Team';
 const AboutDetail = () => {
 
     //for company info and history
-    const { data, isFetching, isError } = useGetCompanyInfoQuery();
-    const CompanyTitle = data?.company_information[0]?.company_info_title ?? 'Company Information';
-    const CompanyInfo = data?.company_information[0]?.company_info ?? 'No Information Available At The Moment.'
-    const HistoryTitle = data?.company_information[0]?.history_title ?? 'History';
-    const HistoryInfo = data?.company_information[0]?.history_description ?? 'No Information Available At The Moment.'
+    const {
+        data: companyData,
+        isFetching: isCompanyFetching,
+        isError: isCompanyError,
+    } = useGetCompanyInfoQuery();
 
-    //for board members and teams
-    const { data: members, isFetching: memberFetching, isError: memberError } = useGetTeamQuery();
-    const boardMembers = members?.members?.filter(member => member.is_board_member);
-    const otherMembers = members?.members?.filter(member => !member.is_board_member);
-    console.log(boardMembers);
-    console.log(otherMembers);
+    const companyInfo = companyData?.company_information;
+    const companyInfoExists = Array.isArray(companyInfo) && companyInfo.length > 0;
+
+    const company = companyInfoExists ? companyInfo[0] : {};
+
+    const CompanyTitle = company?.company_info_title || 'Company Information';
+    const CompanyInfo = company?.company_info || 'No Information Available At The Moment.';
+    const HistoryTitle = company?.history_title || 'History';
+    const HistoryInfo = company?.history_description || 'No Information Available At The Moment.';
+
+    // Fetch team members
+    const {
+        data: membersData,
+        isFetching: memberFetching,
+        isError: memberError,
+    } = useGetTeamQuery();
+
+    const allMembers = Array.isArray(membersData?.members) ? membersData.members : [];
+
+    const boardMembers = allMembers.filter(member => member?.is_board_member);
+    const otherMembers = allMembers.filter(member => !member?.is_board_member);
 
 
 
@@ -78,16 +93,16 @@ const AboutDetail = () => {
                     <AboutCompany
                         title={CompanyTitle}
                         description={CompanyInfo}
-                        isFetching={isFetching}
-                        isError={isError}
+                        isFetching={isCompanyFetching}
+                        isError={isCompanyError}
                     />
                 </div>
                 <div ref={historyRef}>
                     <AboutHistory
                         title={HistoryTitle}
                         description={HistoryInfo}
-                        isFetching={isFetching}
-                        isError={isError}
+                        isFetching={isCompanyFetching}
+                        isError={isCompanyError}
                     />
                 </div>
                 <div ref={missionRef}>
