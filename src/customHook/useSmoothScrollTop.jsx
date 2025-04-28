@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 
 const useSmoothScrollTop = () => {
-    const smoothScrollTo = useCallback((element, duration = 600) => {
+    const smoothScrollTo = useCallback((element, duration = 600, offset = 55) => {
         if (!element) return;
 
-        const targetY = element.getBoundingClientRect().top + window.scrollY;
+        const targetY = element.getBoundingClientRect().top + window.scrollY - offset;
         const startY = window.scrollY;
         const distance = targetY - startY;
         let startTime = null;

@@ -18,7 +18,7 @@ const ShowNews = () => {
     const goTop = () => {
         setTimeout(() => {
             if (upRef.current) {
-                ScrollTop(upRef.current);
+                ScrollTop(upRef.current,600,100);
             }
         }, 100);
     }

@@ -6,6 +6,10 @@ import DropDown from './DropDown';
 import GoogleMapIframe from '../../../components/map/GoogleMap';
 import { useGetJobsQuery } from '../../../services/Jobs';
 import { useGetCategoryQuery } from '../../../services/Category';
+import { useRef } from 'react';
+import ReactPaginate from 'react-paginate';
+import useSmoothScrollTop from '../../../customHook/useSmoothScrollTop';
+import { ReactComponent as Triangle } from '../../../assets/svg/triangle.svg'
 
 const JobsIndex = () => {
     const jobTypeList = ["Full-time", "Part-time", "Contract", "Temporary", "Internship"]
@@ -19,7 +23,19 @@ const JobsIndex = () => {
     const [selectedLevel, setSelectedLevel] = useState('');
     const [selectedJobType, setSelectedJobType] = useState('');
     const [submittedSearch, setSubmittedSearch] = useState('');
+    const [page, setPage] = useState(1);
+    const limit = 9;
 
+    const upRef = useRef(null);
+
+    const ScrollTop = useSmoothScrollTop();
+    const goTop = () => {
+        setTimeout(() => {
+            if (upRef.current) {
+                ScrollTop(upRef.current);
+            }
+        }, 100);
+    }
 
     const handleSearch = () => {
         setSelectedCategory('');
@@ -46,13 +62,14 @@ const JobsIndex = () => {
         level: selectedLevel,
         job_type: selectedJobType,
         search: submittedSearch,// no need for searchTrigger
+        page,
+        limit
+
 
     });
+    let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 6 }
+    const { totalPages, currentPage } = pagination;
     const jobs = data?.jobs || [];
-    console.log('jobs', jobs);
-
-    console.log('submitted', submittedSearch);
-
 
     // useEffect(() => {
     //     if (searchParam !== '') {
@@ -204,20 +221,86 @@ const JobsIndex = () => {
 
             {/*List */}
 
+            <div ref={upRef}>
+                {
+                    (isLoading || isFetching) ? (
+                        <div className='min-h-[100px] grid place-items-center'>
+                            <p className='loading text-center'>Searching for a job...</p>
+                        </div>
+                    ) : jobs.length === 0 ? (
+                        <div className='min-h-[100px] grid place-items-center'>
+                            <p className='loading text-center'>No job found...</p>
+                        </div>
+                    ) : (
+
+                        <JobsList jobs={jobs} />
+                    )
+                }
+            </div>
 
             {
-                (isLoading || isFetching) ? (
-                    <div className='min-h-[100px] grid place-items-center'>
-                        <p className='loading text-center'>Searching for a job...</p>
+                jobs.length > 10 && (
+                    <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
+                        <button
+                            className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
+                            onClick={() => {
+                                if (currentPage > 1) {
+                                    setPage(currentPage - 1);
+                                    goTop();
+                                }
+
+                            }
+                            }
+                            disabled={currentPage === 1}
+
+                        >
+                            <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                        </button>
+                        {totalPages > 1 && (
+                            <ReactPaginate
+                                previousLabel={null}
+                                nextLabel={null}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={totalPages}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={2}
+                                onPageChange={(event) => {
+                                    setPage(event.selected + 1);
+                                    goTop();
+                                }}
+                                containerClassName={`
+                                   flex items-center justify-center gap-[4px]
+                                   bg-lightblue rounded-full px-[10px] py-[3px]
+                                   md:h-[38px] h-[30px] transition-all duration-300
+                               `}
+                                pageClassName={`
+                                   w-[24px] h-[24px] md:w-[30px] md:h-[30px]
+                                   flex items-center justify-center
+                                   text-white text-[12px] md:text-sm
+                                   rounded-full cursor-pointer hover:text-black
+                                   transition-all duration-300
+                               `}
+                                activeClassName={`!bg-white !text-black font-bold`}
+                                forcePage={currentPage - 1}
+                            />
+
+
+                        )}
+                        <button
+                            className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
+                            onClick={() => {
+                                goTop()
+                                setPage(currentPage + 1)
+                            }}
+                            disabled={currentPage === totalPages}
+                        >
+                            <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                        </button>
                     </div>
-                ) : jobs.length === 0 ? (
-                    <div className='min-h-[100px] grid place-items-center'>
-                        <p className='loading text-center'>No job found...</p>
-                    </div>
-                ) : (
-                    <JobsList jobs={jobs} />
                 )
             }
+
         </section>
     )
 }

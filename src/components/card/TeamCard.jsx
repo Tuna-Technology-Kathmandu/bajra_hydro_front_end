@@ -1,5 +1,4 @@
 import React from 'react';
-import defaultImage from '../../assets/images/defaultProfile.webp';
 
 const TeamCard = ({ salute, name, designation, image }) => {
 
