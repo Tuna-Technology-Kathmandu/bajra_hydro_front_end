@@ -20,7 +20,7 @@ const AboutMission = () => {
         );
     }
     return (
-        <section className='w-full'>
+        <section className='w-full mt-7'>
             <h1 className='font-bold text-[22px] text-center max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] mb-10'>Our Misson And Value</h1>
             {
                 isFetching ? (

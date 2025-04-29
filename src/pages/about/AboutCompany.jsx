@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutCompany = ({ title, description, isFetching, isError }) => {
+const AboutCompany = ({ title, description, isFetching, isError,image }) => {
 
     return (
         <section className='w-full'>
@@ -17,9 +17,18 @@ const AboutCompany = ({ title, description, isFetching, isError }) => {
                 ) : isError ? (
                     <p className='loading mt-2'>Error Getting Company Information</p>
                 ) : (
-                    <p dangerouslySetInnerHTML={{ __html: description }} className='font-normal text-sm max-2xl:text-[13px] max-sm:text-[11px] leading-[32px] max-2xl:leading-[28px] max-sm:leading-[19px] mt-7 max-md:mt-5 max-sm:mt-3'>
+                    <>
+                        <img
+                            src={image}
+                            alt='vision nepal limited'
+                            className='mt-4 w-full h-[400px] max-md:h-[300px] '
+                        >
+                        </img>
+                        <p dangerouslySetInnerHTML={{ __html: description }} className='font-normal text-sm max-2xl:text-[13px] max-sm:text-[11px] leading-[32px] max-2xl:leading-[28px] max-sm:leading-[19px] mt-7 max-md:mt-5 max-sm:mt-3'>
 
-                    </p>
+                        </p>
+                    </>
+
                 )
             }
         </section>

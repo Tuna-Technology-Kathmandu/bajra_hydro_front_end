@@ -24,7 +24,7 @@ const JobsIndex = () => {
     const [selectedJobType, setSelectedJobType] = useState('');
     const [submittedSearch, setSubmittedSearch] = useState('');
     const [page, setPage] = useState(1);
-    const limit = 9;
+    const limit = 5;
 
     const upRef = useRef(null);
 
@@ -53,7 +53,6 @@ const JobsIndex = () => {
     }
     const search = 'jobs';
     const { data: category } = useGetCategoryQuery({ search })
-    console.log(category)
     const categoryLists = category?.categories?.[0]?.subcategories?.map(sub => sub.name) || [];
 
     const { data, isFetching, isLoading } = useGetJobsQuery({
@@ -67,7 +66,7 @@ const JobsIndex = () => {
 
 
     });
-    let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 6 }
+    let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 5 }
     const { totalPages, currentPage } = pagination;
     const jobs = data?.jobs || [];
 
@@ -80,7 +79,7 @@ const JobsIndex = () => {
     // }, [searchParam])
 
     return (
-        <section className='mt-14 px-[65px] max-md:p-[30px]'>
+        <section className='mt-14 px-[65px] max-md:p-[30px] mb-16 max-md:-mb-10'>
 
             <GoogleMapIframe />
 
@@ -239,7 +238,7 @@ const JobsIndex = () => {
             </div>
 
             {
-                jobs.length > 10 && (
+                totalPages > 1 && (
                     <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
                         <button
                             className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
@@ -256,7 +255,6 @@ const JobsIndex = () => {
                         >
                             <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
                         </button>
-                        {totalPages > 1 && (
                             <ReactPaginate
                                 previousLabel={null}
                                 nextLabel={null}
@@ -285,8 +283,6 @@ const JobsIndex = () => {
                                 forcePage={currentPage - 1}
                             />
 
-
-                        )}
                         <button
                             className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
                             onClick={() => {

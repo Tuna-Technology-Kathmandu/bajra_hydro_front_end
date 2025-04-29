@@ -10,7 +10,7 @@ import ReactPaginate from 'react-paginate';
 
 const ShowNews = () => {
     const [page, setPage] = useState(1);
-    const limit = 3;
+    const limit = 9;
     const category = 'News'
     const upRef = useRef(null);
 
@@ -18,7 +18,7 @@ const ShowNews = () => {
     const goTop = () => {
         setTimeout(() => {
             if (upRef.current) {
-                ScrollTop(upRef.current,600,100);
+                ScrollTop(upRef.current, 600, 100);
             }
         }, 100);
     }
@@ -29,7 +29,7 @@ const ShowNews = () => {
 
     console.log(error)
     return (
-        <section className='px-[75px] max-md:px-[30px] h-auto'
+        <section className='px-[75px] max-md:px-[30px] h-auto mb-20 max-md:mb-16 max-[658px]:-mt-8'
             ref={upRef}
         >
             {isFetching && (
@@ -79,23 +79,25 @@ const ShowNews = () => {
 
                     </div>
                 )}
-            <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
-                <button
-                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
-                    onClick={() => {
-                        if (currentPage > 1) {
-                            setPage(currentPage - 1);
-                            goTop();
+
+            {totalPages > 1 && (
+                <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
+                    <button
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
+                        onClick={() => {
+                            if (currentPage > 1) {
+                                setPage(currentPage - 1);
+                                goTop();
+                            }
+
                         }
+                        }
+                        disabled={currentPage === 1}
 
-                    }
-                    }
-                    disabled={currentPage === 1}
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
 
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-                {totalPages > 1 && (
                     <ReactPaginate
                         previousLabel={null}
                         nextLabel={null}
@@ -124,20 +126,18 @@ const ShowNews = () => {
                         forcePage={currentPage - 1}
                     />
 
-
-                )}
-                <button
-                    className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
-                    onClick={() => {
-                        goTop()
-                        setPage(currentPage + 1)
-                    }}
-                    disabled={currentPage === totalPages}
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-            </div>
-
+                    <button
+                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
+                        onClick={() => {
+                            goTop()
+                            setPage(currentPage + 1)
+                        }}
+                        disabled={currentPage === totalPages}
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
+                </div>
+            )}
         </section>
     )
 }

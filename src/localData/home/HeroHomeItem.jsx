@@ -10,7 +10,7 @@ export const HeroHomeItem = [
     },
     {
         img: Img2,
-        title: 'Empowering Growth Through Sustainable Energy',
-        subTitle: 'Reliable energy, sustainable progress'
+        title: 'Powering Tomorrow with Clean Energy',
+        subTitle: 'Innovating for a sustainable and brighter future'
     },
 ]

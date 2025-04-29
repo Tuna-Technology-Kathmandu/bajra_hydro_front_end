@@ -8,6 +8,7 @@ const ProjectDetails = () => {
     const { slug } = useParams();
 
     const { data, isError, isFetching } = useGetSingleBlogQuery(slug);
+    console.log(data)
 
     if (isFetching) {
         return (

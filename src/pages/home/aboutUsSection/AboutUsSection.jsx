@@ -63,7 +63,7 @@ const AboutUsSection = () => {
                                 </div>
                             </div>
                             <Link to='/about-us'>
-                                <button className='bg-[#705D56] text-lg max-md:text-base max-sm:text-sm font-semibold text-white hover:bg-[#5F4C45] cursor-pointer max-1md:mt-3'>
+                                <button className='bg-commonblue text-lg max-md:text-base max-sm:text-sm font-semibold text-white hover:bg-commonblue/70 transition-all duration-300 ease-in-out cursor-pointer max-1md:mt-3'>
                                     See More
                                 </button>
                             </Link>

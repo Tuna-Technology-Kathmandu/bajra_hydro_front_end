@@ -193,7 +193,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                     <div className="flex items-center w-full justify-between ">
                         <svg
   xmlns="http://www.w3.org/2000/svg"
-  className={`w-8 h-8 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+  className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
   viewBox="0 0 20 20"
   fill="currentColor"
   onClick={() => setShowHam(!showHam)}
@@ -207,7 +207,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                         <NavLink to='/'>
                             <Logo className='w-[180px] h-[80px] max-1md:scale-75' />
                         </NavLink>
-                        <Search className={`h-[25px] w-[25px]  ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+                        <Search className={`h-[25px] w-[25px] max-[500px]:w-[18px] max-[500px]:h-[18px]  ${showTextBlack ? 'fill-black' : 'fill-white'}`}
                             onClick={clickSearch}
                         />
                     </div>

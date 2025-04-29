@@ -3,7 +3,7 @@ import React from 'react';
 const AboutHistory = ({ title, description, isFetching, isError }) => {
 
     return (
-        <section className='w-full'>
+        <section className='w-full mt-7'>
             <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px]'>{title}</h1>
             {
                 isFetching ? (

@@ -8,7 +8,7 @@ const ChairmanSection = () => {
 
     if (isError) {
         return (
-            <section className="w-full h-auto p-[75px] max-md:p-[30px] flex flex-col items-center justify-center">
+            <section className="w-full h-auto p-[75px] max-md:p-[30px]  flex flex-col items-center justify-center">
                 <h2 className="text-xl max-lg:text-lg max-md:text-base max-sm:text-sm font-semibold mb-2">Something went wrong!</h2>
                 <p className="loading">Unable to load message. Please try again later.</p>
             </section>

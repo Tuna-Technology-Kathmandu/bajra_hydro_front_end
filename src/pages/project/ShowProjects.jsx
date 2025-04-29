@@ -35,7 +35,7 @@ const ShowProjects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             ref={upRef}
-            className='px-[65px] max-md:px-[30px]'
+            className='px-[65px] max-md:px-[30px] mb-14 max-[658px]:-mt-8'
         >
             <div className=' '>
                 {isFetching && (
@@ -85,20 +85,22 @@ const ShowProjects = () => {
                         </div>
                     )}
             </div>
-            <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
-                <button
-                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
-                    onClick={() => {
-                        setPage(currentPage - 1)
-                        goTop()
-                    }
-                    }
-                    disabled={currentPage === 1}
 
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-                {totalPages > 1 && (
+            {totalPages > 1 && (
+                <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
+                    <button
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
+                        onClick={() => {
+                            setPage(currentPage - 1)
+                            goTop()
+                        }
+                        }
+                        disabled={currentPage === 1}
+
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
+
                     <ReactPaginate
                         previousLabel={null}
                         nextLabel={null}
@@ -128,18 +130,18 @@ const ShowProjects = () => {
                     />
 
 
-                )}
-                <button
-                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
-                    onClick={() => {
-                        goTop()
-                        setPage(currentPage + 1)
-                    }}
-                    disabled={currentPage === totalPages}
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-            </div>
+                    <button
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
+                        onClick={() => {
+                            goTop()
+                            setPage(currentPage + 1)
+                        }}
+                        disabled={currentPage === totalPages}
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
+                </div>
+            )}
         </motion.section>
     )
 }

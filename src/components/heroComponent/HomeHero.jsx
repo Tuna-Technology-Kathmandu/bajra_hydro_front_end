@@ -7,7 +7,7 @@ import '../../style/components/HeroHome.css';
 
 const HomeHero = () => {
     return (
-        <section className='h-screen'>
+        <section className='h-screen w-full max-[1312px]:h-[650px] max-1xl:h-[550px] max-[639px]:h-[500px] max-[388px]:h-[422px]'>
             <Swiper
                 modules={[Pagination]}
                 pagination={{
@@ -23,14 +23,14 @@ const HomeHero = () => {
 
                         return (
 
-                            <SwiperSlide className='relative w-full h-screen' key={index}>
+                            <SwiperSlide className='relative w-full h-full' key={index}>
 
                                 <div className='w-full h-full bg-blue-500 '>
                                     <img src={img} className="w-full h-full object-cover" />
                                 </div>
 
 
-                                <div className='absolute z-20 top-[250px] max-md:top-[200px] text-white left-1/2 -translate-x-1/2 text-center w-[760px]'>
+                                <div className='absolute z-20 top-1/2 -translate-y-1/2  text-white left-1/2 -translate-x-1/2 text-center w-[760px]'>
 
                                     <div className='flex items-center gap-2 justify-center max-sm:gap-0.5'>
 
@@ -56,8 +56,6 @@ const HomeHero = () => {
                     })
 
                 }
-
-
             </Swiper>
         </section>
     )

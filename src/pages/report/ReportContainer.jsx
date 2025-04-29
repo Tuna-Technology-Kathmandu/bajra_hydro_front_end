@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import ReportCardShimmer from '../../components/Shimmer/ReportCardShimmer';
 
 const ReportContainer = () => {
-    const limit = 2;
+    const limit = 9;
     const [page, setPage] = useState(1);
     const upRef = useRef(null);
 
@@ -24,7 +24,7 @@ const ReportContainer = () => {
     const { totalPages, currentPage } = pagination;
 
     return (
-        <section className='p-[75px] max-md:p-[30px] max-md:mt-7'
+        <section className='p-[75px] max-md:p-[30px] max-md:mt-6 -mb-10 max-md:mb-10 max-[658px]:mb-4 max-[658px]:mt-4 '
             ref={upRef}
         >
             <div className=' grid grid-cols-2 max-[706px]:grid-cols-1 w-full gap-14 max-sm:gap-8'>
@@ -77,23 +77,25 @@ const ReportContainer = () => {
                 )}
 
             </div>
-            <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
-                <button
-                    className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
-                    onClick={() => {
-                        if (currentPage > 1) {
-                            setPage(currentPage - 1);
-                            goTop();
+
+            {totalPages > 1 && (
+                <div className='flex items-center justify-center gap-3 h-[43px] mt-16'>
+                    <button
+                        className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
+                        onClick={() => {
+                            if (currentPage > 1) {
+                                setPage(currentPage - 1);
+                                goTop();
+                            }
+
                         }
+                        }
+                        disabled={currentPage === 1}
 
-                    }
-                    }
-                    disabled={currentPage === 1}
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
 
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-                {totalPages > 1 && (
                     <ReactPaginate
                         previousLabel={null}
                         nextLabel={null}
@@ -122,19 +124,18 @@ const ReportContainer = () => {
                         forcePage={currentPage - 1}
                     />
 
-
-                )}
-                <button
-                    className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
-                    onClick={() => {
-                        goTop()
-                        setPage(currentPage + 1)
-                    }}
-                    disabled={currentPage === totalPages}
-                >
-                    <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
-                </button>
-            </div>
+                    <button
+                        className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"
+                        onClick={() => {
+                            goTop()
+                            setPage(currentPage + 1)
+                        }}
+                        disabled={currentPage === totalPages}
+                    >
+                        <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
+                    </button>
+                </div>
+            )}
         </section>
     )
 }

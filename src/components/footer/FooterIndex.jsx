@@ -149,17 +149,16 @@ const FooterIndex = () => {
                 </div>
 
             </footer>
-            <div className="bg-darkestblue text-[rgb(213,88,67)] bg-lightblue text-center px-[75px] max-[736px]:px-4 max-2xl:px-[55px]">
-                <div className="font-semibold text-sm tracking-[0.02em] border-t-[0.5px] border-t-white/60 py-[15px]
+            <div className="bg-[#0077a8] text-center px-[75px] max-[736px]:px-4 max-2xl:px-[55px]">
+                <div className="font-semibold text-sm tracking-[0.02em] py-[15px]
                 max-[996px]:text-xs flex justify-between items-center max-[540px]:flex-col max-[540px]:gap-3
                 ">
-                    <p className="font-extrabold text-xl max-lg:text-lg max-[872px]:text-base max-[612px]:!text-sm">Bajra
-                        <span className="text-commonblue ml-1">
-                            Energy Ventures</span>
+                    <p className="font-extrabold text-white text-lg max-lg:text-base max-[872px]:text-sm max-[612px]:!text-xs">Powered By
+                        <a href='https://www.tunatechnology.com/' target='_blank' rel='noreferrer noopener' className="text-green-500 hover:text-green-400 transition-all duration-300 ease-in-out  ml-1">
+                            Tuna Technology</a>
                     </p>
-                    <p className="text-base max-lg:text-[15px] text-black max-[872px]:!text-[12px]">Copyright © 2025. All Rights Reserved.</p>
+                    <p className="text-[15px] max-lg:text-[13px] text-white max-[872px]:!text-[11px]">Copyright © 2025. All Rights Reserved.</p>
                 </div>
-
             </div>
         </>
     )

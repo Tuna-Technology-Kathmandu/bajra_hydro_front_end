@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUsSectionShimmer = () => {
     return (
-        <div className="relative mt-20 max-md:mt-10 animate-pulse">
+        <div className="relative mt-20 animate-pulse p-[75px] max-md:p-[30px] max-md:mt-6 max-[691px]:h-[800px] max-sm:h-[700px]">
             <div className="w-[837px] h-[590px] max-2xl:h-[500px] max-sm:h-[400px] max-2xl:w-full relative z-10">
                 <div className="w-full h-full bg-gray-300 rounded-md"></div>
             </div>

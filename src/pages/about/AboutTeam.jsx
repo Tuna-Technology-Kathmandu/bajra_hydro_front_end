@@ -4,7 +4,7 @@ import TeamCardShimmer from '../../components/Shimmer/TeamShimmer'
 
 const AboutTeam = ({ members, isFetching, isError }) => {
     return (
-        <section className='w-full'>
+        <section className='w-full mt-7'>
             <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] text-center mb-10'>Our Team</h1>
             <div className='grid grid-cols-3 max-2xl-1l:grid-cols-2  max-0m-d:grid-cols-1 w-full gap-6'>
                 {

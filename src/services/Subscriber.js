@@ -9,7 +9,7 @@ export const SubscriberApi = createApi({
     endpoints: (builder) => ({
         subscribeEmail: builder.mutation({
             query: (data) => ({
-                url: '/subscriber',
+                url: '/subscribers',
                 method: 'POST',
                 body: data,
                 headers: { 'Content-Type': 'application/json' },

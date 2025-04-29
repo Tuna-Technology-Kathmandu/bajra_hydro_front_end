@@ -23,6 +23,7 @@ const AboutDetail = () => {
 
     const CompanyTitle = company?.company_info_title || 'Company Information';
     const CompanyInfo = company?.company_info || 'No Information Available At The Moment.';
+    const CompanyImage = company?.image?.[0];
     const HistoryTitle = company?.history_title || 'History';
     const HistoryInfo = company?.history_description || 'No Information Available At The Moment.';
 
@@ -95,6 +96,7 @@ const AboutDetail = () => {
                         description={CompanyInfo}
                         isFetching={isCompanyFetching}
                         isError={isCompanyError}
+                        image={CompanyImage}
                     />
                 </div>
                 <div ref={historyRef}>

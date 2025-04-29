@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import NavbarSearchCard from '../../card/NavbarSearchCard';
 import { useGetBlogsQuery } from '../../../services/Blogs';
 import useSmoothScrollTop from '../../../customHook/useSmoothScrollTop';
@@ -30,7 +30,11 @@ const SearchProjects = ({ keyword, pressX }) => {
             <div className='loading'>Sorry something went wrong.</div>
         )
     }
-    console.log('search', data)
+    
+      useEffect(()=>{
+       setPage(1)
+    },[search])
+
     return (
         <div ref={upRef}>
             <p className='font-semibold text-xs md:text-sm mt-6'>
@@ -39,7 +43,7 @@ const SearchProjects = ({ keyword, pressX }) => {
                     : data?.blogs?.length > 0
                         ? null
                         : data?.blogs?.length === 0
-                            ? 'No news found.'
+                            ? 'No news or projects found.'
                             : 'Cannot get data'}
             </p>
             <div className=' grid grid-cols-4 gap-8 mt-7 max-2x-l:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1 h-auto'>
