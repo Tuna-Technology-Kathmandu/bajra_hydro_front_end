@@ -24,7 +24,7 @@ const ReportContainer = () => {
     const { totalPages, currentPage } = pagination;
 
     return (
-        <section className='p-[75px] max-md:p-[30px] max-md:mt-6 -mb-10 max-md:mb-10 max-[658px]:mb-4 max-[658px]:mt-4 '
+        <section className='px-[75px] max-md:px-[30px] my-20 max-md:my-10 max-sm:my-7 '
             ref={upRef}
         >
             <div className=' grid grid-cols-2 max-[706px]:grid-cols-1 w-full gap-14 max-sm:gap-8'>

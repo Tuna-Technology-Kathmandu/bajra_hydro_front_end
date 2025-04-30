@@ -79,7 +79,7 @@ const JobsIndex = () => {
     // }, [searchParam])
 
     return (
-        <section className='mt-14 px-[65px] max-md:p-[30px] mb-16 max-md:-mb-10'>
+        <section className='mt-14 px-[65px] max-md:p-[30px] '>
 
             <GoogleMapIframe />
 

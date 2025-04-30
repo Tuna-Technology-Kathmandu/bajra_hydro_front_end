@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { FooterLinks } from "../../localData/footer/FooterLinks";
 import CompanyLinks from "./CompanyLinks";
-import Subscribe from "./Subscribe";
 import { ReactComponent as Down } from '../../assets/svg/chevronDown.svg';
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+const Subscribe=lazy(()=>import('./Subscribe'))
 
 const FooterIndex = () => {
     const quickLinks = FooterLinks.find(item => item.Quick)?.Quick || [];

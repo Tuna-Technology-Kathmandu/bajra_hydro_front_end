@@ -35,11 +35,11 @@ const ShowProjects = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             ref={upRef}
-            className='px-[65px] max-md:px-[30px] mb-14 max-[658px]:-mt-8'
+            className='px-[75px] max-md:px-[30px] my-20 max-md:my-10 max-sm:my-7'
         >
             <div className=' '>
                 {isFetching && (
-                    <div className='grid grid-cols-3 gap-8 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto'>
+                    <div className='grid grid-cols-3 gap-8 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto'>
                         {
                             [...Array(3)].map((_, i) => <ProjectCardShimmer key={i} />)
                         }
@@ -59,7 +59,7 @@ const ShowProjects = () => {
 
                 {!isFetching && !isError && data?.blogs?.length > 0 &&
                     (
-                        <div className='grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1' >
+                        <div className='grid grid-cols-3 gap-6 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1' >
                             {
                                 data.blogs.map((item, index) => {
                                     const {

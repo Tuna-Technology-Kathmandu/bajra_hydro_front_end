@@ -2,7 +2,6 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useGetSingleBlogQuery } from '../../../services/SingleBlog';
 import { ReactComponent as Logo } from '../../../assets/svg/bajra-logo.svg'
-import RelatedNews from './RelatedNews';
 import NewsCard from '../../card/NewsCard';
 
 const NewsSinglePage = () => {

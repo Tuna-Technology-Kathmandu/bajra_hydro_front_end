@@ -63,7 +63,7 @@ const AboutDetail = () => {
     };
 
     return (
-        <section className="mt-16 px-[75px] max-md:px-[30px] flex justify-between gap-12 w-full max-md:flex-col-reverse max-md:items-between">
+        <section className="px-[75px] max-md:px-[30px] my-20 max-md:my-10 max-sm:my-7 flex justify-between gap-12 w-full max-md:flex-col-reverse max-md:items-between">
             {/* Sidebar */}
             <aside className="sticky top-36 h-fit self-start max-md:static max-md:mx-auto">
                 {/* Heading */}

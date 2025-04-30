@@ -29,11 +29,11 @@ const ShowNews = () => {
 
     console.log(error)
     return (
-        <section className='px-[75px] max-md:px-[30px] h-auto mb-20 max-md:mb-16 max-[658px]:-mt-8'
+        <section className='px-[75px] max-md:px-[30px] my-20 max-md:my-10 max-sm:my-7'
             ref={upRef}
         >
             {isFetching && (
-                <div className='grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1'>
+                <div className='grid grid-cols-3 gap-6 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1'>
                     {
                         [...Array(3)].map((_, i) => <NewsCardShimmer key={i} />)
                     }
@@ -52,7 +52,7 @@ const ShowNews = () => {
 
             {!isFetching && !isError && data?.blogs?.length > 0 &&
                 (
-                    <div className='grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1' >
+                    <div className='grid grid-cols-3 gap-6 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1' >
                         {
                             data.blogs.map((item, index) => {
                                 const {
