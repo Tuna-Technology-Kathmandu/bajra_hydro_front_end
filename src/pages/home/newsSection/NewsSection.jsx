@@ -10,12 +10,12 @@ const NewsSection = () => {
 
 
 
-    const { data, isFetching, isError, error } = useGetBlogsQuery({ page, limit, Is_featured });
+    const { data, isFetching, isError } = useGetBlogsQuery({ page, limit, Is_featured });
     console.log(data);
 
 
     return (
-        <main className="px-[75px] max-md:px-[30px] mt-20 max-[642px]:mt-20 ">
+        <main className="px-[75px] max-md:px-[30px] mt-20 mb-20 max-[642px]:mt-20">
             <LinedHeading Title='Our News' />
             <div className="w-full grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto">
                 {isFetching && [...Array(3)].map((_, i) => <NewsCardShimmer key={i} />)}

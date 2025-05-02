@@ -79,11 +79,13 @@ const JobsIndex = () => {
     // }, [searchParam])
 
     return (
-        <section className='mt-14 px-[65px] max-md:p-[30px] '>
+        <section className='!mt-20'>
 
             <GoogleMapIframe />
 
-            <div className='w-full flex justify-between items-center max-sm:flex-col max-md:mt-10 '>
+            <div className='w-full flex justify-between items-center max-sm:flex-col max-md:mt-10 '
+                ref={upRef}
+            >
                 {/* headwer */}
                 <h1 className='font-bold text-lg sm:text-xl mb-6 max-sm:mb-3'>Jobs available</h1>
 
@@ -220,7 +222,7 @@ const JobsIndex = () => {
 
             {/*List */}
 
-            <div ref={upRef}>
+            <div>
                 {
                     (isLoading || isFetching) ? (
                         <div className='min-h-[100px] grid place-items-center'>
@@ -255,33 +257,33 @@ const JobsIndex = () => {
                         >
                             <Triangle className="w-[15px] max-md:w-[10px] max-md:h-[15px] h-[17px] absolute top-1/2 -translate-y-1/2 left-[27%]" />
                         </button>
-                            <ReactPaginate
-                                previousLabel={null}
-                                nextLabel={null}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={totalPages}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={2}
-                                onPageChange={(event) => {
-                                    setPage(event.selected + 1);
-                                    goTop();
-                                }}
-                                containerClassName={`
+                        <ReactPaginate
+                            previousLabel={null}
+                            nextLabel={null}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={totalPages}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={2}
+                            onPageChange={(event) => {
+                                setPage(event.selected + 1);
+                                goTop();
+                            }}
+                            containerClassName={`
                                    flex items-center justify-center gap-[4px]
                                    bg-lightblue rounded-full px-[10px] py-[3px]
                                    md:h-[38px] h-[30px] transition-all duration-300
                                `}
-                                pageClassName={`
+                            pageClassName={`
                                    w-[24px] h-[24px] md:w-[30px] md:h-[30px]
                                    flex items-center justify-center
                                    text-white text-[12px] md:text-sm
                                    rounded-full cursor-pointer hover:text-black
                                    transition-all duration-300
                                `}
-                                activeClassName={`!bg-white !text-black font-bold`}
-                                forcePage={currentPage - 1}
-                            />
+                            activeClassName={`!bg-white !text-black font-bold`}
+                            forcePage={currentPage - 1}
+                        />
 
                         <button
                             className="w-[29px] md:w-[38px] md:h-[38px] sm:w-[29px] sm:h-[29px] h-[29px] bg-lightblue hover:bg-hoverblue transition rounded-full relative rotate-180 cursor-pointer"

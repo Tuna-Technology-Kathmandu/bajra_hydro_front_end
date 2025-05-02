@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutCompany = ({ title, description, isFetching, isError,image }) => {
+const AboutCompany = ({ title, description, isFetching, isError, image }) => {
 
     return (
         <section className='w-full'>
@@ -18,12 +18,14 @@ const AboutCompany = ({ title, description, isFetching, isError,image }) => {
                     <p className='loading mt-2'>Error Getting Company Information</p>
                 ) : (
                     <>
-                        <img
-                            src={image}
-                            alt='vision nepal limited'
-                            className='mt-4 w-full h-[400px] max-md:h-[300px] '
-                        >
-                        </img>
+                        <div className='mt-4 w-full h-[400px] max-md:h-[300px] overflow-hidden '>
+                            <img
+                                src={image}
+                                alt='vision nepal limited'
+                                className='w-full h-full hover:scale-110 transition-all duration-300'
+                            >
+                            </img>
+                        </div>
                         <p dangerouslySetInnerHTML={{ __html: description }} className='font-normal text-sm max-2xl:text-[13px] max-sm:text-[11px] leading-[32px] max-2xl:leading-[28px] max-sm:leading-[19px] mt-7 max-md:mt-5 max-sm:mt-3'>
 
                         </p>
