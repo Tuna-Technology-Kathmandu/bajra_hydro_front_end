@@ -9,6 +9,7 @@ import ReportIndex from "./pages/report/ReportIndex";
 import ProjectSinglePage from "./components/singlepage/project/ProjectSinglePage";
 import CareersIndex from "./pages/careers/CareersIndex";
 import OnGoingProject from "./pages/project/OnGoingProject";
+import ErrorPage from "./pages/error/ErrorPage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path='/reports' element={<ReportIndex />} />
           <Route path='/single-project/:slug' element={<ProjectSinglePage />} />
           <Route path='/careers' element={<CareersIndex />} />
+          <Route path='*' element={<ErrorPage />} />
 
           {/* singlepages*/}
           <Route path="/projects" element={<OnGoingProject />} />

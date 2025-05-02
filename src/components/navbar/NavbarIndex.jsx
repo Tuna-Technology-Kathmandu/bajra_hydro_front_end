@@ -54,7 +54,7 @@ const NavbarIndex = ({ setShowSearch }) => {
             setActive('News');
             return;
         }
-        if(currentPath.startsWith('/single-project')){
+        if (currentPath.startsWith('/single-project')) {
             setActive('Projects');
             return;
         }
@@ -76,7 +76,7 @@ const NavbarIndex = ({ setShowSearch }) => {
     // check for single pages to make navbar text black
     useEffect(() => {
         const currentPath = location.pathname;
-        if (currentPath.startsWith('/single-news')||currentPath.startsWith('/single-project')) {
+        if (currentPath.startsWith('/single-news') || currentPath.startsWith('/single-project')|| currentPath === "*") {
             setShowTextBlack(true);
         } else {
             setShowTextBlack(false);
@@ -192,18 +192,18 @@ const NavbarIndex = ({ setShowSearch }) => {
                 <div className="h-auto px-10 w-full">
                     <div className="flex items-center w-full justify-between ">
                         <svg
-  xmlns="http://www.w3.org/2000/svg"
-  className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  onClick={() => setShowHam(!showHam)}
->
-  <path
-    fillRule="evenodd"
-    d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2z"
-    clipRule="evenodd"
-  />
-</svg>
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            onClick={() => setShowHam(!showHam)}
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
                         <NavLink to='/'>
                             <Logo className='w-[180px] h-[80px] max-1md:scale-75' />
                         </NavLink>
