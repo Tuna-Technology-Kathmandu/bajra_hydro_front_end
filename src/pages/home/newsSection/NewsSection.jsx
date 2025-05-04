@@ -17,7 +17,7 @@ const NewsSection = () => {
     return (
         <main className="px-[75px] max-md:px-[30px] mt-20 mb-20 max-[642px]:mt-20">
             <LinedHeading Title='Our News' />
-            <div className="w-full grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto">
+            <div className="w-full grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto max-[642px]:mt-14">
                 {isFetching && [...Array(3)].map((_, i) => <NewsCardShimmer key={i} />)}
 
                 {isError && (

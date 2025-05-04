@@ -11,7 +11,7 @@ const MilestoneSection = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 642) {
                 setGap(160);
             } else if (window.innerWidth < 1024) {
                 setGap(200);
@@ -35,7 +35,7 @@ const MilestoneSection = () => {
             <LinedHeading Title="Major Milestones" />
 
             {/* === Desktop/Tablet View === */}
-            <div className="hidden max-0md:block mt-12 w-full">
+            <div className="hidden max-0md:block  mt-12 w-full">
                 <div className="flex flex-col items-center gap-10 z-20 px-4">
                     {data?.milestones?.map((item, index) => (
                         <MilestoneCard

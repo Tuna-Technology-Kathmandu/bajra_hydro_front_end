@@ -28,7 +28,7 @@ const HamDrop = ({ lists, setShowHam }) => {
         
     };
     return (
-        <div className="bg-white border-[0.5px] border-black/50 rounded-[15px] w-full p-6 h-auto text-black ">
+        <div className="bg-white border-[0.5px] border-black/50  w-full p-6 h-auto text-black ">
             <div className={`flex w-full justify-end items-center mb-5`}>
                 {/* {
                     showProject && (
@@ -46,7 +46,7 @@ const HamDrop = ({ lists, setShowHam }) => {
                         setShowHam(false)
                     }} />
             </div>
-                    <ul className="Flex-Col space-y-4  list-none h-auto mb-5 justify-between">
+                    <ul className="Flex-Col space-y-4 list-none h-auto mb-5 justify-between">
                         {
                             lists.map((item, index) => {
                                 const { name, path } = item;
@@ -62,7 +62,6 @@ const HamDrop = ({ lists, setShowHam }) => {
 
                     </ul>
 
-   
                 {/* {
                     showProject && (
                         <motion.ul className="Flex-Col space-y-4  list-none h-auto mb-5 justify-between"

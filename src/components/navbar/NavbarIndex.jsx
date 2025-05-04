@@ -76,7 +76,7 @@ const NavbarIndex = ({ setShowSearch }) => {
     // check for single pages to make navbar text black
     useEffect(() => {
         const currentPath = location.pathname;
-        if (currentPath.startsWith('/single-news') || currentPath.startsWith('/single-project')|| currentPath === "*") {
+        if (currentPath.startsWith('/single-news') || currentPath.startsWith('/single-project') || currentPath === "*") {
             setShowTextBlack(true);
         } else {
             setShowTextBlack(false);
@@ -189,8 +189,8 @@ const NavbarIndex = ({ setShowSearch }) => {
                 )
             }
             {!isDesktop && (
-                <div className="h-auto px-10 w-full">
-                    <div className="flex items-center w-full justify-between ">
+                <div className="h-auto px-10 w-full relative">
+                    <div className="flex items-center w-full justify-between  ">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
@@ -214,6 +214,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                     <AnimatePresence>
                         {showHam && (
                             <motion.div
+                                className="absolute inset-0 -top-9 w-full"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -224,6 +225,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                         )}
                     </AnimatePresence>
                 </div>
+
             )}
         </>
     );

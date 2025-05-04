@@ -4,7 +4,7 @@ import CompanyLinks from "./CompanyLinks";
 import { ReactComponent as Down } from '../../assets/svg/chevronDown.svg';
 import { lazy, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-const Subscribe=lazy(()=>import('./Subscribe'))
+const Subscribe = lazy(() => import('./Subscribe'))
 
 const FooterIndex = () => {
     const quickLinks = FooterLinks.find(item => item.Quick)?.Quick || [];
@@ -40,14 +40,12 @@ const FooterIndex = () => {
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.7, ease: 'easeInOut' }}
 
-                                            className="mt-2 flex-col  gap-2 max-[996px]:gap-1 hidden max-[764px]:flex rounded-[8px] bg-[#1637BA33]">
+                                            className="mt-2 flex-col items-start  gap-2 max-[996px]:gap-1 hidden max-[764px]:flex rounded-[8px]">
                                             {
                                                 quickLinks.map((items, index) => {
                                                     const { name, path } = items;
                                                     return (
-                                                        <li key={index} className={`font-medium text-[13px] border-b-black/35 p-1
-                                                    ${index == 3 ? 'border-b-[0px]' : 'border-b-[0.6px]'}
-                                                    `}>
+                                                        <li key={index} className={`font-medium text-[13px] p-1`}>
                                                             <Link to={path} onClick={() => {
                                                                 setShowQuick(false)
                                                                 setShowContactUs(false)
@@ -87,7 +85,7 @@ const FooterIndex = () => {
 
                         {/* below is for small screen */}
                         <div className="hidden font-semibold text-base max-[996px]:text-sm max-[764px]:flex justify-between border-b-[0.6px] 
-                    border-b-black pb-2 items-center
+                    border-b-black pb-2 items-center  
                     "
                             onClick={() => setShowContactUs(!showContactUs)}
                         >
@@ -104,14 +102,12 @@ const FooterIndex = () => {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.7, ease: 'easeInOut' }}
-                                            className="mt-2 flex-col  gap-2 max-[996px]:gap-1 hidden max-[764px]:flex bg-[#1637BA33] rounded-[8px]">
+                                            className="mt-2 flex-col items-start text-start gap-2 max-[996px]:gap-1 hidden max-[764px]:flex rounded-[8px]">
                                             {
                                                 contactLinks.map((items, index) => {
                                                     const { name, path } = items;
                                                     return (
-                                                        <li key={index} className={`font-medium text-[13px] border-b-black/35 p-1
-                                                ${index == 2 ? 'border-b-[0px]' : 'border-b-[0.6px]'}
-                                                `}>
+                                                        <li key={index} className={`font-medium text-[13px] p-1`}>
                                                             <a href={path} onClick={() => {
                                                                 setShowQuick(false)
                                                                 setShowContactUs(false)

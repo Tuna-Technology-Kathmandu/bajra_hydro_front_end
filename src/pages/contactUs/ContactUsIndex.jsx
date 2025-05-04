@@ -13,7 +13,7 @@ const ContactUsIndex = () => {
     return (
         <main>
             <CommonHero img={Hydro} title='Contact Us' />
-            <section className="w-full p-[65px] max-md:p-[30px] max-md:mt-7 max-[658px]:mt-4">
+            <section className="w-full p-[65px] max-md:p-[30px] px-[160px] max-md:mt-7 max-[658px]:mt-4">
                 <ContactForm />
             </section>
             <section className="w-full bg-[#48CAE44D] px-[65px] py-20 flex justify-between max-xl:flex-col-reverse max-xl:gap-7 max-xl:items-center">
