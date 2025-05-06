@@ -36,7 +36,7 @@ const Subscribe = () => {
 }
 
 return (
-    <div className='w-[330px] max-[996px]:w-[250px] max-xl:w-[180px] max-[996px]:text-center max-[764px]:w-[300px] max-[528px]:w-[200px] 
+    <div className='w-[330px] max-[996px]:w-[250px] max-xl:w-[180px] max-[996px]:text-center max-[764px]:w-[300px] max-[433px]:w-full
         max-[528px]:text-start
         '>
         <h1 className="font-bold text-base max-[996px]:text-sm ">Subscribe</h1>

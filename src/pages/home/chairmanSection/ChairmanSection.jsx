@@ -49,9 +49,17 @@ const ChairmanSection = () => {
                         <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] mb-7'>
                             {`Message from ${data?.messages[0].position}`}
                         </h1>
-                        <p className='text-justify font-medium text-sm max-2xl:text-[13px] max-sm:!text-xs leading-[40px] max-2xl:leading-[30px] max-sm:leading-[27px] mb-7 '>
-                            {data?.messages[0].description || `It is with great pride and commitment that I extend my warmest greetings on behalf of Bajra Hydropower...`}
-                        </p>
+                        {data?.messages[0].description ? (
+                            <p
+                                className='text-justify font-medium text-sm max-2xl:text-[13px] max-sm:!text-xs leading-[40px] max-2xl:leading-[30px] max-sm:leading-[27px] mb-7'
+                                dangerouslySetInnerHTML={{ __html: data.messages[0].description }}
+                            />
+                        ) : (
+                            <p className='text-justify font-medium text-sm max-2xl:text-[13px] max-sm:!text-xs leading-[40px] max-2xl:leading-[30px] max-sm:leading-[27px] mb-7'>
+                                It is with great pride and commitment that I extend my warmest greetings on behalf of Bajra Hydropower...
+                            </p>
+                        )}
+
                         {/* <div className='flex gap-2 items-center cursor-pointer'>
                             <Arrow className='w-[26px] h-[26px] max-2xl:w-[24px] max-2xl:h-[20px] stroke fill-[#1637BA]' />
                             <p className='font-semibold text-base max-2xl:text-sm text-[#1637BA]'>Read More</p>

@@ -8,7 +8,6 @@ import { useGetJobsQuery } from '../../../services/Jobs';
 import { useGetCategoryQuery } from '../../../services/Category';
 import { useRef } from 'react';
 import ReactPaginate from 'react-paginate';
-import useSmoothScrollTop from '../../../customHook/useSmoothScrollTop';
 import { ReactComponent as Triangle } from '../../../assets/svg/triangle.svg'
 
 const JobsIndex = () => {
@@ -28,13 +27,11 @@ const JobsIndex = () => {
 
     const upRef = useRef(null);
 
-    const ScrollTop = useSmoothScrollTop();
     const goTop = () => {
-        setTimeout(() => {
-            if (upRef.current) {
-                ScrollTop(upRef.current);
-            }
-        }, 100);
+         if (upRef.current) {
+            const y = upRef.current.getBoundingClientRect().top + window.scrollY - 150; // Adjust offset as needed
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
     }
 
     const handleSearch = () => {

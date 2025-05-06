@@ -3,7 +3,6 @@ import NewsCard from '../../components/card/NewsCard'
 import { useGetBlogsQuery } from '../../services/Blogs'
 import NewsCardShimmer from '../../components/Shimmer/NewsCardShimmer';
 import { ReactComponent as Triangle } from '../../assets/svg/triangle.svg'
-import useSmoothScrollTop from '../../customHook/useSmoothScrollTop';
 import { useRef } from 'react';
 import ReactPaginate from 'react-paginate';
 
@@ -14,13 +13,11 @@ const ShowNews = () => {
     const category = 'News'
     const upRef = useRef(null);
 
-    const ScrollTop = useSmoothScrollTop();
     const goTop = () => {
-        setTimeout(() => {
-            if (upRef.current) {
-                ScrollTop(upRef.current, 600, 100);
-            }
-        }, 100);
+         if (upRef.current) {
+            const y = upRef.current.getBoundingClientRect().top + window.scrollY - 150; // Adjust offset as needed
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
     }
 
     const { data, isFetching, isError, error } = useGetBlogsQuery({ page, limit, category })
@@ -85,10 +82,8 @@ const ShowNews = () => {
                     <button
                         className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
                         onClick={() => {
-                            if (currentPage > 1) {
-                                setPage(currentPage - 1);
-                                goTop();
-                            }
+                             setPage(currentPage - 1)
+                            goTop()
 
                         }
                         }

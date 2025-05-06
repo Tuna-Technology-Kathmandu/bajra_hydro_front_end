@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import ProjectCard from '../../components/card/ProjectCard'
 import { ReactComponent as Triangle } from '../../assets/svg/triangle.svg';
-import useSmoothScrollTop from '../../customHook/useSmoothScrollTop';
 import { useGetBlogsQuery } from '../../services/Blogs'
 import ProjectCardShimmer from '../../components/Shimmer/ProjectCardShimmer';
 import { motion } from 'framer-motion';
@@ -17,13 +16,11 @@ const ShowProjects = () => {
     let pagination = data?.pagination ?? { totalPages: 1, currentPage: 1, limit: 6 }
     const { totalPages, currentPage } = pagination;
 
-    const ScrollTop = useSmoothScrollTop();
     const goTop = () => {
-        setTimeout(() => {
-            if (upRef.current) {
-                ScrollTop(upRef.current);
-            }
-        }, 100);
+        if (upRef.current) {
+            const y = upRef.current.getBoundingClientRect().top + window.scrollY - 150; // Adjust offset as needed
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
     }
     const onPageChange = (page) => {
         setCurrentPage(page);

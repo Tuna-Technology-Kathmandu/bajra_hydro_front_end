@@ -55,7 +55,7 @@ const ContactForm = () => {
     const inputStyle = 'text-xs md:text-sm lg:text-base w-full px-3 py-2 border rounded outline-none focus:border-lightblue transition-all drop-shadow-soft border border-[#999] ';
 
     return (
-        <div className="w-full p-4 drop-shadow rounded-[20px]">
+        <div className="w-full drop-shadow rounded-[20px]">
             <div className="w-full bg-lightblue p-3 text-center font-bold md:text-[28px] text-[22px] text-white rounded-t-[20px]">
                 Contact Us
             </div>
@@ -73,7 +73,7 @@ const ContactForm = () => {
                 onSubmit={handleSubmit}
             >
                 {() => (
-                    <Form className="grid grid-cols-1 gap-7 bg-lightblue/10 py-14 rounded-b-[20px] px-10">
+                    <Form className="grid grid-cols-1 gap-7 bg-lightblue/10 py-10 rounded-b-[20px] px-10">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-10">
                             <div>
                                 <Field

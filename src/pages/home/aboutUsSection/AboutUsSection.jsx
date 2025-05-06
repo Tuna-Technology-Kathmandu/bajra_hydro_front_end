@@ -47,11 +47,19 @@ const AboutUsSection = () => {
                         </div>
                         <div className='w-[541px] max-1md:w-full h-auto drop-shadow-lg bg-white max-[691px]:top-full absolute z-20 right-0 top-1/2 -translate-y-1/2 p-6'>
                             <h1 className='font-bold text-[22px] mb-4 max-md:text-[18px] max-sm:text-[14px]'>About Us</h1>
-                            <p className='font-medium text-sm mb-4 max-md:text-xs max-sm:text-[11px] '>
-                                {companyData?.company_information[0]?.company_info
-                                    ? companyData.company_information[0].company_info.slice(0, 350) + '...'
-                                    : 'No information available.'}
-                            </p>
+                            {companyData?.company_information[0]?.company_info ? (
+                                <p
+                                    className='font-medium text-sm mb-4 max-md:text-xs max-sm:text-[11px]'
+                                    dangerouslySetInnerHTML={{
+                                        __html: companyData.company_information[0].company_info.slice(0, 350) + '...'
+                                    }}
+                                />
+                            ) : (
+                                <p className='font-medium text-sm mb-4 max-md:text-xs max-sm:text-[11px]'>
+                                    No information available.
+                                </p>
+                            )}
+
                             <div className='flex justify-between mb-4'>
                                 <div className='border-r-2 border-l-[#705D56] w-1/2'>
                                     <p className='font-semibold text-base mb-3 max-md:text-sm max-sm:text-xs '>Annual production</p>

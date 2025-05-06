@@ -10,10 +10,11 @@ const MilestoneCard = ({ title, text, index }) => {
                     <p className="text-center">{title}</p>
                 </div>
                 <div className="leading-[25px] text-xs max-xl:text-[10px] font-normal p-5 text-center">
-                    <p>{text}</p>
+                    <p dangerouslySetInnerHTML={{ __html: text }} />
                 </div>
+
                 {
-                    index%2==0 ?
+                    index % 2 == 0 ?
                         (
                             <div className="w-0 h-0 border-l-[20px] border-r-[20px] border-t-[25px] 
                     border-transparent border-t-[#1637BA] absolute -right-5 top-0 max-0md:hidden"></div>

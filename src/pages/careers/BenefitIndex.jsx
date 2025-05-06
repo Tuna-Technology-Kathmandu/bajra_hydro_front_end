@@ -7,7 +7,7 @@ const BenefitIndex = () => {
             <h1 className='text-center font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px]'>
                 Your Benefit at Bajra
             </h1>
-            <div className='grid grid-cols-4 max-md:grid-cols-3 max-m-d:grid-cols-2 max-xs:grid-cols-1 gap-7 max-xl:gap-4 max-1md:gap-2 mt-12'>
+            <div className='grid grid-cols-4 max-md:grid-cols-3 max-m-d:grid-cols-2 max-xs:grid-cols-1 gap-7 max-xl:gap-4 max-1md:gap-2 mt-12 max-md:mt-7'>
                 {Benefits.map((items, index) => {
                     return (
                         <div key={index} className='text-center w-full border-[0.7px] border-[#2323234D] 
