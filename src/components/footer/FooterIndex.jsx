@@ -126,10 +126,10 @@ const FooterIndex = () => {
                                             );
                                         })}
                                         <li>
-                                            <span className="font-medium text-[12px] p-1">
+                                            <span className="font-medium text-[13px] p-1">
                                                 <a href="tel:071544316">071–544316</a>
                                             </span>,
-                                            <span className='font-medium text-[12px] p-1'>
+                                            <span className='font-medium text-[13px] p-1'>
                                                 <a href="tel:549494">549494</a>
                                             </span>
                                         </li>
