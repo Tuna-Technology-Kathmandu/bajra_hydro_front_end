@@ -18,7 +18,7 @@ const PDFViewer = ({ pdf, setShowPDF }) => {
                         {(props) => (
 
                             <button
-                                className="!bg-commonblue text-[12px] sm:text-base hover:!bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer disabled:opacity-50"
+                                className="!bg-lightblue text-[12px] sm:text-base hover:!bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer disabled:opacity-50"
                                 onClick={props.onClick}
                                 disabled={props.isDisabled}
                             >
@@ -29,7 +29,7 @@ const PDFViewer = ({ pdf, setShowPDF }) => {
                     <GoToNextPage>
                         {(props) => (
                             <button
-                                className="!bg-commonblue text-[12px] sm:text-base hover:!bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer disabled:opacity-50"
+                                className="!bg-lightblue text-[12px] sm:text-base hover:!bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer disabled:opacity-50"
                                 onClick={props.onClick}
                                 disabled={props.isDisabled}
                             >
@@ -39,7 +39,7 @@ const PDFViewer = ({ pdf, setShowPDF }) => {
                     </GoToNextPage>
                 </div>
                 <button
-                    className='bg-commonblue text-[12px] sm:text-base hover:bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer'
+                    className='bg-lightblue text-[12px] sm:text-base hover:bg-hoverblue transition-all duration-300 rounded-md text-white px-3 py-1 cursor-pointer'
                     onClick={() => setShowPDF(false)}
                 >
                     Close

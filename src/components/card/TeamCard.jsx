@@ -8,8 +8,8 @@ const TeamCard = ({ salute, name, designation, image }) => {
                 <img src={image} className='w-full h-full object-cover hover:scale-110 transition-all'></img>
             </div>
             <div className='text-center'>
-                <h1 className='font-bold text-base mb-3 max-md:mb-2 max-md:text-sm'>{`${salute ?? 'Mr'} ${name ?? 'Unknown'}`}</h1>
-                <p className='font-semibold text-xs max-md:text-[10px]'>{`${designation ?? 'Unknown'}`}</p>
+                <h1 className='font-bold text-base mb-3 max-md:mb-2 max-md:text-sm'>{` ${name ?? ''}`}</h1>
+                <p className='font-semibold text-xs max-md:text-[10px]'>{`${designation ?? ''}`}</p>
             </div>
         </div>
     )

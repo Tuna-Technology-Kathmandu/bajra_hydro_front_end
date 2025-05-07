@@ -38,7 +38,7 @@ const ReportCard = ({ title, description, file, date, fiscalYear, quarter, statu
             </div>
             <div className='w-2/3 p-3 flex flex-col justify-center relative'>
                 <p className='font-semibold text-xs max-1xl:text-[10px]'>{DateFormatter(date)}</p>
-                <h1 className='font-bold text-[22px] max-1xl:text-[18px] max-[706px]:text-[14px]'>{title.slice(0, 34) + '...'}</h1>
+                <h1 className='font-bold text-[22px] max-1xl:text-[18px] max-[706px]:text-[14px] max-[446px]:w-[90%]'>{title.slice(0, 34) + '...'}</h1>
                 <p className='font-medium text-[11px] max-1xl:text-[10px] mt-3'>
                     {`${quarter} ${description.length > 100 ? description.slice(0, 100) + '...' : description} (${status}) ${fiscalYear}`}
                 </p>

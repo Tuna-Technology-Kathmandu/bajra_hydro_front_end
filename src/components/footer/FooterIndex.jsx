@@ -95,33 +95,46 @@ const FooterIndex = () => {
 
                         <div>
                             <AnimatePresence>
-                                {
-                                    showContactUs && (
-                                        <motion.ul
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.7, ease: 'easeInOut' }}
-                                            className="mt-2 flex-col items-start text-start gap-2 max-[996px]:gap-1 hidden max-[764px]:flex rounded-[8px]">
-                                            {
-                                                contactLinks.map((items, index) => {
-                                                    const { name, path } = items;
-                                                    return (
-                                                        <li key={index} className={`font-medium text-[13px] p-1`}>
-                                                            <a href={path} onClick={() => {
-                                                                setShowQuick(false)
-                                                                setShowContactUs(false)
+                                {showContactUs && (
+                                    <motion.ul
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.7, ease: "easeInOut" }}
+                                        className="mt-2 flex-col items-start text-start gap-2 max-[996px]:gap-1 hidden max-[764px]:flex rounded-[8px]"
+                                    >
+                                        {contactLinks.map((items, index) => {
+                                            const { name, path } = items;
+                                            return (
+                                                <li key={index} className="font-medium text-[13px] p-1">
+                                                    {index === 1 ? (
+                                                        <span className="">{name}</span>
+                                                    ) : (
+                                                        <a
+                                                            href={path}
+                                                            onClick={() => {
+                                                                setShowQuick(false);
+                                                                setShowContactUs(false);
+                                                            }}
+                                                            className="hover:text-commonblue/70 transition-all duration-300 ease-in-out"
+                                                        >
+                                                            {name}
+                                                        </a>
+                                                    )}
+                                                </li>
 
-                                                            }}>
-                                                                {name}
-                                                            </a>
-                                                        </li>
-                                                    )
-                                                })
-                                            }
-                                        </motion.ul>
-                                    )
-                                }
+                                            );
+                                        })}
+                                        <li>
+                                            <span className="font-medium text-[12px] p-1">
+                                                <a href="tel:071544316">071–544316</a>
+                                            </span>,
+                                            <span className='font-medium text-[12px] p-1'>
+                                                <a href="tel:549494">549494</a>
+                                            </span>
+                                        </li>
+                                    </motion.ul>
+                                )}
                             </AnimatePresence>
                         </div>
                         {/* this is for large screeen */}
@@ -132,13 +145,30 @@ const FooterIndex = () => {
                                     const { name, path } = items;
                                     return (
                                         <li key={index}>
-                                            <Link to={path} className={`font-medium text-[13px] max-[996px]:text-[11px] max-[996px]:text-center ${index !== 1 ? 'hover:text-commonblue/70' : ''} transition-all duration-300 ease-in-out`} >
-                                                {name}
-                                            </Link>
+                                            {index === 1 ? (
+                                                <span className="font-medium text-[13px] max-[996px]:text-[11px] max-[996px]:text-center">
+                                                    {name}
+                                                </span>
+                                            ) : (
+                                                <Link
+                                                    to={path}
+                                                    className="font-medium text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300 ease-in-out"
+                                                >
+                                                    {name}
+                                                </Link>
+                                            )}
                                         </li>
                                     )
                                 })
                             }
+                            <li>
+                                <span className="font-medium cursor-pointer text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300">
+                                    <a href="tel:071544316">071–544316</a>
+                                </span>,
+                                <span className='ml-2 font-medium cursor-pointer text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300'>
+                                    <a href="tel:549494">549494</a>
+                                </span>
+                            </li>
                         </ul>
                     </div>
                     <Subscribe />

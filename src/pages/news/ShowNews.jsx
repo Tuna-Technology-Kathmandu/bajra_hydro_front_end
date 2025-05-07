@@ -14,7 +14,7 @@ const ShowNews = () => {
     const upRef = useRef(null);
 
     const goTop = () => {
-         if (upRef.current) {
+        if (upRef.current) {
             const y = upRef.current.getBoundingClientRect().top + window.scrollY - 150; // Adjust offset as needed
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -38,12 +38,12 @@ const ShowNews = () => {
             )}
             {isError && (
                 <div className="col-span-full text-center loading mt-7">
-                    <p>Sorry, we cannot get blogs at the moment...</p>
+                    <p>Sorry, we cannot get news at the moment...</p>
                 </div>
             )}
             {!isFetching && !isError && data?.blogs?.length === 0 && (
                 <div className="col-span-full text-center loading">
-                    <p>No Blogs available at the moment...</p>
+                    <p>No news available at the moment...</p>
                 </div>
             )}
 
@@ -82,7 +82,7 @@ const ShowNews = () => {
                     <button
                         className="md:w-[38px] md:h-[38px] w-[29px] h-[29px]  bg-lightblue hover:bg-hoverblue transition rounded-full relative cursor-pointer"
                         onClick={() => {
-                             setPage(currentPage - 1)
+                            setPage(currentPage - 1)
                             goTop()
 
                         }

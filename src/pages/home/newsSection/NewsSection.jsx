@@ -22,13 +22,13 @@ const NewsSection = () => {
 
                 {isError && (
                     <div className="col-span-full text-center loading">
-                        <p>Sorry, we cannot get blogs at the moment...</p>
+                        <p>Sorry, we cannot get news at the moment...</p>
                     </div>
                 )}
 
                 {!isFetching && !isError && data?.blogs?.length === 0 && (
                     <div className="col-span-full text-center loading">
-                        <p>No Blogs available at the moment...</p>
+                        <p>No news available at the moment...</p>
                     </div>
                 )}
 

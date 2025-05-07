@@ -18,6 +18,9 @@ const AboutCompany = ({ title, description, isFetching, isError, image }) => {
                     <p className='loading mt-2'>Error Getting Company Information</p>
                 ) : (
                     <>
+                        <p dangerouslySetInnerHTML={{ __html: description }} className='font-normal text-sm max-2xl:text-[13px] max-sm:text-[11px] leading-[32px] max-2xl:leading-[28px] max-sm:leading-[19px] mt-7 max-md:mt-5 max-sm:mt-3'>
+
+                        </p>
                         <div className='mt-4 w-full h-[400px] max-md:h-[300px] overflow-hidden '>
                             <img
                                 src={image}
@@ -26,9 +29,6 @@ const AboutCompany = ({ title, description, isFetching, isError, image }) => {
                             >
                             </img>
                         </div>
-                        <p dangerouslySetInnerHTML={{ __html: description }} className='font-normal text-sm max-2xl:text-[13px] max-sm:text-[11px] leading-[32px] max-2xl:leading-[28px] max-sm:leading-[19px] mt-7 max-md:mt-5 max-sm:mt-3'>
-
-                        </p>
                     </>
 
                 )

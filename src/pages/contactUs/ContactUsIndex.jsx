@@ -19,11 +19,11 @@ const ContactUsIndex = () => {
             <section className="w-full bg-[#48CAE44D] px-[65px] py-20 flex justify-between max-xl:flex-col-reverse max-xl:gap-7 max-xl:items-center">
                 <div className="flex items-center flex-col w-[330px] ">
                     <Location className='w-[24px] h-[24px] max-sm:w-[21px] max-sm:h-[21px] fill-commonblue' />
-                    <p className="font-semibold text-sm mt-4 max-xl:text-center max-sm:text-xs">S. Home, 3rd Floor - G6, H.N. 161 Bagdurbar, Sundhara - 11, Kathmandu, Nepal</p>
+                    <p className="font-semibold text-sm mt-4 max-xl:text-center max-sm:text-xs">Butwal-6, Gurudwara Path, Rupandehi</p>
                 </div>
                 <div className="flex items-center flex-col">
                     <PoBox className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <p className="font-semibold text-sm max-sm:text-xs mt-4">5518</p>
+                    <p className="font-semibold text-sm max-sm:text-xs mt-4">44600</p>
                 </div>
                 <div className="flex items-center flex-col">
                     <Mail className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
@@ -31,9 +31,15 @@ const ContactUsIndex = () => {
                 </div>
                 <div className="flex items-center flex-col">
                     <Phone className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <a
-                        href='tel:+9771234567890'
-                        className="font-semibold text-sm mt-4 max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">+977 1234567890</a>
+
+                    <div className="mt-4">
+                        <span className="font-semibold text-sm  max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">
+                            <a href="tel:071544316">071–544316</a>,
+                        </span>
+                        <span className='ml-2 font-semibold text-sm max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out'>
+                            <a href="tel:549494">549494</a>
+                        </span>
+                    </div>
                 </div>
             </section>
 

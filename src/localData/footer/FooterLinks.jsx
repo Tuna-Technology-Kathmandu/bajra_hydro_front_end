@@ -21,16 +21,12 @@ export const FooterLinks = [
     }, {
         Contacts: [
             {
-                name: 'example@gmail.com',
-                path: 'mailto:example@gmail.com'
+                name: 'bajra@example.com',
+                path: 'mailto:bajra@example.com',
             },
             {
-                name: 'S. Home, 3rd Floor - G6, H.N. 161 Bagdurbar, Sundhara - 11, Kathmandu, Nepal',
+                name: 'Butwal-6, Gurudwara Path, Rupandehi',
                 path: '#'
-            },
-            {
-                name: '+977 1234567790',
-                path: 'tel:+9771234567790'
             },
         ]
     }
