@@ -193,7 +193,7 @@ const NavbarIndex = ({ setShowSearch }) => {
                     <div className="flex items-center w-full justify-between  ">
                         <div
                             onClick={() => setShowHam(!showHam)}
-                            className="p-2 max-[500px]:p-1 rounded-md cursor-pointer"
+                            className="p-3 cursor-pointer"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -212,9 +212,14 @@ const NavbarIndex = ({ setShowSearch }) => {
                         <NavLink to='/'>
                             <Logo className='w-[180px] h-[80px] max-1md:scale-75' />
                         </NavLink>
-                        <Search className={`h-[25px] w-[25px] max-[500px]:w-[18px] max-[500px]:h-[18px]  ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+                         <div
                             onClick={clickSearch}
+                            className="p-3 cursor-pointer"
+                        >
+                        <Search className={`h-[25px] w-[25px] max-[500px]:w-[18px] max-[500px]:h-[18px]  ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+                            
                         />
+                        </div>
                     </div>
                     <AnimatePresence>
                         {showHam && (
