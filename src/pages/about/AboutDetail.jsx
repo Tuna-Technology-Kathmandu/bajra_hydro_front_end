@@ -28,11 +28,12 @@ const AboutDetail = () => {
     const HistoryInfo = company?.history_description || 'No Information Available At The Moment.';
 
     // Fetch team members
+    const limit=1000;
     const {
         data: membersData,
         isFetching: memberFetching,
         isError: memberError,
-    } = useGetTeamQuery();
+    } = useGetTeamQuery({limit});
 
     const allMembers = Array.isArray(membersData?.members) ? membersData.members : [];
 

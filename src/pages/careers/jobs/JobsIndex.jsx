@@ -28,7 +28,7 @@ const JobsIndex = () => {
     const upRef = useRef(null);
 
     const goTop = () => {
-         if (upRef.current) {
+        if (upRef.current) {
             const y = upRef.current.getBoundingClientRect().top + window.scrollY - 150; // Adjust offset as needed
             window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -200,16 +200,25 @@ const JobsIndex = () => {
                     >
                         <Search className="w-3 h-3 sm:w-4 sm:h-4 fill-[#000000B2]" />
                     </span>
-                    <input
-                        type="text"
-                        className="w-full h-[45px] md:h-[60px] pl-9 pr-4 border border-[#00000026] rounded-[8px] 
+                    <form >
+                        <input
+                            type="text"
+                            className="w-full h-[45px] md:h-[60px] pl-9 pr-4 border border-[#00000026] rounded-[8px] 
                                    text-xs md:text-base placeholder:text-xs outline-none focus:border focus:border-lightblue"
-                        placeholder="Search"
-                        value={searchParam}
-                        onChange={(e) => {
-                            setSearchParam(e.target.value);
-                        }}
-                    />
+                            placeholder="Search"
+                            value={searchParam}
+                            onChange={(e) => {
+                                setSearchParam(e.target.value);
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSearch();
+                                    e.preventDefault();
+                                    e.target.blur();
+                                }
+                            }}
+                        />
+                    </form>
                 </div>
             </div>
 

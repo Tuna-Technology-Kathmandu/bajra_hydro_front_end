@@ -14,13 +14,18 @@ const CompanyLinks = () => {
                         FooterMedia.map((item, index) => {
                             const { icon, path } = item;
                             return (
-                                <Link to={path} key={index}>
+                                <a
+                                    href={path}
+                                    key={index}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <div className="w-[40px] h-[40px] max-[996px]:w-[30px] max-[996px]:h-[30px] rounded-full flex justify-center items-center bg-commonblue
                                     hover:bg-commonblue/70 transition-all duration-300 ease-in-out
                                     ">
                                         {icon}
                                     </div>
-                                </Link>
+                                </a>
                             )
                         })
                     }

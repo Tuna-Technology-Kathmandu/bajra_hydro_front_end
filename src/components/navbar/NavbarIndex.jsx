@@ -191,19 +191,24 @@ const NavbarIndex = ({ setShowSearch }) => {
             {!isDesktop && (
                 <div className="h-auto px-10 w-full relative">
                     <div className="flex items-center w-full justify-between  ">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
+                        <div
                             onClick={() => setShowHam(!showHam)}
+                            className="p-2 max-[500px]:p-1 rounded-md cursor-pointer"
                         >
-                            <path
-                                fillRule="evenodd"
-                                d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={`w-8 h-8 max-[500px]:w-6 max-[500px]:h-6 cursor-pointer ${showTextBlack ? 'fill-black' : 'fill-white'}`}
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                onClick={() => setShowHam(!showHam)}
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2zm0 6h14a1 1 0 010 2H3a1 1 0 110-2z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </div>
                         <NavLink to='/'>
                             <Logo className='w-[180px] h-[80px] max-1md:scale-75' />
                         </NavLink>

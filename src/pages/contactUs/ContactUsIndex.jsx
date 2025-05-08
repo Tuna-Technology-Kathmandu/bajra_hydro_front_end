@@ -19,26 +19,28 @@ const ContactUsIndex = () => {
             <section className="w-full bg-[#48CAE44D] px-[65px] py-20 flex justify-between max-xl:flex-col-reverse max-xl:gap-7 max-xl:items-center">
                 <div className="flex items-center flex-col w-[330px] ">
                     <Location className='w-[24px] h-[24px] max-sm:w-[21px] max-sm:h-[21px] fill-commonblue' />
-                    <p className="font-semibold text-sm mt-4 max-xl:text-center max-sm:text-xs">Butwal-6, Gurudwara Path, Rupandehi</p>
+                    <p className="font-semibold text-sm mt-4 max-xl:text-center max-sm:text-xs">Kathmandu-10, Budhhanagar, BPC 4th floor</p>
                 </div>
                 <div className="flex items-center flex-col">
                     <PoBox className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <p className="font-semibold text-sm max-sm:text-xs mt-4">44600</p>
+                    <p className="font-semibold text-sm max-sm:text-xs mt-4">11690</p>
                 </div>
                 <div className="flex items-center flex-col">
                     <Mail className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
-                    <a href='mailto:bajra@example.com' className="font-semibold text-sm mt-4 max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">bajra@example.com</a>
+                    <a href='mailto:bajraenergyofficial@gmail.com' className="font-semibold text-sm mt-4 max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">
+                        bajraenergyofficial@gmail.com
+                    </a>
                 </div>
                 <div className="flex items-center flex-col">
                     <Phone className='w-[24px] h-[24px] fill-commonblue max-sm:w-[21px] max-sm:h-[21px]' />
 
                     <div className="mt-4">
                         <span className="font-semibold text-sm  max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out">
-                            <a href="tel:071544316">071–544316</a>,
+                            <a href="tel:015905890">015905890</a>
                         </span>
-                        <span className='ml-2 font-semibold text-sm max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out'>
+                        {/* <span className='ml-2 font-semibold text-sm max-sm:text-xs  hover:text-commonblue/70 transition-all duration-300 ease-in-out'>
                             <a href="tel:549494">549494</a>
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </section>

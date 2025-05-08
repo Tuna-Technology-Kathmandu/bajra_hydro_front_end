@@ -44,9 +44,9 @@ const NewsSinglePage = () => {
                     <h1 className="font-bold text-[38px] max-1xl:text-[28px] max-md:text-[26px] leading-[44px] max-md:leading-[34px] mt-7 max-1xl:mt-5 max-md:mt-3 max-sm:text-[20px] max-sm:leading-[27px] ">
                         {data?.blog?.title ?? 'Title coming soon'}
                     </h1>
-                    <p className="font-medium text-sm max-1xl:text-[13px] max-1md:text-xs text-black/80 mt-5 ">
+                    {/* <p className="font-medium text-sm max-1xl:text-[13px] max-1md:text-xs text-black/80 mt-5 ">
                         {data?.blog?.author?.fullname ?? 'Author coming soon'}
-                    </p>
+                    </p> */}
                 </div>
                 <div className="w-full h-[456px] max-1xl:h-[380px] overflow-hidden my-12 max-1xl:my-8 max-md:my-5">
                     {data?.blog?.image_url ? (

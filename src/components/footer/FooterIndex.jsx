@@ -127,11 +127,11 @@ const FooterIndex = () => {
                                         })}
                                         <li>
                                             <span className="font-medium text-[13px] p-1">
-                                                <a href="tel:071544316">071–544316</a>
-                                            </span>,
-                                            <span className='font-medium text-[13px] p-1'>
-                                                <a href="tel:549494">549494</a>
+                                                <a href="tel:015905890">015905890</a>
                                             </span>
+                                            {/* <span className='font-medium text-[13px] p-1'>
+                                                <a href="tel:549494">549494</a>
+                                            </span> */}
                                         </li>
                                     </motion.ul>
                                 )}
@@ -163,11 +163,11 @@ const FooterIndex = () => {
                             }
                             <li>
                                 <span className="font-medium cursor-pointer text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300">
-                                    <a href="tel:071544316">071–544316</a>
-                                </span>,
-                                <span className='ml-2 font-medium cursor-pointer text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300'>
-                                    <a href="tel:549494">549494</a>
+                                    <a href="tel:015905890">015905890</a>
                                 </span>
+                                {/* <span className='ml-2 font-medium cursor-pointer text-[13px] max-[996px]:text-[11px] max-[996px]:text-center hover:text-commonblue/70 transition-all duration-300'>
+                                    <a href="tel:549494">549494</a>
+                                </span> */}
                             </li>
                         </ul>
                     </div>

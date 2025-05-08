@@ -23,9 +23,9 @@ const HamDrop = ({ lists, setShowHam }) => {
     // ]
 
     const clickItem = () => {
-       
-            setShowHam(false);
-        
+
+        setShowHam(false);
+
     };
     return (
         <div className="bg-white border-[0.5px] border-black/50  w-full p-6 h-auto text-black ">
@@ -46,23 +46,28 @@ const HamDrop = ({ lists, setShowHam }) => {
                         setShowHam(false)
                     }} />
             </div>
-                    <ul className="Flex-Col space-y-4 list-none h-auto mb-5 justify-between">
-                        {
-                            lists.map((item, index) => {
-                                const { name, path } = item;
-                                return (
-                                    <li key={index} className='flex w-full justify-between items-center border-b-[0.5px] border-b-black/50 pb-2'
-                                        onClick={() => clickItem(name)}
-                                    >
-                                        <NavLink to={path} className='font-medium text-black max-1md:text-sm'>{name}</NavLink>
-                                    </li>
-                                )
-                            })
-                        }
+            <ul className="Flex-Col space-y-4 list-none h-auto mb-5 justify-between">
+                {
+                    lists.map((item, index) => {
+                        const { name, path } = item;
+                        return (
+                            <NavLink
+                                to={path}
+                                key={index}
+                                onClick={() => clickItem(name)}
+                                className="block w-full"
+                            >
+                                <li className="flex justify-between items-center border-b border-black/50 pb-2 cursor-pointer font-medium text-black text-base max-1md:text-sm">
+                                    {name}
+                                </li>
+                            </NavLink>
+                        )
+                    })
+                }
 
-                    </ul>
+            </ul>
 
-                {/* {
+            {/* {
                     showProject && (
                         <motion.ul className="Flex-Col space-y-4  list-none h-auto mb-5 justify-between"
                             initial={{ opacity: 0 }}

@@ -38,6 +38,13 @@ const SearchContainer = ({ setShowSearch }) => {
                 <div className='relative w-full h-full'>
                     <input type="text"
                         ref={searchInputRef}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              handleSearchRef();
+                              e.target.blur();
+                              e.preventDefault();
+                            }
+                          }}
                         placeholder='Search...'
                         className=" z-0 font-medium text-[13px] placeholder:max-md:text-xs m-d:text-xs leading-[19px] tracking-[0.05em] w-full border-b-2 outline-none border-b-white bg-transparent text-white pb-1"
                     />

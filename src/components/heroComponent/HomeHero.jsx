@@ -14,7 +14,7 @@ const HomeHero = () => {
             <Swiper
                 modules={[Pagination, Autoplay]}
                 pagination={{
-                    clickable: true,  // Ensure the pagination is clickable
+                    clickable: true,  
                 }}
                 autoplay={{
                     delay: 4000,
@@ -42,6 +42,7 @@ const HomeHero = () => {
                                             initial={{ scale: 1 }}
                                             animate={{ scale: 1.1 }}
                                             transition={{ duration: 4, ease: 'easeOut' }}
+                                            loading='lazy'
                                         />
                                     ) : (
                                         <img

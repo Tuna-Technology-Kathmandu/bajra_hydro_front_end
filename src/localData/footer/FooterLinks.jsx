@@ -21,11 +21,11 @@ export const FooterLinks = [
     }, {
         Contacts: [
             {
-                name: 'bajra@example.com',
-                path: 'mailto:bajra@example.com',
+                name: 'bajraenergyofficial@gmail.com',
+                path: 'mailto:bajraenergyofficial@gmail.com',
             },
             {
-                name: 'Butwal-6, Gurudwara Path, Rupandehi',
+                name: 'Kathmandu-10, Budhhanagar, BPC 4th floor',
                 path: '#'
             },
         ]
