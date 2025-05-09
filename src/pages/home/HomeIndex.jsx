@@ -12,7 +12,7 @@ const HomeIndex = () => {
             <AboutUsSection />
             <ChairmanSection />
             <MilestoneSection />
-            <NewsSection />
+             <NewsSection /> 
         </main>
     )
 }

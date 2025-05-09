@@ -1,4 +1,5 @@
-import LinedHeading from "../../../components/heading/LinedHeading"
+import { useEffect, useState } from "react";
+import LinedHeading from "../../../components/heading/LinedHeading";
 import NewsCard from "../../../components/card/NewsCard";
 import { useGetBlogsQuery } from "../../../services/Blogs";
 import NewsCardShimmer from "../../../components/Shimmer/NewsCardShimmer";
@@ -8,15 +9,12 @@ const NewsSection = () => {
     const limit = 3;
     const Is_featured = true;
 
-
-
     const { data, isFetching, isError } = useGetBlogsQuery({ page, limit, Is_featured });
-    console.log(data);
-
 
     return (
-        <main className="px-[75px] max-md:px-[30px] mt-20 mb-20 max-[642px]:mt-20">
-            <LinedHeading Title='Our News' />
+        <main
+            className="px-[75px] max-md:px-[30px] mb-20 -mt-7 max-[1024px]:-mt-11 max-[680px]:!mt-16 ">
+            <LinedHeading Title="Our News" />
             <div className="w-full grid grid-cols-3 gap-6 mt-20 max-2x-l:grid-cols-2 max-[658px]:grid-cols-1 h-auto max-[642px]:mt-14">
                 {isFetching && [...Array(3)].map((_, i) => <NewsCardShimmer key={i} />)}
 
@@ -57,7 +55,7 @@ const NewsSection = () => {
                     })}
             </div>
         </main>
-    )
-}
-export default NewsSection
+    );
+};
 
+export default NewsSection;
