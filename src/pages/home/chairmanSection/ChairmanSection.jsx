@@ -23,7 +23,18 @@ const ChairmanSection = () => {
                     <div className="w-full h-full bg-gray-300 animate-pulse rounded-md" />
                 ) : (
                     <>
-                        <img src={data?.messages[0]?.photo} className='w-full h-full object-cover bg-lightblue' alt={data?.messages[0]?.name} />
+                        {data?.messages?.[0]?.photo ? (
+                            <img
+                                src={data.messages[0].photo}
+                                onError={(e) => { e.currentTarget.src = '/fallback.jpg'; }} 
+                                className='w-full h-full object-cover bg-lightblue'
+                                alt={data.messages[0].name || 'Image'}
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-lightblue flex items-center justify-center text-gray-500">
+                                No image available
+                            </div>
+                        )}
                         <div className='w-full p-5 bg-commonblue text-white absolute z-10 bottom-0 '>
                             <p className='lg:text-lg font-semibold tracking-[0.03em] md:text-base text-sm' >{data?.messages[0]?.name ?? ''}</p>
                             <p className='lg:text-[15px] mt-2 font-medium tracking-[0.03em] md:text-sm text-xs'>{data?.messages[0]?.position}</p>
