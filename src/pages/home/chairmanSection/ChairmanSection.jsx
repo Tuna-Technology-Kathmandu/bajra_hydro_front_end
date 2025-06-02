@@ -23,10 +23,10 @@ const ChairmanSection = () => {
                     <div className="w-full h-full bg-gray-300 animate-pulse rounded-md" />
                 ) : (
                     <>
-                        <img src={data?.messages[0].photo} className='w-full h-full object-cover bg-lightblue' alt={data?.messages[0].name} />
+                        <img src={data?.messages[0]?.photo} className='w-full h-full object-cover bg-lightblue' alt={data?.messages[0]?.name} />
                         <div className='w-full p-5 bg-commonblue text-white absolute z-10 bottom-0 '>
-                            <p className='lg:text-lg font-semibold tracking-[0.03em] md:text-base text-sm' >{data?.messages[0].name}</p>
-                            <p className='lg:text-[15px] mt-2 font-medium tracking-[0.03em] md:text-sm text-xs'>{data?.messages[0].position}</p>
+                            <p className='lg:text-lg font-semibold tracking-[0.03em] md:text-base text-sm' >{data?.messages[0]?.name ?? ''}</p>
+                            <p className='lg:text-[15px] mt-2 font-medium tracking-[0.03em] md:text-sm text-xs'>{data?.messages[0]?.position}</p>
                         </div>
                     </>
                 )}
@@ -46,17 +46,19 @@ const ChairmanSection = () => {
                     </div>
                 ) : (
                     <>
-                        <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] mb-7'>
-                            {`Message from ${data?.messages[0].position}`}
-                        </h1>
-                        {data?.messages[0].description ? (
+                        {data?.messages?.[0]?.position && (
+                            <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] mb-7'>
+                                {`Message from ${data.messages[0].position}`}
+                            </h1>
+                        )}
+                        {data?.messages[0]?.description ? (
                             <p
                                 className='text-justify font-medium text-sm max-2xl:text-[13px] max-sm:!text-xs leading-[40px] max-2xl:leading-[30px] max-sm:leading-[27px] mb-7'
-                                dangerouslySetInnerHTML={{ __html: data.messages[0].description }}
+                                dangerouslySetInnerHTML={{ __html: data.messages[0]?.description }}
                             />
                         ) : (
                             <p className='text-justify font-medium text-sm max-2xl:text-[13px] max-sm:!text-xs leading-[40px] max-2xl:leading-[30px] max-sm:leading-[27px] mb-7'>
-                                It is with great pride and commitment that I extend my warmest greetings on behalf of Bajra Hydropower...
+                                Message Coming Soon...
                             </p>
                         )}
 
