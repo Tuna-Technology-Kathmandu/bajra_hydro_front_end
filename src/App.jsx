@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeIndex from "./pages/home/HomeIndex";
 import Layout from "./Layout";
@@ -10,8 +11,28 @@ import ProjectSinglePage from "./components/singlepage/project/ProjectSinglePage
 import CareersIndex from "./pages/careers/CareersIndex";
 import OnGoingProject from "./pages/project/OnGoingProject";
 import ErrorPage from "./pages/error/ErrorPage";
+import PopUp from "./components/popUp/PopUp";
+import "../src/components/popUp/PopUp.css"
+import { useGetPopUpQuery } from "./services/PopUpApi";
+import Gallery from "./pages/gallery/Gallery";
 
 const App = () => {
+  const [showPopUp, setShowPopUp] = useState(true);
+
+   const { data, error, isLoading } = useGetPopUpQuery({
+    page: 1,
+    limit: 10,
+  });
+
+   const closePopUp = () => {
+    setShowPopUp(false);
+  };
+
+    useEffect(() => {
+    setShowPopUp(true);
+  }, []);
+
+  const imageUrl = data?.popup?.[0]?.url || "https://placehold.co/600x400";
   return (
     <Router>
       <Routes>
@@ -24,6 +45,7 @@ const App = () => {
           <Route path='/reports' element={<ReportIndex />} />
           <Route path='/single-project/:slug' element={<ProjectSinglePage />} />
           <Route path='/careers' element={<CareersIndex />} />
+          <Route path="/gallery" element={<Gallery/>}/>
           <Route path='*' element={<ErrorPage />} />
 
           {/* singlepages*/}
@@ -32,6 +54,8 @@ const App = () => {
 
         </Route>
       </Routes>
+      <PopUp  show={showPopUp} onClose={closePopUp} imageUrl={imageUrl}/>
+
     </Router>
   );
 };

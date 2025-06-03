@@ -12,6 +12,9 @@ export const NavItem = [
         name: 'Reports',
         path: '/reports'
     }, {
+        name: 'Gallery',
+        path: '/gallery'
+    },  {
         name: 'News',
         path: '/news-and-update'
     }, {
