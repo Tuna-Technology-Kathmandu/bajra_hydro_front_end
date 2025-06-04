@@ -23,10 +23,10 @@ const PopUp = ({ show, onClose }) => {
   if (!show) return null
 
   // getting 1st img to show in popuop
-  const approvedPopup = data?.popup?.find(item => item.status === 'approved')
+  const approvedPopup = data?.popup?.filter(item => item.status === 'approved') || [];
 
   return (
-    <div className='popup-overlay px-5' onClick={onClose}>
+    <div className='popup-overlay md:px-20 px-10' >
       <div className='popup-content' onClick={e => e.stopPropagation()}>
         {isLoading && !error && <div>Loading...</div>}
         {error && <div>Error! {error.message}</div>}
@@ -35,18 +35,21 @@ const PopUp = ({ show, onClose }) => {
         )}
 
         {/* popup img displaying */}
-        {approvedPopup && (
-          <div className=''>
+
+                <div className="flex flex-wrap justify-center gap-3 max-h-[90vh] overflow-y-auto">
+        {approvedPopup.map((item, index) => (
+          <div key={index} className=''>
             <img
-              src={approvedPopup.image}
-              alt={approvedPopup.title || 'Pop Up Image'}
-              className='popup-image rounded'
+              src={item.image}
+              alt={item.title || 'Pop Up Image/docs'}
+              className='popup-image rounded-xl'
             />
           </div>
-        )}
+        ))}
+        </div>
 
         <button className='close-button' onClick={onClose}>
-          <MdCancel size={20} className='' />
+          <MdCancel className='md:text-[30px] text-[25px]' />
         </button>
       </div>
     </div>
