@@ -55,9 +55,12 @@ const Gallery = () => {
   }
 
   return (
+  
     <>
+    <div>
       <CommonHero img={Hydro} title='Gallery' />
-
+    </div>
+      
       {/* img/vid btn */}
       <div className='flex justify-center px-[65px] max-md:px-[30px] mt-10'>
         <div className='border rounded-xl shadow-md border-gray-300 mb-10 py-1 px-4 flex gap-4'>
@@ -112,19 +115,9 @@ const Gallery = () => {
                       onClick={() => setSelectedImage(ImagesData[4]?.image)}
                     />
                   </div>
-                  <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                    <GalleryBigImage
-                      img={
-                        ImagesData[0]?.image ?? 'https://placehold.co/600x400'
-                      }
-                      onClick={() => setSelectedImage(ImagesData[0]?.image)}
-                    />
-                  </div>
+                </div>
+                <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
-                    <GallerySmallImage
-                      img={ImagesData[5]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[5]?.image)}
-                    />
                     <GallerySmallImage
                       img={ImagesData[6]?.image ?? ''}
                       onClick={() => setSelectedImage(ImagesData[6]?.image)}
@@ -137,11 +130,23 @@ const Gallery = () => {
                       img={ImagesData[8]?.image ?? ''}
                       onClick={() => setSelectedImage(ImagesData[8]?.image)}
                     />
+                     <GallerySmallImage
+                      img={ImagesData[9]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[9]?.image)}
+                    />
+                  </div>
+                    <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
+                    <GalleryBigImage
+                      img={
+                        ImagesData[5]?.image ?? ''
+                      }
+                      onClick={() => setSelectedImage(ImagesData[5]?.image)}
+                    />
                   </div>
                 </div>
 
                 {/* Second Grid */}
-                <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap max-[734px]:flex-col-reverse justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2%'>
+                {/* <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap max-[734px]:flex-col-reverse justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2%'>
                   <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
                     <GalleryBigImage
                       img={ImagesData[9]?.image ?? ''}
@@ -157,7 +162,7 @@ const Gallery = () => {
                       />
                     ))}
                   </div>
-                </div>
+                </div> */}
               </>
             ) : (
               <div className='Loading text-gray-500 col-span-full text-center'>
@@ -172,7 +177,7 @@ const Gallery = () => {
       {activeTab === 'videos' && (
         <div className='flex flex-wrap items-center justify-center px-[65px] max-md:px-[30px]'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl'>
-            {/* {ImagesData.filter(item => item.video).length > 0 ? (
+            {ImagesData.filter(item => item.video).length > 0 ? (
               ImagesData.filter(item => item.video).map(item => (
                 
                 // <div
@@ -194,11 +199,11 @@ const Gallery = () => {
               <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
               </div>
-            )} */}
+            )}
             {/* <IframeVideo  /> */}
-            <div className='text-gray-500 col-span-full text-center'>
+            {/* <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
-              </div>
+              </div> */}
           </div>
         </div>
       )}
