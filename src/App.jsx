@@ -14,7 +14,7 @@ import ErrorPage from "./pages/error/ErrorPage";
 import PopUp from "./components/popUp/PopUp";
 import "../src/components/popUp/PopUp.css"
 import { useGetPopUpQuery } from "./services/PopUpApi";
-import Gallery from "./pages/gallery/Gallery";
+import GalleryPage from "./pages/gallery/GalleryPage";
 
 const App = () => {
   const [showPopUp, setShowPopUp] = useState(true);
@@ -45,7 +45,7 @@ const App = () => {
           <Route path='/reports' element={<ReportIndex />} />
           <Route path='/single-project/:slug' element={<ProjectSinglePage />} />
           <Route path='/careers' element={<CareersIndex />} />
-          <Route path="/gallery" element={<Gallery/>}/>
+          <Route path="/gallery" element={<GalleryPage/>}/>
           <Route path='*' element={<ErrorPage />} />
 
           {/* singlepages*/}

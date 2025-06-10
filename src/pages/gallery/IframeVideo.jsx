@@ -8,7 +8,7 @@ const IframeVideo = () => {
     <div className='bg-black aspect-video rounded-lg overflow-hidden'>
       <iframe
         className='w-full h-full'
-        src="https://www.youtube.com/embed/ZIiJgHRaUyY"
+        src=""
         title="YouTube Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen

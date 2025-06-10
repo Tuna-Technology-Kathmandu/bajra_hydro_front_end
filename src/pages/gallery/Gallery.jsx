@@ -7,9 +7,6 @@ import GalleryShimmer from '../../components/Shimmer/GalleryShimmer'
 import ReactPaginate from 'react-paginate'
 import { ReactComponent as Cross } from '../../assets/svg/cross.svg'
 import useSmoothScrollTop from '../../customHook/useSmoothScrollTop'
-
-import CommonHero from '../../components/heroComponent/CommonHero'
-import Hydro from '../../assets/images/hydro3.webp'
 import IframeVideo from './IframeVideo'
 
 const Gallery = () => {
@@ -57,10 +54,7 @@ const Gallery = () => {
   return (
   
     <>
-    <div>
-      <CommonHero img={Hydro} title='Gallery' />
-    </div>
-      
+   
       {/* img/vid btn */}
       <div className='flex justify-center px-[65px] max-md:px-[30px] mt-10'>
         <div className='border rounded-xl shadow-md border-gray-300 mb-10 py-1 px-4 flex gap-4'>
@@ -177,7 +171,8 @@ const Gallery = () => {
       {activeTab === 'videos' && (
         <div className='flex flex-wrap items-center justify-center px-[65px] max-md:px-[30px]'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl'>
-            {ImagesData.filter(item => item.video).length > 0 ? (
+             <IframeVideo />
+            {/* {ImagesData.filter(item => item.video).length > 0 ? (
               ImagesData.filter(item => item.video).map(item => (
                 
                 // <div
@@ -193,13 +188,13 @@ const Gallery = () => {
                 //   />
                 // </div>
 
-                <IframeVideo  />
+                <IframeVideo />
               ))
             ) : (
               <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
               </div>
-            )}
+            )} */}
             {/* <IframeVideo  /> */}
             {/* <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
