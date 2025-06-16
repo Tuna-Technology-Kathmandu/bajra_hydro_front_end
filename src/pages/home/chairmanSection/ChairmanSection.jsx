@@ -2,7 +2,7 @@
 import { useGetCeoQuery } from '../../../services/Ceo'
 
 const ChairmanSection = () => {
-  const position = 'ceo'
+  const position = 'Chairman'
   const { data, isFetching, isError } = useGetCeoQuery({ position })
 
   if (isError) {

@@ -168,37 +168,18 @@ const Gallery = () => {
       )}
 
       {/*video section */}
-      {activeTab === 'videos' && (
+           {activeTab === 'videos' && (
         <div className='flex flex-wrap items-center justify-center px-[65px] max-md:px-[30px]'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl'>
-             <IframeVideo />
-            {/* {ImagesData.filter(item => item.video).length > 0 ? (
-              ImagesData.filter(item => item.video).map(item => (
-                
-                // <div
-                //   key={item._id}
-                //   className='bg-black aspect-video rounded-lg overflow-hidden'
-                // >
-                //   <iframe
-                //     className='w-full h-full'
-                //     src={item.video}
-                //     title='YouTube Video'
-                //     allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                //     allowFullScreen
-                //   />
-                // </div>
-
-                <IframeVideo />
+            {ImagesData.filter(item => item.video_url).length > 0 ? (
+              ImagesData.filter(item => item.video_url).map(item => (
+                <IframeVideo key={item._id} videoUrl={item.video_url} />
               ))
             ) : (
               <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
               </div>
-            )} */}
-            {/* <IframeVideo  /> */}
-            {/* <div className='text-gray-500 col-span-full text-center'>
-                No videos available at the moment.
-              </div> */}
+            )}
           </div>
         </div>
       )}

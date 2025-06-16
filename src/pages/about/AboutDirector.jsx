@@ -3,9 +3,8 @@ import TeamCard from '../../components/card/TeamCard'
 import TeamCardShimmer from '../../components/Shimmer/TeamShimmer'
 
 const AboutDirector = ({ members, isFetching, isError }) => {
-    const sortedMembers = members
-        ?.filter(member => member.display_position !== 0)
-        .sort((a, b) => a.display_position - b.display_position);
+    const sortedMembers = members;
+        
     return (
         <section className='w-full mt-7'>
             <h1 className='font-bold text-[22px] max-2xl:text-[21px] max-md:text-[18px] max-sm:text-[15px] text-center mb-10'>Board of Directors</h1>
