@@ -6,7 +6,7 @@ import 'swiper/css/pagination'
 import '../../style/components/HeroHome.css'
 // import Img1 from '../../assets/images/heroHome1.png'
 // import { motion } from 'framer-motion'
-import bajra_video from '/video/bajra_banner_video.mp4'
+import bajra_video from '../../assets/video/bajra_banner_video.mp4'
 // import { useState } from 'react'
 
 const HomeHero = () => {

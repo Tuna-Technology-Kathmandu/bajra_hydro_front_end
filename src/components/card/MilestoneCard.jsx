@@ -14,9 +14,7 @@ const MilestoneCard = ({ title, text, index }) => {
                 <div className="leading-[25px] text-xs max-xl:text-[10px] font-normal p-5 text-justify">
                     <p
                         dangerouslySetInnerHTML={{
-                            __html: text.length > 370
-                                ? `${text.slice(0, 370)}...`
-                                : text
+                            __html: text
                         }}
                     />
 

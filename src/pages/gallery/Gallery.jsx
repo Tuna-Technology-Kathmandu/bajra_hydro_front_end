@@ -35,6 +35,10 @@ const Gallery = () => {
     }, 100)
   }
 
+  const onlyImage=ImagesData.filter((item)=>{
+     return item.image!==null
+  })
+
   if (isFetching) {
     return (
       <div className='flex justify-center w-full px-[65px] mt-20 Loading'>
@@ -50,6 +54,7 @@ const Gallery = () => {
       </div>
     )
   }
+  console.log('only',onlyImage[9])
 
   return (
   
@@ -81,60 +86,64 @@ const Gallery = () => {
           ref={PaginationRef}
         >
           <div className='w-full'>
-            {ImagesData && ImagesData.length > 0 ? (
+            {onlyImage && onlyImage.length > 0 ? (
               <>
                 {/* First Grid */}
                 <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                    <GalleryBigImage
-                      img={ImagesData[0]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[0]?.image)}
+                   {
+                    (onlyImage[0]?.image !==''||onlyImage[0]?.image!==null) && (
+                       <GalleryBigImage
+                      img={onlyImage[0]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[0]?.image)}
                     />
+                    )  
+                   }
                   </div>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
                     <GallerySmallImage
-                      img={ImagesData[1]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[1]?.image)}
+                      img={onlyImage[1]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[1]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[2]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[2]?.image)}
+                      img={onlyImage[2]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[2]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[3]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[3]?.image)}
+                      img={onlyImage[3]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[3]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[4]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[4]?.image)}
+                      img={onlyImage[4]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[4]?.image)}
                     />
                   </div>
                 </div>
                 <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
                     <GallerySmallImage
-                      img={ImagesData[6]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[6]?.image)}
+                      img={onlyImage[6]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[6]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[7]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[7]?.image)}
+                      img={onlyImage[7]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[7]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[8]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[8]?.image)}
+                      img={onlyImage[8]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[8]?.image)}
                     />
                      <GallerySmallImage
-                      img={ImagesData[9]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[9]?.image)}
+                      img={onlyImage[9]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[9]?.image)}
                     />
                   </div>
                     <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
                     <GalleryBigImage
                       img={
-                        ImagesData[5]?.image ?? ''
+                        onlyImage[5]?.image ?? ''
                       }
-                      onClick={() => setSelectedImage(ImagesData[5]?.image)}
+                      onClick={() => setSelectedImage(onlyImage[5]?.image)}
                     />
                   </div>
                 </div>
