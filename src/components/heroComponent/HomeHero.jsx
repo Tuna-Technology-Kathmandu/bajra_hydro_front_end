@@ -6,7 +6,6 @@ import 'swiper/css/pagination'
 import '../../style/components/HeroHome.css'
 // import Img1 from '../../assets/images/heroHome1.png'
 // import { motion } from 'framer-motion'
-import bajra_video from '../../assets/video/bajra_banner_video.mp4'
 // import { useState } from 'react'
 
 const HomeHero = () => {
@@ -15,8 +14,20 @@ const HomeHero = () => {
   return (
     <section>
       <div className='relative'>
-        <video className='w-full' autoPlay muted loop>
-          <source src={bajra_video} type='video/mp4' />
+        {/* <video className='w-full' autoPlay muted loop>
+          <source src='/video/bajra_banner_video (2).mp4' type='video/mp4' />
+        </video> */}
+        <video
+          className='w-full h-full'
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload='none' // or "metadata"
+          poster='' // optional fallback
+        >
+          <source src='/video/bajra_banner_video (2).mp4' type='video/mp4' />
+          Your browser does not support the video tag.
         </video>
         <div className='bg-black/50 absolute inset-0 z-0'></div>
       </div>
