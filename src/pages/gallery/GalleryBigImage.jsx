@@ -1,14 +1,14 @@
 
-const GalleryBigImage = ({ img }) => {
+const GalleryBigImage = ({ img, onClick }) => {
     return (
         <>
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full cursor-pointer" onClick={onClick}>
                 {img ? (
                     <img
                         src={img}
                         alt="Living Room Interior"
                         loading="lazy"
-                        className="w-full h-full object-cover"
+                        className=" w-full h-full object-cover"
                     />
                 ) : (
                     <p className="flex justify-center items-center w-full h-full bg-gray-200 text-gray-600 loading">

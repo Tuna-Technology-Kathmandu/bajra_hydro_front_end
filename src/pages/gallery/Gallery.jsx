@@ -7,9 +7,6 @@ import GalleryShimmer from '../../components/Shimmer/GalleryShimmer'
 import ReactPaginate from 'react-paginate'
 import { ReactComponent as Cross } from '../../assets/svg/cross.svg'
 import useSmoothScrollTop from '../../customHook/useSmoothScrollTop'
-
-import CommonHero from '../../components/heroComponent/CommonHero'
-import Hydro from '../../assets/images/hydro3.webp'
 import IframeVideo from './IframeVideo'
 
 const Gallery = () => {
@@ -38,6 +35,10 @@ const Gallery = () => {
     }, 100)
   }
 
+  const onlyImage=ImagesData.filter((item)=>{
+     return item.image!==null
+  })
+
   if (isFetching) {
     return (
       <div className='flex justify-center w-full px-[65px] mt-20 Loading'>
@@ -53,11 +54,12 @@ const Gallery = () => {
       </div>
     )
   }
+  console.log('only',onlyImage[9])
 
   return (
+  
     <>
-      <CommonHero img={Hydro} title='Gallery' />
-
+   
       {/* img/vid btn */}
       <div className='flex justify-center px-[65px] max-md:px-[30px] mt-10'>
         <div className='border rounded-xl shadow-md border-gray-300 mb-10 py-1 px-4 flex gap-4'>
@@ -84,64 +86,70 @@ const Gallery = () => {
           ref={PaginationRef}
         >
           <div className='w-full'>
-            {ImagesData && ImagesData.length > 0 ? (
+            {onlyImage && onlyImage.length > 0 ? (
               <>
                 {/* First Grid */}
                 <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                    <GalleryBigImage
-                      img={ImagesData[0]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[0]?.image)}
+                   {
+                    (onlyImage[0]?.image !==''||onlyImage[0]?.image!==null) && (
+                       <GalleryBigImage
+                      img={onlyImage[0]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[0]?.image)}
                     />
+                    )  
+                   }
                   </div>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
                     <GallerySmallImage
-                      img={ImagesData[1]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[1]?.image)}
+                      img={onlyImage[1]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[1]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[2]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[2]?.image)}
+                      img={onlyImage[2]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[2]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[3]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[3]?.image)}
+                      img={onlyImage[3]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[3]?.image)}
                     />
                     <GallerySmallImage
-                      img={ImagesData[4]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[4]?.image)}
+                      img={onlyImage[4]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[4]?.image)}
                     />
                   </div>
-                  <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
+                </div>
+                <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
+                  <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
+                    <GallerySmallImage
+                      img={onlyImage[6]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[6]?.image)}
+                    />
+                    <GallerySmallImage
+                      img={onlyImage[7]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[7]?.image)}
+                    />
+                    <GallerySmallImage
+                      img={onlyImage[8]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[8]?.image)}
+                    />
+                     <GallerySmallImage
+                      img={onlyImage[9]?.image ?? ''}
+                      onClick={() => setSelectedImage(onlyImage[9]?.image)}
+                    />
+                  </div>
+                    <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
                     <GalleryBigImage
                       img={
-                        ImagesData[0]?.image ?? 'https://placehold.co/600x400'
+                        onlyImage[5]?.image ?? ''
                       }
-                      onClick={() => setSelectedImage(ImagesData[0]?.image)}
-                    />
-                  </div>
-                  <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
-                    <GallerySmallImage
-                      img={ImagesData[5]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[5]?.image)}
-                    />
-                    <GallerySmallImage
-                      img={ImagesData[6]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[6]?.image)}
-                    />
-                    <GallerySmallImage
-                      img={ImagesData[7]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[7]?.image)}
-                    />
-                    <GallerySmallImage
-                      img={ImagesData[8]?.image ?? ''}
-                      onClick={() => setSelectedImage(ImagesData[8]?.image)}
+                      onClick={() => setSelectedImage(onlyImage[5]?.image)}
                     />
                   </div>
                 </div>
 
                 {/* Second Grid */}
-                <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap max-[734px]:flex-col-reverse justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2%'>
+                {/* <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap max-[734px]:flex-col-reverse justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2%'>
                   <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
                     <GalleryBigImage
                       img={ImagesData[9]?.image ?? ''}
@@ -157,7 +165,7 @@ const Gallery = () => {
                       />
                     ))}
                   </div>
-                </div>
+                </div> */}
               </>
             ) : (
               <div className='Loading text-gray-500 col-span-full text-center'>
@@ -169,36 +177,18 @@ const Gallery = () => {
       )}
 
       {/*video section */}
-      {activeTab === 'videos' && (
+           {activeTab === 'videos' && (
         <div className='flex flex-wrap items-center justify-center px-[65px] max-md:px-[30px]'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl'>
-            {/* {ImagesData.filter(item => item.video).length > 0 ? (
-              ImagesData.filter(item => item.video).map(item => (
-                
-                // <div
-                //   key={item._id}
-                //   className='bg-black aspect-video rounded-lg overflow-hidden'
-                // >
-                //   <iframe
-                //     className='w-full h-full'
-                //     src={item.video}
-                //     title='YouTube Video'
-                //     allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                //     allowFullScreen
-                //   />
-                // </div>
-
-                <IframeVideo  />
+            {ImagesData.filter(item => item.video_url).length > 0 ? (
+              ImagesData.filter(item => item.video_url).map(item => (
+                <IframeVideo key={item._id} videoUrl={item.video_url} />
               ))
             ) : (
               <div className='text-gray-500 col-span-full text-center'>
                 No videos available at the moment.
               </div>
-            )} */}
-            {/* <IframeVideo  /> */}
-            <div className='text-gray-500 col-span-full text-center'>
-                No videos available at the moment.
-              </div>
+            )}
           </div>
         </div>
       )}
