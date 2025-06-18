@@ -9,10 +9,11 @@ export const GalleryAPI = createApi({
     endpoints: builder => ({
         getGalleryAPI: builder.query({
             query: (params = {}) => ({
-                url: '/gallery',
+                url: '/gallerystatus=approved',
                 params: {
                     page: params.page,
                     limit: params.limit,
+                    type: params.type,
                 },
             }),
         }),
