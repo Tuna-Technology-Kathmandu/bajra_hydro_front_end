@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* common colors */
+  --color-commonblue: #1637BA;
+  --color-lightblue: #48CAE4;
+  --color-hoverblue: #3BB8D1;
+
+  /* box shadow */
+  --drop-shadow-soft: 0 0 6px rgba(0, 0, 0, 0.2);
+  /* break-points */
+  --breakpoint-2xl: 1261px;
+  --breakpoint-2xl-1l: 1049px;
+  --breakpoint-2x-l: 988px;
+  --breakpoint-1xl: 948px;
+  --breakpoint-xl: 868px;
+  --breakpoint-md: 784px;
+  --breakpoint-0md: 652px;
+  --breakpoint-1md: 600px;
+  --breakpoint-m-d: 535px;
+  --breakpoint-0m-d: 450px;
+  --breakpoint-sm: 418px;
+  --breakpoint-xs: 383px;
+}
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --common-blue: #1637BA;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.test-rule {
+  color: red;
+}
+
+button {
+  padding: 8px 12px;
+}
+
+.loading {
+  font-size: 14px;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+
+@media only screen and (max-width: 535px) {
+  button {
+    padding: 6px 10px;
+  }
+
+  .loading {
+    font-size: 12px;
+  }
+}
