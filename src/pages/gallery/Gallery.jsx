@@ -1,27 +1,28 @@
 import React, { useRef, useState } from 'react'
-import { useGetGalleryAPIQuery } from '../../services/GalleryAPI'
-import GallerySmallImage from '../gallery/GallerySmallImage'
-import GalleryBigImage from '../gallery/GalleryBigImage'
+import { useGetGalleryAPIQuery } from '../../Services/GalleryAPI'
+import GallerySmallImage from './GallerySmallImage'
+import GalleryBigImage from './GalleryBigImage'
 import { ReactComponent as Triangle } from '../../assets/svg/triangle.svg'
-import GalleryShimmer from '../../components/Shimmer/GalleryShimmer'
+import GalleryShimmer from '../../components/shimmer/GalleryShimmer'
 import ReactPaginate from 'react-paginate'
 import { ReactComponent as Cross } from '../../assets/svg/cross.svg'
 import useSmoothScrollTop from '../../customHook/useSmoothScrollTop'
-import IframeVideo from './IframeVideo'
+// import IframeVideos from './IframeVideos'
+import ShowVideo from './ShowVideo'
 
-const Gallery = () => {
+const ShowGallery = () => {
   const [page, setPage] = useState(1)
   const [selectedImage, setSelectedImage] = useState(null)
   const [activeTab, setActiveTab] = useState('images')
   const PaginationRef = useRef(null)
   const limit = 10
-
-  const { data, isFetching, isError } = useGetGalleryAPIQuery({ page, limit })
+  const type = 'image'
+  // for images only
+  const { data, isFetching, isError } = useGetGalleryAPIQuery({ page, limit, type })
   const ImagesData = data?.galleries ?? []
   const pagination = data?.pagination ?? {
     totalPages: 1,
     currentPage: page,
-    limit: 10,
   }
   const { totalPages, currentPage } = pagination
 
@@ -35,13 +36,9 @@ const Gallery = () => {
     }, 100)
   }
 
-  const onlyImage=ImagesData.filter((item)=>{
-     return item.image!==null
-  })
-
   if (isFetching) {
     return (
-      <div className='flex justify-center w-full px-[65px] mt-20 Loading'>
+      <div className='flex justify-center w-full px-[65px] mt-20 Loading '>
         <GalleryShimmer />
       </div>
     )
@@ -54,13 +51,9 @@ const Gallery = () => {
       </div>
     )
   }
-  console.log('only',onlyImage[9])
 
   return (
-  
     <>
-   
-      {/* img/vid btn */}
       <div className='flex justify-center px-[65px] max-md:px-[30px] mt-10'>
         <div className='border rounded-xl shadow-md border-gray-300 mb-10 py-1 px-4 flex gap-4'>
           {['images', 'videos'].map(tab => (
@@ -68,7 +61,7 @@ const Gallery = () => {
               key={tab}
               className={`relative font-semibold px-2 pb-1.5 transition-colors ${
                 activeTab === tab
-                  ? 'text-darkblue after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-darkblue after:border-b-4 after:rounded-xl cursor-pointer'
+                  ? 'text-black after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-black after:border-b-4 after:rounded-xl cursor-pointer'
                   : 'text-gray-500 cursor-pointer'
               }`}
               onClick={() => setActiveTab(tab)}
@@ -86,86 +79,61 @@ const Gallery = () => {
           ref={PaginationRef}
         >
           <div className='w-full'>
-            {onlyImage && onlyImage.length > 0 ? (
+            {ImagesData && ImagesData.length > 0 ? (
               <>
                 {/* First Grid */}
                 <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                   {
-                    (onlyImage[0]?.image !==''||onlyImage[0]?.image!==null) && (
-                       <GalleryBigImage
-                      img={onlyImage[0]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[0]?.image)}
+                    <GalleryBigImage
+                      img={ImagesData[0]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[0]?.image)}
                     />
-                    )  
-                   }
                   </div>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
                     <GallerySmallImage
-                      img={onlyImage[1]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[1]?.image)}
+                      img={ImagesData[1]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[1]?.image)}
                     />
                     <GallerySmallImage
-                      img={onlyImage[2]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[2]?.image)}
+                      img={ImagesData[2]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[2]?.image)}
                     />
                     <GallerySmallImage
-                      img={onlyImage[3]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[3]?.image)}
+                      img={ImagesData[3]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[3]?.image)}
                     />
                     <GallerySmallImage
-                      img={onlyImage[4]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[4]?.image)}
+                      img={ImagesData[4]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[4]?.image)}
                     />
                   </div>
                 </div>
                 <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2% '>
                   <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
                     <GallerySmallImage
-                      img={onlyImage[6]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[6]?.image)}
+                      img={ImagesData[5]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[6]?.image)}
                     />
                     <GallerySmallImage
-                      img={onlyImage[7]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[7]?.image)}
+                      img={ImagesData[6]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[7]?.image)}
                     />
                     <GallerySmallImage
-                      img={onlyImage[8]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[8]?.image)}
+                      img={ImagesData[7]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[8]?.image)}
                     />
-                     <GallerySmallImage
-                      img={onlyImage[9]?.image ?? ''}
-                      onClick={() => setSelectedImage(onlyImage[9]?.image)}
-                    />
-                  </div>
-                    <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                    <GalleryBigImage
-                      img={
-                        onlyImage[5]?.image ?? ''
-                      }
-                      onClick={() => setSelectedImage(onlyImage[5]?.image)}
-                    />
-                  </div>
-                </div>
-
-                {/* Second Grid */}
-                {/* <div className='bg-white mb-10 w-full flex max-[734px]:flex-wrap max-[734px]:flex-col-reverse justify-between gap-4 max-[767px]:gap-2 font-semibold text-[20px] leading-[30px] tracking-2%'>
-                  <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
-                    <GalleryBigImage
-                      img={ImagesData[9]?.image ?? ''}
+                    <GallerySmallImage
+                      img={ImagesData[8]?.image ?? ''}
                       onClick={() => setSelectedImage(ImagesData[9]?.image)}
                     />
                   </div>
-                  <div className='w-[484px] max-[1041px]:w-64 max-[734px]:w-full grid grid-cols-2 max-[388px]:grid-cols-1 max-[388px]:h-[560px] gap-4 max-[767px]:gap-2 h-[460px] max-[1041px]:h-[300px]'>
-                    {ImagesData.slice(5, 9).map((image, index) => (
-                      <GallerySmallImage
-                        key={index}
-                        img={image.image}
-                        onClick={() => setSelectedImage(image.image)}
-                      />
-                    ))}
+                  <div className='relative rounded-lg flex-grow overflow-hidden group h-[460px] max-[1041px]:h-[300px]'>
+                    <GalleryBigImage
+                      img={ImagesData[9]?.image ?? ''}
+                      onClick={() => setSelectedImage(ImagesData[5]?.image)}
+                    />
                   </div>
-                </div> */}
+                </div>
               </>
             ) : (
               <div className='Loading text-gray-500 col-span-full text-center'>
@@ -177,20 +145,8 @@ const Gallery = () => {
       )}
 
       {/*video section */}
-           {activeTab === 'videos' && (
-        <div className='flex flex-wrap items-center justify-center px-[65px] max-md:px-[30px]'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-6xl'>
-            {ImagesData.filter(item => item.video_url).length > 0 ? (
-              ImagesData.filter(item => item.video_url).map(item => (
-                <IframeVideo key={item._id} videoUrl={item.video_url} />
-              ))
-            ) : (
-              <div className='text-gray-500 col-span-full text-center'>
-                No videos available at the moment.
-              </div>
-            )}
-          </div>
-        </div>
+      {activeTab === 'videos' && (
+       <ShowVideo/>
       )}
 
       {/* Pagination */}
@@ -249,5 +205,4 @@ const Gallery = () => {
     </>
   )
 }
-
-export default Gallery
+export default ShowGallery
