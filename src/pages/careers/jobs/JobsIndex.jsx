@@ -50,7 +50,7 @@ const JobsIndex = () => {
     }
     const search = 'jobs';
     const { data: category } = useGetCategoryQuery({ search })
-    const categoryLists = category?.categories?.[0]?.subcategories?.map(sub => sub.name) || [];
+    const categoryLists = ['Service','Management','Human Resources','Administration','Others']
 
     const { data, isFetching, isLoading } = useGetJobsQuery({
 

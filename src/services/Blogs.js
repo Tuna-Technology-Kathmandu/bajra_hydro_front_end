@@ -9,7 +9,7 @@ export const BlogApi = createApi({
     endpoints: (builder) => ({
         getBlogs: builder.query({
             query: (params) => ({
-                url: '/blogs',
+                url: '/blogs?status=published',
                 params: {
                     page: params.page,
                     limit: params.limit,
